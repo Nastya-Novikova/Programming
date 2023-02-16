@@ -40,5 +40,28 @@ namespace Programming
             var selectedValue = (int)ValuesListBox.SelectedItem;
             IntTextBox.Text = selectedValue.ToString();
         }
+
+        private void ParseButton_Click(object sender, EventArgs e)
+        {
+            if (ParsingTextBox.Text == null)
+            {
+                return;
+            }
+
+            object EnteredDay;
+            bool result = Enum.TryParse(typeof(Weekday), ParsingTextBox.Text, true, out EnteredDay);
+
+            int number;
+            if (result)
+            {
+                number = (int)EnteredDay + 1;
+                ParsingAnswerLabel.Text = ($"Это день недели ({EnteredDay} = {number})");
+                return;
+            }
+            else
+            {
+                ParsingAnswerLabel.Text = ($"Нет такого дня недели");
+            }
+        }
     }
 }
