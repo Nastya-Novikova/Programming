@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.EnumsTabControl = new System.Windows.Forms.TabControl();
             this.EnumsTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
@@ -62,7 +63,7 @@
             this.EnumsTabControl.Controls.Add(this.EnumsTabPage);
             this.EnumsTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EnumsTabControl.Location = new System.Drawing.Point(0, 0);
-            this.EnumsTabControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EnumsTabControl.Margin = new System.Windows.Forms.Padding(2);
             this.EnumsTabControl.Name = "EnumsTabControl";
             this.EnumsTabControl.SelectedIndex = 0;
             this.EnumsTabControl.Size = new System.Drawing.Size(979, 507);
@@ -72,9 +73,9 @@
             // 
             this.EnumsTabPage.Controls.Add(this.tableLayoutPanelMain);
             this.EnumsTabPage.Location = new System.Drawing.Point(4, 24);
-            this.EnumsTabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EnumsTabPage.Margin = new System.Windows.Forms.Padding(2);
             this.EnumsTabPage.Name = "EnumsTabPage";
-            this.EnumsTabPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EnumsTabPage.Padding = new System.Windows.Forms.Padding(2);
             this.EnumsTabPage.Size = new System.Drawing.Size(971, 479);
             this.EnumsTabPage.TabIndex = 0;
             this.EnumsTabPage.Text = "Enums";
@@ -88,7 +89,7 @@
             this.tableLayoutPanelMain.Controls.Add(this.EnumsGroupBox, 0, 0);
             this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(2, 2);
-            this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
             this.tableLayoutPanelMain.RowCount = 2;
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.5595F));
@@ -105,7 +106,7 @@
             this.tableLayoutPanel.Controls.Add(this.SeasonGroupBox, 1, 0);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(2, 280);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 1;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -120,9 +121,9 @@
             this.WeekdayGroupBox.Controls.Add(this.ParsingTextBox);
             this.WeekdayGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WeekdayGroupBox.Location = new System.Drawing.Point(2, 2);
-            this.WeekdayGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.WeekdayGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.WeekdayGroupBox.Name = "WeekdayGroupBox";
-            this.WeekdayGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.WeekdayGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.WeekdayGroupBox.Size = new System.Drawing.Size(477, 189);
             this.WeekdayGroupBox.TabIndex = 0;
             this.WeekdayGroupBox.TabStop = false;
@@ -132,7 +133,7 @@
             // 
             this.ParsingAnswerLabel.AutoSize = true;
             this.ParsingAnswerLabel.Location = new System.Drawing.Point(12, 101);
-            this.ParsingAnswerLabel.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.ParsingAnswerLabel.Margin = new System.Windows.Forms.Padding(10);
             this.ParsingAnswerLabel.Name = "ParsingAnswerLabel";
             this.ParsingAnswerLabel.Size = new System.Drawing.Size(0, 15);
             this.ParsingAnswerLabel.TabIndex = 9;
@@ -170,9 +171,9 @@
             this.SeasonGroupBox.Controls.Add(this.HandleComboBox);
             this.SeasonGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SeasonGroupBox.Location = new System.Drawing.Point(483, 2);
-            this.SeasonGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SeasonGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.SeasonGroupBox.Name = "SeasonGroupBox";
-            this.SeasonGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SeasonGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.SeasonGroupBox.Size = new System.Drawing.Size(478, 189);
             this.SeasonGroupBox.TabIndex = 1;
             this.SeasonGroupBox.TabStop = false;
@@ -195,6 +196,7 @@
             this.HandleButton.TabIndex = 11;
             this.HandleButton.Text = "Go!";
             this.HandleButton.UseVisualStyleBackColor = true;
+            this.HandleButton.Click += new System.EventHandler(this.HandleButton_Click);
             // 
             // HandleComboBox
             // 
@@ -215,9 +217,9 @@
             this.EnumsGroupBox.Controls.Add(this.EnumsListBox);
             this.EnumsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EnumsGroupBox.Location = new System.Drawing.Point(2, 2);
-            this.EnumsGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EnumsGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.EnumsGroupBox.Name = "EnumsGroupBox";
-            this.EnumsGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EnumsGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.EnumsGroupBox.Size = new System.Drawing.Size(963, 274);
             this.EnumsGroupBox.TabIndex = 2;
             this.EnumsGroupBox.TabStop = false;
@@ -226,7 +228,7 @@
             // IntTextBox
             // 
             this.IntTextBox.Location = new System.Drawing.Point(397, 46);
-            this.IntTextBox.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.IntTextBox.Margin = new System.Windows.Forms.Padding(10);
             this.IntTextBox.Multiline = true;
             this.IntTextBox.Name = "IntTextBox";
             this.IntTextBox.Size = new System.Drawing.Size(106, 21);
@@ -268,7 +270,7 @@
             this.ValuesListBox.IntegralHeight = false;
             this.ValuesListBox.ItemHeight = 15;
             this.ValuesListBox.Location = new System.Drawing.Point(199, 46);
-            this.ValuesListBox.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.ValuesListBox.Margin = new System.Windows.Forms.Padding(10);
             this.ValuesListBox.Name = "ValuesListBox";
             this.ValuesListBox.Size = new System.Drawing.Size(178, 222);
             this.ValuesListBox.TabIndex = 1;
@@ -280,7 +282,7 @@
             this.EnumsListBox.IntegralHeight = false;
             this.EnumsListBox.ItemHeight = 15;
             this.EnumsListBox.Location = new System.Drawing.Point(14, 46);
-            this.EnumsListBox.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.EnumsListBox.Margin = new System.Windows.Forms.Padding(10);
             this.EnumsListBox.Name = "EnumsListBox";
             this.EnumsListBox.Size = new System.Drawing.Size(165, 222);
             this.EnumsListBox.TabIndex = 0;
@@ -292,7 +294,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(979, 507);
             this.Controls.Add(this.EnumsTabControl);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "Programming Demo";
             this.EnumsTabControl.ResumeLayout(false);
