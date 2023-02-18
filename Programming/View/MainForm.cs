@@ -1,27 +1,27 @@
-namespace Programming
+п»їnamespace Programming
 {
     public partial class MainForm : Form
     {
         public MainForm()
         {
             InitializeComponent();
-            // массив, содержащий все перечисления
+            // РјР°СЃСЃРёРІ, СЃРѕРґРµСЂР¶Р°С‰РёР№ РІСЃРµ РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ
             object[] enums = new object[] { typeof(Color), typeof(Genre), typeof(EducationForm),
                                            typeof(Manufactures), typeof(Season), typeof(Weekday) }; 
-            // добавление перечислений в ListBox
+            // РґРѕР±Р°РІР»РµРЅРёРµ РїРµСЂРµС‡РёСЃР»РµРЅРёР№ РІ ListBox
             EnumsListBox.Items.AddRange(enums);                                                             
             EnumsListBox.SelectedIndex = 0;
 
-            // массив, содержащий элементы перечисления Season
+            // РјР°СЃСЃРёРІ, СЃРѕРґРµСЂР¶Р°С‰РёР№ СЌР»РµРјРµРЅС‚С‹ РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ Season
             var seasonValues = Enum.GetValues(typeof(Season));   
-            //заполнение HandleComboBox
+            //Р·Р°РїРѕР»РЅРµРЅРёРµ HandleComboBox
             foreach (var seasonValue in seasonValues)                                                       
             {
                 HandleComboBox.Items.Add(seasonValue);
             }
         }
 
-        // работа с ValuesListBox
+        // СЂР°Р±РѕС‚Р° СЃ ValuesListBox
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)                         
         {
             if (EnumsListBox.SelectedItem == null)
@@ -30,20 +30,20 @@ namespace Programming
             }
 
             var selectedEnum = (Type)EnumsListBox.SelectedItem;
-            // массив из элементов перечисления, выбранного пользователем
+            // РјР°СЃСЃРёРІ РёР· СЌР»РµРјРµРЅС‚РѕРІ РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ, РІС‹Р±СЂР°РЅРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
             var enumValues = Enum.GetValues(selectedEnum);                                                 
 
             ValuesListBox.Items.Clear();
             IntTextBox.Clear();
 
-            // добавление элементов перечисления в ValuesListBox
+            // РґРѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ РІ ValuesListBox
             foreach (var enumValue in enumValues)                                                           
             {
                 ValuesListBox.Items.Add(enumValue);
             }
         }
 
-        // работа с IntTextBox
+        // СЂР°Р±РѕС‚Р° СЃ IntTextBox
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)                         
         {
             if (ValuesListBox.SelectedItem == null)
@@ -54,7 +54,7 @@ namespace Programming
             IntTextBox.Text = selectedValue.ToString();
         }
 
-        // работа с окном Weekday Parsing
+        // СЂР°Р±РѕС‚Р° СЃ РѕРєРЅРѕРј Weekday Parsing
         private void ParseButton_Click(object sender, EventArgs e)                                          
         {
             if (ParsingTextBox.Text == null)
@@ -63,27 +63,27 @@ namespace Programming
             }
 
             object EnteredDay;
-            // результат преобразования пользовательского ввода
+            // СЂРµР·СѓР»СЊС‚Р°С‚ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРіРѕ РІРІРѕРґР°
             bool result = Enum.TryParse(typeof(Weekday), ParsingTextBox.Text, true, out EnteredDay);        
 
             int number;
             if (result)
             {
-                // получение номера введенного дня недели
+                // РїРѕР»СѓС‡РµРЅРёРµ РЅРѕРјРµСЂР° РІРІРµРґРµРЅРЅРѕРіРѕ РґРЅСЏ РЅРµРґРµР»Рё
                 number = (int)EnteredDay + 1;                                                               
-                ParsingAnswerLabel.Text = ($"Это день недели ({EnteredDay} = {number})");
+                ParsingAnswerLabel.Text = ($"Р­С‚Рѕ РґРµРЅСЊ РЅРµРґРµР»Рё ({EnteredDay} = {number})");
                 return;
             }
             else
             {
-                ParsingAnswerLabel.Text = ("Нет такого дня недели");
+                ParsingAnswerLabel.Text = ("РќРµС‚ С‚Р°РєРѕРіРѕ РґРЅСЏ РЅРµРґРµР»Рё");
             }
         }
 
-        // работа с окном Season Handle
+        // СЂР°Р±РѕС‚Р° СЃ РѕРєРЅРѕРј Season Handle
         private void HandleButton_Click(object sender, EventArgs e)                                         
         {
-            // установка базового цвета MainForm
+            // СѓСЃС‚Р°РЅРѕРІРєР° Р±Р°Р·РѕРІРѕРіРѕ С†РІРµС‚Р° MainForm
             this.BackColor = System.Drawing.Color.White;                                                    
             EnumsGroupBox.BackColor = System.Drawing.Color.White;
             WeekdayGroupBox.BackColor = System.Drawing.Color.White;
@@ -96,14 +96,14 @@ namespace Programming
             }
 
             string selectedItem = Convert.ToString(HandleComboBox.SelectedItem);
-            // реализация действия на выбранный элемент из HandleComboBox
+            // СЂРµР°Р»РёР·Р°С†РёСЏ РґРµР№СЃС‚РІРёСЏ РЅР° РІС‹Р±СЂР°РЅРЅС‹Р№ СЌР»РµРјРµРЅС‚ РёР· HandleComboBox
             switch (selectedItem)                                                                          
             {
                 case "Winter":
-                    MessageBox.Show("Бррр! Холодно!");
+                    MessageBox.Show("Р‘СЂСЂСЂ! РҐРѕР»РѕРґРЅРѕ!");
                     break;
                 case "Summer":
-                    MessageBox.Show("Ура! Солнце!");
+                    MessageBox.Show("РЈСЂР°! РЎРѕР»РЅС†Рµ!");
                     break;
                 case "Autumn":
                     var orange = System.Drawing.ColorTranslator.FromHtml("#e29c45");
@@ -122,7 +122,7 @@ namespace Programming
                     EnumsTabPage.BackColor = green;
                     break;
                 default:
-                    MessageBox.Show("Выберете сезон из выпадающего списка.");
+                    MessageBox.Show("Р’С‹Р±РµСЂРµС‚Рµ СЃРµР·РѕРЅ РёР· РІС‹РїР°РґР°СЋС‰РµРіРѕ СЃРїРёСЃРєР°.");
                     break;
             }
         }
