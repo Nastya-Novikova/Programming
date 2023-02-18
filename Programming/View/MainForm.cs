@@ -5,19 +5,24 @@ namespace Programming
         public MainForm()
         {
             InitializeComponent();
+            // массив, содержащий все перечисления
             object[] enums = new object[] { typeof(Color), typeof(Genre), typeof(EducationForm),
-                                           typeof(Manufactures), typeof(Season), typeof(Weekday) };         //массив, содержащий все перечисления
-            EnumsListBox.Items.AddRange(enums);                                                             //добавление перечислений в ListBox
+                                           typeof(Manufactures), typeof(Season), typeof(Weekday) }; 
+            // добавление перечислений в ListBox
+            EnumsListBox.Items.AddRange(enums);                                                             
             EnumsListBox.SelectedIndex = 0;
 
-            var seasonValues = Enum.GetValues(typeof(Season));                                              //массив, содержащий элементы перечисления Season
-            foreach (var seasonValue in seasonValues)                                                       //заполнение HandleComboBox
+            // массив, содержащий элементы перечисления Season
+            var seasonValues = Enum.GetValues(typeof(Season));   
+            //заполнение HandleComboBox
+            foreach (var seasonValue in seasonValues)                                                       
             {
                 HandleComboBox.Items.Add(seasonValue);
             }
         }
 
-        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)                          //работа с ValuesListBox
+        // работа с ValuesListBox
+        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)                         
         {
             if (EnumsListBox.SelectedItem == null)
             {
@@ -25,18 +30,21 @@ namespace Programming
             }
 
             var selectedEnum = (Type)EnumsListBox.SelectedItem;
-            var enumValues = Enum.GetValues(selectedEnum);                                                  //массив из элементов перечисления, выбранного пользователем
+            // массив из элементов перечисления, выбранного пользователем
+            var enumValues = Enum.GetValues(selectedEnum);                                                 
 
             ValuesListBox.Items.Clear();
             IntTextBox.Clear();
 
-            foreach (var enumValue in enumValues)                                                           //добавление элементов перечисления в ValuesListBox
+            // добавление элементов перечисления в ValuesListBox
+            foreach (var enumValue in enumValues)                                                           
             {
                 ValuesListBox.Items.Add(enumValue);
             }
         }
 
-        private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)                         //работа с IntTextBox
+        // работа с IntTextBox
+        private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)                         
         {
             if (ValuesListBox.SelectedItem == null)
             {
@@ -46,7 +54,8 @@ namespace Programming
             IntTextBox.Text = selectedValue.ToString();
         }
 
-        private void ParseButton_Click(object sender, EventArgs e)                                          //работа с окном Weekday Parsing
+        // работа с окном Weekday Parsing
+        private void ParseButton_Click(object sender, EventArgs e)                                          
         {
             if (ParsingTextBox.Text == null)
             {
@@ -54,12 +63,14 @@ namespace Programming
             }
 
             object EnteredDay;
-            bool result = Enum.TryParse(typeof(Weekday), ParsingTextBox.Text, true, out EnteredDay);        //результат преобразования пользовательского ввода
+            // результат преобразования пользовательского ввода
+            bool result = Enum.TryParse(typeof(Weekday), ParsingTextBox.Text, true, out EnteredDay);        
 
             int number;
             if (result)
             {
-                number = (int)EnteredDay + 1;                                                               //получение номера введенного дня недели
+                // получение номера введенного дня недели
+                number = (int)EnteredDay + 1;                                                               
                 ParsingAnswerLabel.Text = ($"Это день недели ({EnteredDay} = {number})");
                 return;
             }
@@ -69,9 +80,11 @@ namespace Programming
             }
         }
 
-        private void HandleButton_Click(object sender, EventArgs e)                                         //работа с окном Season Handle
+        // работа с окном Season Handle
+        private void HandleButton_Click(object sender, EventArgs e)                                         
         {
-            this.BackColor = System.Drawing.Color.White;                                                    //установка базового цвета MainForm
+            // установка базового цвета MainForm
+            this.BackColor = System.Drawing.Color.White;                                                    
             EnumsGroupBox.BackColor = System.Drawing.Color.White;
             WeekdayGroupBox.BackColor = System.Drawing.Color.White;
             SeasonGroupBox.BackColor = System.Drawing.Color.White;
@@ -83,7 +96,8 @@ namespace Programming
             }
 
             string selectedItem = Convert.ToString(HandleComboBox.SelectedItem);
-            switch (selectedItem)                                                                           //реализация действия на выбранный элемент из HandleComboBox
+            // реализация действия на выбранный элемент из HandleComboBox
+            switch (selectedItem)                                                                          
             {
                 case "Winter":
                     MessageBox.Show("Бррр! Холодно!");
