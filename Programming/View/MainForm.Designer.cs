@@ -92,20 +92,20 @@
             this.ProgrammingTabControl.Controls.Add(this.ClassesTabPage);
             this.ProgrammingTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProgrammingTabControl.Location = new System.Drawing.Point(0, 0);
-            this.ProgrammingTabControl.Margin = new System.Windows.Forms.Padding(2);
+            this.ProgrammingTabControl.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ProgrammingTabControl.Name = "ProgrammingTabControl";
             this.ProgrammingTabControl.SelectedIndex = 0;
-            this.ProgrammingTabControl.Size = new System.Drawing.Size(979, 507);
+            this.ProgrammingTabControl.Size = new System.Drawing.Size(1119, 676);
             this.ProgrammingTabControl.TabIndex = 0;
             // 
             // EnumsTabPage
             // 
             this.EnumsTabPage.Controls.Add(this.tableLayoutPanelMain);
-            this.EnumsTabPage.Location = new System.Drawing.Point(4, 24);
-            this.EnumsTabPage.Margin = new System.Windows.Forms.Padding(2);
+            this.EnumsTabPage.Location = new System.Drawing.Point(4, 29);
+            this.EnumsTabPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.EnumsTabPage.Name = "EnumsTabPage";
-            this.EnumsTabPage.Padding = new System.Windows.Forms.Padding(2);
-            this.EnumsTabPage.Size = new System.Drawing.Size(971, 479);
+            this.EnumsTabPage.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.EnumsTabPage.Size = new System.Drawing.Size(1111, 643);
             this.EnumsTabPage.TabIndex = 0;
             this.EnumsTabPage.Text = "Enums";
             this.EnumsTabPage.UseVisualStyleBackColor = true;
@@ -117,13 +117,13 @@
             this.tableLayoutPanelMain.Controls.Add(this.tableLayoutPanel, 0, 1);
             this.tableLayoutPanelMain.Controls.Add(this.EnumsGroupBox, 0, 0);
             this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelMain.Location = new System.Drawing.Point(2, 2);
-            this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanelMain.Location = new System.Drawing.Point(2, 3);
+            this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
             this.tableLayoutPanelMain.RowCount = 2;
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.5595F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.4405F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(967, 475);
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1107, 637);
             this.tableLayoutPanelMain.TabIndex = 3;
             // 
             // tableLayoutPanel
@@ -134,12 +134,12 @@
             this.tableLayoutPanel.Controls.Add(this.WeekdayGroupBox, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.SeasonGroupBox, 1, 0);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(2, 280);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel.Location = new System.Drawing.Point(2, 376);
+            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 1;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(963, 193);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(1103, 258);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // WeekdayGroupBox
@@ -149,11 +149,11 @@
             this.WeekdayGroupBox.Controls.Add(this.ParseButton);
             this.WeekdayGroupBox.Controls.Add(this.ParsingTextBox);
             this.WeekdayGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WeekdayGroupBox.Location = new System.Drawing.Point(2, 2);
-            this.WeekdayGroupBox.Margin = new System.Windows.Forms.Padding(2);
+            this.WeekdayGroupBox.Location = new System.Drawing.Point(2, 3);
+            this.WeekdayGroupBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.WeekdayGroupBox.Name = "WeekdayGroupBox";
-            this.WeekdayGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.WeekdayGroupBox.Size = new System.Drawing.Size(477, 189);
+            this.WeekdayGroupBox.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.WeekdayGroupBox.Size = new System.Drawing.Size(547, 252);
             this.WeekdayGroupBox.TabIndex = 0;
             this.WeekdayGroupBox.TabStop = false;
             this.WeekdayGroupBox.Text = "Weekday Parsing";
@@ -161,26 +161,27 @@
             // ParsingAnswerLabel
             // 
             this.ParsingAnswerLabel.AutoSize = true;
-            this.ParsingAnswerLabel.Location = new System.Drawing.Point(12, 101);
-            this.ParsingAnswerLabel.Margin = new System.Windows.Forms.Padding(10);
+            this.ParsingAnswerLabel.Location = new System.Drawing.Point(14, 135);
+            this.ParsingAnswerLabel.Margin = new System.Windows.Forms.Padding(11, 13, 11, 13);
             this.ParsingAnswerLabel.Name = "ParsingAnswerLabel";
-            this.ParsingAnswerLabel.Size = new System.Drawing.Size(0, 15);
+            this.ParsingAnswerLabel.Size = new System.Drawing.Size(0, 20);
             this.ParsingAnswerLabel.TabIndex = 9;
             // 
             // ParseLabel
             // 
             this.ParseLabel.AutoSize = true;
-            this.ParseLabel.Location = new System.Drawing.Point(9, 47);
+            this.ParseLabel.Location = new System.Drawing.Point(10, 63);
             this.ParseLabel.Name = "ParseLabel";
-            this.ParseLabel.Size = new System.Drawing.Size(125, 15);
+            this.ParseLabel.Size = new System.Drawing.Size(158, 20);
             this.ParseLabel.TabIndex = 8;
             this.ParseLabel.Text = "Type value for parsing:";
             // 
             // ParseButton
             // 
-            this.ParseButton.Location = new System.Drawing.Point(289, 66);
+            this.ParseButton.Location = new System.Drawing.Point(330, 88);
+            this.ParseButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ParseButton.Name = "ParseButton";
-            this.ParseButton.Size = new System.Drawing.Size(75, 23);
+            this.ParseButton.Size = new System.Drawing.Size(86, 31);
             this.ParseButton.TabIndex = 7;
             this.ParseButton.Text = "Parse";
             this.ParseButton.UseVisualStyleBackColor = true;
@@ -188,9 +189,10 @@
             // 
             // ParsingTextBox
             // 
-            this.ParsingTextBox.Location = new System.Drawing.Point(12, 66);
+            this.ParsingTextBox.Location = new System.Drawing.Point(14, 88);
+            this.ParsingTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ParsingTextBox.Name = "ParsingTextBox";
-            this.ParsingTextBox.Size = new System.Drawing.Size(271, 23);
+            this.ParsingTextBox.Size = new System.Drawing.Size(309, 27);
             this.ParsingTextBox.TabIndex = 6;
             // 
             // SeasonGroupBox
@@ -199,11 +201,11 @@
             this.SeasonGroupBox.Controls.Add(this.HandleButton);
             this.SeasonGroupBox.Controls.Add(this.HandleComboBox);
             this.SeasonGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SeasonGroupBox.Location = new System.Drawing.Point(483, 2);
-            this.SeasonGroupBox.Margin = new System.Windows.Forms.Padding(2);
+            this.SeasonGroupBox.Location = new System.Drawing.Point(553, 3);
+            this.SeasonGroupBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.SeasonGroupBox.Name = "SeasonGroupBox";
-            this.SeasonGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.SeasonGroupBox.Size = new System.Drawing.Size(478, 189);
+            this.SeasonGroupBox.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SeasonGroupBox.Size = new System.Drawing.Size(548, 252);
             this.SeasonGroupBox.TabIndex = 1;
             this.SeasonGroupBox.TabStop = false;
             this.SeasonGroupBox.Text = "Season Handle";
@@ -211,17 +213,18 @@
             // HandleLabel
             // 
             this.HandleLabel.AutoSize = true;
-            this.HandleLabel.Location = new System.Drawing.Point(9, 47);
+            this.HandleLabel.Location = new System.Drawing.Point(10, 63);
             this.HandleLabel.Name = "HandleLabel";
-            this.HandleLabel.Size = new System.Drawing.Size(89, 15);
+            this.HandleLabel.Size = new System.Drawing.Size(110, 20);
             this.HandleLabel.TabIndex = 12;
             this.HandleLabel.Text = "Choose season:";
             // 
             // HandleButton
             // 
-            this.HandleButton.Location = new System.Drawing.Point(226, 65);
+            this.HandleButton.Location = new System.Drawing.Point(258, 87);
+            this.HandleButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HandleButton.Name = "HandleButton";
-            this.HandleButton.Size = new System.Drawing.Size(75, 23);
+            this.HandleButton.Size = new System.Drawing.Size(86, 31);
             this.HandleButton.TabIndex = 11;
             this.HandleButton.Text = "Go!";
             this.HandleButton.UseVisualStyleBackColor = true;
@@ -230,10 +233,10 @@
             // HandleComboBox
             // 
             this.HandleComboBox.FormattingEnabled = true;
-            this.HandleComboBox.Location = new System.Drawing.Point(12, 65);
-            this.HandleComboBox.Margin = new System.Windows.Forms.Padding(10, 10, 3, 10);
+            this.HandleComboBox.Location = new System.Drawing.Point(14, 87);
+            this.HandleComboBox.Margin = new System.Windows.Forms.Padding(11, 13, 3, 13);
             this.HandleComboBox.Name = "HandleComboBox";
-            this.HandleComboBox.Size = new System.Drawing.Size(208, 23);
+            this.HandleComboBox.Size = new System.Drawing.Size(237, 28);
             this.HandleComboBox.TabIndex = 10;
             // 
             // EnumsGroupBox
@@ -245,51 +248,51 @@
             this.EnumsGroupBox.Controls.Add(this.ValuesListBox);
             this.EnumsGroupBox.Controls.Add(this.EnumsListBox);
             this.EnumsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EnumsGroupBox.Location = new System.Drawing.Point(2, 2);
-            this.EnumsGroupBox.Margin = new System.Windows.Forms.Padding(2);
+            this.EnumsGroupBox.Location = new System.Drawing.Point(2, 3);
+            this.EnumsGroupBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.EnumsGroupBox.Name = "EnumsGroupBox";
-            this.EnumsGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.EnumsGroupBox.Size = new System.Drawing.Size(963, 274);
+            this.EnumsGroupBox.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.EnumsGroupBox.Size = new System.Drawing.Size(1103, 367);
             this.EnumsGroupBox.TabIndex = 2;
             this.EnumsGroupBox.TabStop = false;
             this.EnumsGroupBox.Text = "Enumerations";
             // 
             // IntTextBox
             // 
-            this.IntTextBox.Location = new System.Drawing.Point(397, 46);
-            this.IntTextBox.Margin = new System.Windows.Forms.Padding(10);
+            this.IntTextBox.Location = new System.Drawing.Point(454, 61);
+            this.IntTextBox.Margin = new System.Windows.Forms.Padding(11, 13, 11, 13);
             this.IntTextBox.Multiline = true;
             this.IntTextBox.Name = "IntTextBox";
-            this.IntTextBox.Size = new System.Drawing.Size(106, 21);
+            this.IntTextBox.Size = new System.Drawing.Size(121, 27);
             this.IntTextBox.TabIndex = 5;
             // 
             // IntValueLabel
             // 
             this.IntValueLabel.AutoSize = true;
-            this.IntValueLabel.Location = new System.Drawing.Point(393, 25);
+            this.IntValueLabel.Location = new System.Drawing.Point(449, 33);
             this.IntValueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.IntValueLabel.Name = "IntValueLabel";
-            this.IntValueLabel.Size = new System.Drawing.Size(55, 15);
+            this.IntValueLabel.Size = new System.Drawing.Size(68, 20);
             this.IntValueLabel.TabIndex = 4;
             this.IntValueLabel.Text = "Int value:";
             // 
             // ValueLabel
             // 
             this.ValueLabel.AutoSize = true;
-            this.ValueLabel.Location = new System.Drawing.Point(195, 25);
+            this.ValueLabel.Location = new System.Drawing.Point(223, 33);
             this.ValueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ValueLabel.Name = "ValueLabel";
-            this.ValueLabel.Size = new System.Drawing.Size(81, 15);
+            this.ValueLabel.Size = new System.Drawing.Size(100, 20);
             this.ValueLabel.TabIndex = 3;
             this.ValueLabel.Text = "Choose value:";
             // 
             // EnumsLabel
             // 
             this.EnumsLabel.AutoSize = true;
-            this.EnumsLabel.Location = new System.Drawing.Point(10, 25);
+            this.EnumsLabel.Location = new System.Drawing.Point(11, 33);
             this.EnumsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.EnumsLabel.Name = "EnumsLabel";
-            this.EnumsLabel.Size = new System.Drawing.Size(121, 15);
+            this.EnumsLabel.Size = new System.Drawing.Size(149, 20);
             this.EnumsLabel.TabIndex = 2;
             this.EnumsLabel.Text = "Choose enumeration:";
             // 
@@ -299,11 +302,11 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ValuesListBox.FormattingEnabled = true;
             this.ValuesListBox.IntegralHeight = false;
-            this.ValuesListBox.ItemHeight = 15;
-            this.ValuesListBox.Location = new System.Drawing.Point(199, 46);
-            this.ValuesListBox.Margin = new System.Windows.Forms.Padding(10);
+            this.ValuesListBox.ItemHeight = 20;
+            this.ValuesListBox.Location = new System.Drawing.Point(227, 61);
+            this.ValuesListBox.Margin = new System.Windows.Forms.Padding(11, 13, 11, 13);
             this.ValuesListBox.Name = "ValuesListBox";
-            this.ValuesListBox.Size = new System.Drawing.Size(178, 222);
+            this.ValuesListBox.Size = new System.Drawing.Size(203, 297);
             this.ValuesListBox.TabIndex = 1;
             this.ValuesListBox.SelectedIndexChanged += new System.EventHandler(this.ValuesListBox_SelectedIndexChanged);
             // 
@@ -313,22 +316,21 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.EnumsListBox.FormattingEnabled = true;
             this.EnumsListBox.IntegralHeight = false;
-            this.EnumsListBox.ItemHeight = 15;
-            this.EnumsListBox.Location = new System.Drawing.Point(14, 46);
-            this.EnumsListBox.Margin = new System.Windows.Forms.Padding(10);
+            this.EnumsListBox.ItemHeight = 20;
+            this.EnumsListBox.Location = new System.Drawing.Point(16, 61);
+            this.EnumsListBox.Margin = new System.Windows.Forms.Padding(11, 13, 11, 13);
             this.EnumsListBox.Name = "EnumsListBox";
-            this.EnumsListBox.Size = new System.Drawing.Size(165, 222);
+            this.EnumsListBox.Size = new System.Drawing.Size(188, 297);
             this.EnumsListBox.TabIndex = 0;
             this.EnumsListBox.SelectedIndexChanged += new System.EventHandler(this.EnumsListBox_SelectedIndexChanged);
             // 
             // ClassesTabPage
             // 
             this.ClassesTabPage.Controls.Add(this.ClassesTableLayoutPanel);
-            this.ClassesTabPage.Location = new System.Drawing.Point(4, 24);
-            this.ClassesTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ClassesTabPage.Location = new System.Drawing.Point(4, 29);
             this.ClassesTabPage.Name = "ClassesTabPage";
-            this.ClassesTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ClassesTabPage.Size = new System.Drawing.Size(971, 479);
+            this.ClassesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ClassesTabPage.Size = new System.Drawing.Size(1111, 643);
             this.ClassesTabPage.TabIndex = 1;
             this.ClassesTabPage.Text = "Classes";
             this.ClassesTabPage.UseVisualStyleBackColor = true;
@@ -341,11 +343,12 @@
             this.ClassesTableLayoutPanel.Controls.Add(this.MoviesGroupBox1, 1, 0);
             this.ClassesTableLayoutPanel.Controls.Add(this.RectanglesGroupBox, 0, 0);
             this.ClassesTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ClassesTableLayoutPanel.Location = new System.Drawing.Point(3, 2);
+            this.ClassesTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.ClassesTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ClassesTableLayoutPanel.Name = "ClassesTableLayoutPanel";
             this.ClassesTableLayoutPanel.RowCount = 1;
             this.ClassesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ClassesTableLayoutPanel.Size = new System.Drawing.Size(965, 475);
+            this.ClassesTableLayoutPanel.Size = new System.Drawing.Size(1105, 637);
             this.ClassesTableLayoutPanel.TabIndex = 0;
             // 
             // MoviesGroupBox1
@@ -363,9 +366,11 @@
             this.MoviesGroupBox1.Controls.Add(this.NameTextBox);
             this.MoviesGroupBox1.Controls.Add(this.MoviesListBox);
             this.MoviesGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MoviesGroupBox1.Location = new System.Drawing.Point(485, 3);
+            this.MoviesGroupBox1.Location = new System.Drawing.Point(555, 4);
+            this.MoviesGroupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MoviesGroupBox1.Name = "MoviesGroupBox1";
-            this.MoviesGroupBox1.Size = new System.Drawing.Size(477, 469);
+            this.MoviesGroupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MoviesGroupBox1.Size = new System.Drawing.Size(547, 629);
             this.MoviesGroupBox1.TabIndex = 0;
             this.MoviesGroupBox1.TabStop = false;
             this.MoviesGroupBox1.Text = "Movies";
@@ -373,10 +378,10 @@
             // MoviesButton
             // 
             this.MoviesButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.MoviesButton.Location = new System.Drawing.Point(153, 431);
-            this.MoviesButton.Margin = new System.Windows.Forms.Padding(22, 3, 22, 22);
+            this.MoviesButton.Location = new System.Drawing.Point(174, 578);
+            this.MoviesButton.Margin = new System.Windows.Forms.Padding(25, 4, 25, 29);
             this.MoviesButton.Name = "MoviesButton";
-            this.MoviesButton.Size = new System.Drawing.Size(321, 35);
+            this.MoviesButton.Size = new System.Drawing.Size(370, 47);
             this.MoviesButton.TabIndex = 17;
             this.MoviesButton.Text = "Find";
             this.MoviesButton.UseVisualStyleBackColor = true;
@@ -387,9 +392,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RatingLabel.AutoSize = true;
-            this.RatingLabel.Location = new System.Drawing.Point(178, 287);
+            this.RatingLabel.Location = new System.Drawing.Point(203, 383);
             this.RatingLabel.Name = "RatingLabel";
-            this.RatingLabel.Size = new System.Drawing.Size(44, 15);
+            this.RatingLabel.Size = new System.Drawing.Size(55, 20);
             this.RatingLabel.TabIndex = 15;
             this.RatingLabel.Text = "Rating:";
             // 
@@ -399,9 +404,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GenreLabel.AutoSize = true;
-            this.GenreLabel.Location = new System.Drawing.Point(178, 220);
+            this.GenreLabel.Location = new System.Drawing.Point(203, 293);
             this.GenreLabel.Name = "GenreLabel";
-            this.GenreLabel.Size = new System.Drawing.Size(41, 15);
+            this.GenreLabel.Size = new System.Drawing.Size(51, 20);
             this.GenreLabel.TabIndex = 14;
             this.GenreLabel.Text = "Genre:";
             // 
@@ -411,9 +416,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.YearLabel.AutoSize = true;
-            this.YearLabel.Location = new System.Drawing.Point(176, 153);
+            this.YearLabel.Location = new System.Drawing.Point(201, 204);
             this.YearLabel.Name = "YearLabel";
-            this.YearLabel.Size = new System.Drawing.Size(32, 15);
+            this.YearLabel.Size = new System.Drawing.Size(40, 20);
             this.YearLabel.TabIndex = 13;
             this.YearLabel.Text = "Year:";
             // 
@@ -423,9 +428,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DurationLabel.AutoSize = true;
-            this.DurationLabel.Location = new System.Drawing.Point(176, 86);
+            this.DurationLabel.Location = new System.Drawing.Point(201, 115);
             this.DurationLabel.Name = "DurationLabel";
-            this.DurationLabel.Size = new System.Drawing.Size(56, 15);
+            this.DurationLabel.Size = new System.Drawing.Size(70, 20);
             this.DurationLabel.TabIndex = 12;
             this.DurationLabel.Text = "Duration:";
             // 
@@ -435,9 +440,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(176, 19);
+            this.NameLabel.Location = new System.Drawing.Point(201, 25);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(42, 15);
+            this.NameLabel.Size = new System.Drawing.Size(52, 20);
             this.NameLabel.TabIndex = 7;
             this.NameLabel.Text = "Name:";
             // 
@@ -446,10 +451,10 @@
             this.RatingTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RatingTextBox.Location = new System.Drawing.Point(178, 309);
-            this.RatingTextBox.Margin = new System.Windows.Forms.Padding(22);
+            this.RatingTextBox.Location = new System.Drawing.Point(203, 412);
+            this.RatingTextBox.Margin = new System.Windows.Forms.Padding(25, 29, 25, 29);
             this.RatingTextBox.Name = "RatingTextBox";
-            this.RatingTextBox.Size = new System.Drawing.Size(200, 23);
+            this.RatingTextBox.Size = new System.Drawing.Size(230, 27);
             this.RatingTextBox.TabIndex = 11;
             // 
             // GenreTextBox
@@ -457,10 +462,10 @@
             this.GenreTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GenreTextBox.Location = new System.Drawing.Point(178, 242);
-            this.GenreTextBox.Margin = new System.Windows.Forms.Padding(22);
+            this.GenreTextBox.Location = new System.Drawing.Point(203, 323);
+            this.GenreTextBox.Margin = new System.Windows.Forms.Padding(25, 29, 25, 29);
             this.GenreTextBox.Name = "GenreTextBox";
-            this.GenreTextBox.Size = new System.Drawing.Size(200, 23);
+            this.GenreTextBox.Size = new System.Drawing.Size(230, 27);
             this.GenreTextBox.TabIndex = 10;
             // 
             // YearTextBox
@@ -468,10 +473,10 @@
             this.YearTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.YearTextBox.Location = new System.Drawing.Point(178, 175);
-            this.YearTextBox.Margin = new System.Windows.Forms.Padding(22);
+            this.YearTextBox.Location = new System.Drawing.Point(203, 233);
+            this.YearTextBox.Margin = new System.Windows.Forms.Padding(25, 29, 25, 29);
             this.YearTextBox.Name = "YearTextBox";
-            this.YearTextBox.Size = new System.Drawing.Size(200, 23);
+            this.YearTextBox.Size = new System.Drawing.Size(230, 27);
             this.YearTextBox.TabIndex = 9;
             // 
             // DurationTextBox
@@ -479,10 +484,10 @@
             this.DurationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DurationTextBox.Location = new System.Drawing.Point(178, 108);
-            this.DurationTextBox.Margin = new System.Windows.Forms.Padding(22);
+            this.DurationTextBox.Location = new System.Drawing.Point(203, 144);
+            this.DurationTextBox.Margin = new System.Windows.Forms.Padding(25, 29, 25, 29);
             this.DurationTextBox.Name = "DurationTextBox";
-            this.DurationTextBox.Size = new System.Drawing.Size(200, 23);
+            this.DurationTextBox.Size = new System.Drawing.Size(230, 27);
             this.DurationTextBox.TabIndex = 8;
             // 
             // NameTextBox
@@ -490,10 +495,10 @@
             this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameTextBox.Location = new System.Drawing.Point(178, 41);
-            this.NameTextBox.Margin = new System.Windows.Forms.Padding(22);
+            this.NameTextBox.Location = new System.Drawing.Point(203, 55);
+            this.NameTextBox.Margin = new System.Windows.Forms.Padding(25, 29, 25, 29);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(200, 23);
+            this.NameTextBox.Size = new System.Drawing.Size(230, 27);
             this.NameTextBox.TabIndex = 7;
             // 
             // MoviesListBox
@@ -501,10 +506,11 @@
             this.MoviesListBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.MoviesListBox.FormattingEnabled = true;
             this.MoviesListBox.IntegralHeight = false;
-            this.MoviesListBox.ItemHeight = 15;
-            this.MoviesListBox.Location = new System.Drawing.Point(3, 19);
+            this.MoviesListBox.ItemHeight = 20;
+            this.MoviesListBox.Location = new System.Drawing.Point(3, 24);
+            this.MoviesListBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MoviesListBox.Name = "MoviesListBox";
-            this.MoviesListBox.Size = new System.Drawing.Size(150, 447);
+            this.MoviesListBox.Size = new System.Drawing.Size(171, 601);
             this.MoviesListBox.TabIndex = 7;
             // 
             // RectanglesGroupBox
@@ -518,9 +524,11 @@
             this.RectanglesGroupBox.Controls.Add(this.LengthTextBox);
             this.RectanglesGroupBox.Controls.Add(this.RectanglesListBox);
             this.RectanglesGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RectanglesGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.RectanglesGroupBox.Location = new System.Drawing.Point(3, 4);
+            this.RectanglesGroupBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.RectanglesGroupBox.Name = "RectanglesGroupBox";
-            this.RectanglesGroupBox.Size = new System.Drawing.Size(476, 469);
+            this.RectanglesGroupBox.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.RectanglesGroupBox.Size = new System.Drawing.Size(546, 629);
             this.RectanglesGroupBox.TabIndex = 0;
             this.RectanglesGroupBox.TabStop = false;
             this.RectanglesGroupBox.Text = "Rectangles";
@@ -528,13 +536,14 @@
             // RectanglesButton
             // 
             this.RectanglesButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.RectanglesButton.Location = new System.Drawing.Point(153, 431);
-            this.RectanglesButton.Margin = new System.Windows.Forms.Padding(22, 3, 22, 22);
+            this.RectanglesButton.Location = new System.Drawing.Point(174, 578);
+            this.RectanglesButton.Margin = new System.Windows.Forms.Padding(25, 4, 25, 29);
             this.RectanglesButton.Name = "RectanglesButton";
-            this.RectanglesButton.Size = new System.Drawing.Size(320, 35);
+            this.RectanglesButton.Size = new System.Drawing.Size(369, 47);
             this.RectanglesButton.TabIndex = 16;
             this.RectanglesButton.Text = "Find";
             this.RectanglesButton.UseVisualStyleBackColor = true;
+            this.RectanglesButton.Click += new System.EventHandler(this.RectanglesButton_Click);
             // 
             // ColorLabel
             // 
@@ -542,9 +551,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ColorLabel.AutoSize = true;
-            this.ColorLabel.Location = new System.Drawing.Point(176, 153);
+            this.ColorLabel.Location = new System.Drawing.Point(201, 204);
             this.ColorLabel.Name = "ColorLabel";
-            this.ColorLabel.Size = new System.Drawing.Size(39, 15);
+            this.ColorLabel.Size = new System.Drawing.Size(48, 20);
             this.ColorLabel.TabIndex = 6;
             this.ColorLabel.Text = "Color:";
             // 
@@ -554,9 +563,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.WidthLabel.AutoSize = true;
-            this.WidthLabel.Location = new System.Drawing.Point(176, 86);
+            this.WidthLabel.Location = new System.Drawing.Point(201, 115);
             this.WidthLabel.Name = "WidthLabel";
-            this.WidthLabel.Size = new System.Drawing.Size(42, 15);
+            this.WidthLabel.Size = new System.Drawing.Size(52, 20);
             this.WidthLabel.TabIndex = 5;
             this.WidthLabel.Text = "Width:";
             // 
@@ -566,9 +575,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LengthLabel.AutoSize = true;
-            this.LengthLabel.Location = new System.Drawing.Point(176, 19);
+            this.LengthLabel.Location = new System.Drawing.Point(201, 25);
             this.LengthLabel.Name = "LengthLabel";
-            this.LengthLabel.Size = new System.Drawing.Size(47, 15);
+            this.LengthLabel.Size = new System.Drawing.Size(57, 20);
             this.LengthLabel.TabIndex = 4;
             this.LengthLabel.Text = "Length:";
             // 
@@ -577,53 +586,58 @@
             this.ColorTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ColorTextBox.Location = new System.Drawing.Point(178, 175);
-            this.ColorTextBox.Margin = new System.Windows.Forms.Padding(22);
+            this.ColorTextBox.Location = new System.Drawing.Point(203, 233);
+            this.ColorTextBox.Margin = new System.Windows.Forms.Padding(25, 29, 25, 29);
             this.ColorTextBox.Name = "ColorTextBox";
-            this.ColorTextBox.Size = new System.Drawing.Size(200, 23);
+            this.ColorTextBox.Size = new System.Drawing.Size(230, 27);
             this.ColorTextBox.TabIndex = 3;
+            this.ColorTextBox.TextChanged += new System.EventHandler(this.ColorTextBox_TextChanged);
             // 
             // WidthTextBox
             // 
             this.WidthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.WidthTextBox.Location = new System.Drawing.Point(178, 108);
-            this.WidthTextBox.Margin = new System.Windows.Forms.Padding(22);
+            this.WidthTextBox.Location = new System.Drawing.Point(203, 144);
+            this.WidthTextBox.Margin = new System.Windows.Forms.Padding(25, 29, 25, 29);
             this.WidthTextBox.Name = "WidthTextBox";
-            this.WidthTextBox.Size = new System.Drawing.Size(200, 23);
+            this.WidthTextBox.Size = new System.Drawing.Size(230, 27);
             this.WidthTextBox.TabIndex = 2;
+            this.WidthTextBox.TextChanged += new System.EventHandler(this.WidthTextBox_TextChanged);
             // 
             // LengthTextBox
             // 
             this.LengthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.LengthTextBox.Location = new System.Drawing.Point(178, 41);
-            this.LengthTextBox.Margin = new System.Windows.Forms.Padding(22);
+            this.LengthTextBox.Location = new System.Drawing.Point(203, 55);
+            this.LengthTextBox.Margin = new System.Windows.Forms.Padding(25, 29, 25, 29);
             this.LengthTextBox.Name = "LengthTextBox";
-            this.LengthTextBox.Size = new System.Drawing.Size(200, 23);
+            this.LengthTextBox.Size = new System.Drawing.Size(230, 27);
             this.LengthTextBox.TabIndex = 1;
+            this.LengthTextBox.TextChanged += new System.EventHandler(this.LengthTextBox_TextChanged);
             // 
             // RectanglesListBox
             // 
             this.RectanglesListBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.RectanglesListBox.FormattingEnabled = true;
             this.RectanglesListBox.IntegralHeight = false;
-            this.RectanglesListBox.ItemHeight = 15;
-            this.RectanglesListBox.Location = new System.Drawing.Point(3, 19);
+            this.RectanglesListBox.ItemHeight = 20;
+            this.RectanglesListBox.Location = new System.Drawing.Point(3, 24);
+            this.RectanglesListBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.RectanglesListBox.Name = "RectanglesListBox";
-            this.RectanglesListBox.Size = new System.Drawing.Size(150, 447);
+            this.RectanglesListBox.Size = new System.Drawing.Size(171, 601);
             this.RectanglesListBox.TabIndex = 0;
+            this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(979, 507);
+            this.ClientSize = new System.Drawing.Size(1119, 676);
             this.Controls.Add(this.ProgrammingTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "MainForm";
             this.Text = "Programming Demo";
             this.ProgrammingTabControl.ResumeLayout(false);
