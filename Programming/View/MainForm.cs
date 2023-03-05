@@ -7,6 +7,9 @@ namespace Programming
         private Rectangle[] _rectangles = new Rectangle[5];
         private Rectangle _currentRectangle;
 
+        private Movie[] _movies = new Movie[5];
+        private Movie _currentMovie;
+
         Random random = new Random();
         public MainForm()
         {
@@ -43,6 +46,15 @@ namespace Programming
                 RectanglesListBox.Items.Add(_rectangle + $" {i}");
             }
             RectanglesListBox.SelectedIndex = 0;
+
+            InitMovies(_movies);
+            int j = 0;
+            foreach (var _movie in _movies)
+            {
+                j++;
+                MoviesListBox.Items.Add(_movie + $" {j}");
+            }
+            MoviesListBox.SelectedIndex = 0;
         }
     // работа с окном Enums
         // работа с ValuesListBox
@@ -233,5 +245,101 @@ namespace Programming
             RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth(_rectangles);
         }
     // конец работы с элементами RectanglesGroupBox
+
+    // работа с элементами MoviesGroupBox
+        // инициализация массива фильмов
+        private void InitMovies(Movie[] movies)
+        {
+            var GenreValues = Enum.GetValues(typeof(Genre));
+            for (int i = 0; i < 5; i++)
+            {
+                string name = $"Movie {i + 1}";
+                int duration = random.Next(1,181);
+                int year = random.Next(1900,2024);
+                string genre = GenreValues.GetValue(random.Next(0, 6)).ToString();
+                double rating = Math.Round(random.NextDouble() * 10, 1);
+                movies[i] = new Movie(name, duration, year,genre,rating);
+            }
+        }
+        // заполнение всех элементов TextBox
+        private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            _currentMovie = _movies[MoviesListBox.SelectedIndex];
+            NameTextBox.Text = _currentMovie.Name;
+            DurationTextBox.Text = _currentMovie.Duration.ToString();
+            YearTextBox.Text = _currentMovie.Year.ToString();
+            GenreTextBox.Text = _currentMovie.Genre;
+            RatingTextBox.Text = _currentMovie.Rating.ToString();
+        }
+        // реализация возможности ручного ввода с формы 
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentMovie.Name = NameTextBox.Text;
+        }
+
+        private void DurationTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DurationTextBox.BackColor = System.Drawing.Color.White;
+                _currentMovie.Duration = Int32.Parse(DurationTextBox.Text);
+            }
+            catch
+            {
+                DurationTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void YearTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                YearTextBox.BackColor = System.Drawing.Color.White;
+                _currentMovie.Year = Int32.Parse(YearTextBox.Text);
+            }
+            catch
+            {
+                YearTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void GenreTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentMovie.Genre = GenreTextBox.Text;
+        }
+
+        private void RatingTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                RatingTextBox.BackColor = System.Drawing.Color.White;
+                _currentMovie.Rating = Double.Parse(RatingTextBox.Text);
+            }
+            catch
+            {
+                RatingTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+        // нахождение фильма с максимальным рейтингом
+        private int FindMovieWithMaxRating(Movie[] movies)
+        {
+            double maxRating = -1;
+            int index = -1;
+            for (int i = 0; i < movies.Length; i++)
+            {
+                if (movies[i].Rating > maxRating)
+                {
+                    maxRating = movies[i].Rating;
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+        private void MoviesButton_Click(object sender, EventArgs e)
+        {
+            MoviesListBox.SelectedIndex = FindMovieWithMaxRating(_movies);
+        }
     }
 }
