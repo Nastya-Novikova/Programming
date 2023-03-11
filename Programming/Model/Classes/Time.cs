@@ -17,7 +17,7 @@ namespace Programming.Model.Classes
             get { return _hours; }
             set
             {
-                if (value >=0)
+                if (value >=0 && value <= 23)
                 {
                     _hours = value;
                 }

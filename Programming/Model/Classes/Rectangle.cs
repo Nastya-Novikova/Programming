@@ -43,7 +43,7 @@ using System.Threading.Tasks;
             }
         }
 
-        public string Color { get { return _color; } set { _color = value; } } 
+        public string Color { get; set; } 
 
         public Rectangle ()
         {

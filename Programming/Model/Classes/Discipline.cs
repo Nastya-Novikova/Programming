@@ -13,14 +13,14 @@ namespace Programming.Model.Classes
         private string _teacher;
         private int _mark;
 
-        public string Surname { get { return _surname; } set { _surname = value; } }
-        public string Teacher { get { return _teacher; } set { _teacher = value; } }
+        public string Surname { get; set; }
+        public string Teacher { get; set; }
         public int Mark
         {
             get { return _mark; }
             set
             {
-                if (value > 1 && value < 6)
+                if (value >= 2 && value <= 5)
                 {
                     _mark = value;
                 }

@@ -4,13 +4,14 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
-        private Rectangle[] _rectangles = new Rectangle[5];
+        const int Quantity = 5;
+        private Rectangle[] _rectangles = new Rectangle[Quantity];
         private Rectangle _currentRectangle;
 
-        private Movie[] _movies = new Movie[5];
+        private Movie[] _movies = new Movie[Quantity];
         private Movie _currentMovie;
 
-        Random random = new Random();
+        private Random _random = new Random();
         public MainForm()
         {
             InitializeComponent();
@@ -98,16 +99,16 @@ namespace Programming
                 return;
             }
 
-            object EnteredDay;
+            object enteredDay;
             // результат преобразования пользовательского ввода
-            bool result = Enum.TryParse(typeof(Weekday), ParsingTextBox.Text, true, out EnteredDay);        
+            bool result = Enum.TryParse(typeof(Weekday), ParsingTextBox.Text, true, out enteredDay);        
 
             int number;
             if (result)
             {
                 // получение номера введенного дня недели
-                number = (int)EnteredDay + 1;                                                               
-                ParsingAnswerLabel.Text = ($"Это день недели ({EnteredDay} = {number})");
+                number = (int)enteredDay + 1;                                                               
+                ParsingAnswerLabel.Text = ($"Это день недели ({enteredDay} = {number})");
                 return;
             }
             else
@@ -136,30 +137,40 @@ namespace Programming
             switch (selectedItem)                                                                          
             {
                 case "Winter":
-                    MessageBox.Show("Бррр! Холодно!");
-                    break;
+                    {
+                        MessageBox.Show("Бррр! Холодно!");
+                        break;
+                    }
                 case "Summer":
-                    MessageBox.Show("Ура! Солнце!");
-                    break;
+                    {
+                        MessageBox.Show("Ура! Солнце!");
+                        break;
+                    }
                 case "Autumn":
-                    var orange = System.Drawing.ColorTranslator.FromHtml("#e29c45");
-                    this.BackColor = orange;
-                    EnumsGroupBox.BackColor = orange;
-                    WeekdayGroupBox.BackColor = orange;
-                    SeasonGroupBox.BackColor = orange;
-                    EnumsTabPage.BackColor = orange;
-                    break;
+                    {
+                        var orange = System.Drawing.ColorTranslator.FromHtml("#e29c45");
+                        this.BackColor = orange;
+                        EnumsGroupBox.BackColor = orange;
+                        WeekdayGroupBox.BackColor = orange;
+                        SeasonGroupBox.BackColor = orange;
+                        EnumsTabPage.BackColor = orange;
+                        break;
+                    }
                 case "Spring":
-                    var green = System.Drawing.ColorTranslator.FromHtml("#559c45");
-                    this.BackColor = green;
-                    EnumsGroupBox.BackColor = green;
-                    WeekdayGroupBox.BackColor = green;
-                    SeasonGroupBox.BackColor = green;
-                    EnumsTabPage.BackColor = green;
-                    break;
+                    {
+                        var green = System.Drawing.ColorTranslator.FromHtml("#559c45");
+                        this.BackColor = green;
+                        EnumsGroupBox.BackColor = green;
+                        WeekdayGroupBox.BackColor = green;
+                        SeasonGroupBox.BackColor = green;
+                        EnumsTabPage.BackColor = green;
+                        break;
+                    }
                 default:
-                    MessageBox.Show("Выберете сезон из выпадающего списка.");
-                    break;
+                    {
+                        MessageBox.Show("Выберете сезон из выпадающего списка.");
+                        break;
+                    }
             }
         }
     // конец работы с окном Enums
@@ -168,12 +179,13 @@ namespace Programming
         // инициализация массива прямоугольников
         private void InitRectangles(Rectangle[] rectangles)
         {
-            var ColorValues = Enum.GetValues(typeof(Color));
-            for (int i=0; i<5; i++)
+            var size = 10;
+            var colorValues = Enum.GetValues(typeof(Color));
+            for (int i=0; i<Quantity; i++)
             {
-                double length = Math.Round(random.NextDouble() * 10,6);
-                double width = Math.Round(random.NextDouble() * 10,6);
-                string color = ColorValues.GetValue(random.Next(0, 7)).ToString();
+                double length = Math.Round(_random.NextDouble() * size,6);
+                double width = Math.Round(_random.NextDouble() * size,6);
+                string color = colorValues.GetValue(_random.Next(0, 7)).ToString();
                 rectangles[i] = new Rectangle(length, width, color);
             }
         }
@@ -251,13 +263,13 @@ namespace Programming
         private void InitMovies(Movie[] movies)
         {
             var GenreValues = Enum.GetValues(typeof(Genre));
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < Quantity; i++)
             {
                 string name = $"Movie {i + 1}";
-                int duration = random.Next(1,181);
-                int year = random.Next(1900,2024);
-                string genre = GenreValues.GetValue(random.Next(0, 6)).ToString();
-                double rating = Math.Round(random.NextDouble() * 10, 1);
+                int duration = _random.Next(1,181);
+                int year = _random.Next(1900,2024);
+                string genre = GenreValues.GetValue(_random.Next(0, 6)).ToString();
+                double rating = Math.Round(_random.NextDouble() * 10, 1);
                 movies[i] = new Movie(name, duration, year,genre,rating);
             }
         }

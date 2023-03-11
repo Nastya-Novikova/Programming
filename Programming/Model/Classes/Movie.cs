@@ -13,7 +13,7 @@ using System.Threading.Tasks;
         private string _genre;
         private double _rating;
 
-        public string Name { get { return _name; } set { _name = value; } }
+        public string Name { get; set; }
         public int Duration
         {
             get { return _duration; }
@@ -34,7 +34,7 @@ using System.Threading.Tasks;
             get { return _year; }
             set
             {
-                if (value > 1899 && value < 2024)
+                if (value >= 1900 && value <= 2023)
                 {
                     _year = value;
                 }
@@ -45,7 +45,7 @@ using System.Threading.Tasks;
             }
         }
 
-        public string Genre { get { return _genre; } set { _genre = value; } }
+        public string Genre { get; set; }
         public double Rating
         {
             get { return _rating; }

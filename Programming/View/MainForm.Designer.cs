@@ -372,11 +372,10 @@
             // 
             // MoviesButton
             // 
-            this.MoviesButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.MoviesButton.Location = new System.Drawing.Point(153, 431);
+            this.MoviesButton.Location = new System.Drawing.Point(178, 357);
             this.MoviesButton.Margin = new System.Windows.Forms.Padding(22, 3, 22, 22);
             this.MoviesButton.Name = "MoviesButton";
-            this.MoviesButton.Size = new System.Drawing.Size(321, 35);
+            this.MoviesButton.Size = new System.Drawing.Size(75, 25);
             this.MoviesButton.TabIndex = 17;
             this.MoviesButton.Text = "Find";
             this.MoviesButton.UseVisualStyleBackColor = true;
@@ -444,9 +443,8 @@
             // 
             // RatingTextBox
             // 
-            this.RatingTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RatingTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.RatingTextBox.Location = new System.Drawing.Point(178, 309);
             this.RatingTextBox.Margin = new System.Windows.Forms.Padding(22);
             this.RatingTextBox.Name = "RatingTextBox";
@@ -456,9 +454,8 @@
             // 
             // GenreTextBox
             // 
-            this.GenreTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GenreTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.GenreTextBox.Location = new System.Drawing.Point(178, 242);
             this.GenreTextBox.Margin = new System.Windows.Forms.Padding(22);
             this.GenreTextBox.Name = "GenreTextBox";
@@ -468,9 +465,8 @@
             // 
             // YearTextBox
             // 
-            this.YearTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.YearTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.YearTextBox.Location = new System.Drawing.Point(178, 175);
             this.YearTextBox.Margin = new System.Windows.Forms.Padding(22);
             this.YearTextBox.Name = "YearTextBox";
@@ -480,9 +476,8 @@
             // 
             // DurationTextBox
             // 
-            this.DurationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DurationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.DurationTextBox.Location = new System.Drawing.Point(178, 108);
             this.DurationTextBox.Margin = new System.Windows.Forms.Padding(22);
             this.DurationTextBox.Name = "DurationTextBox";
@@ -492,9 +487,8 @@
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.NameTextBox.Location = new System.Drawing.Point(178, 41);
             this.NameTextBox.Margin = new System.Windows.Forms.Padding(22);
             this.NameTextBox.Name = "NameTextBox";
@@ -534,11 +528,10 @@
             // 
             // RectanglesButton
             // 
-            this.RectanglesButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.RectanglesButton.Location = new System.Drawing.Point(153, 431);
+            this.RectanglesButton.Location = new System.Drawing.Point(178, 223);
             this.RectanglesButton.Margin = new System.Windows.Forms.Padding(22, 3, 22, 22);
             this.RectanglesButton.Name = "RectanglesButton";
-            this.RectanglesButton.Size = new System.Drawing.Size(320, 35);
+            this.RectanglesButton.Size = new System.Drawing.Size(75, 25);
             this.RectanglesButton.TabIndex = 16;
             this.RectanglesButton.Text = "Find";
             this.RectanglesButton.UseVisualStyleBackColor = true;
@@ -582,9 +575,8 @@
             // 
             // ColorTextBox
             // 
-            this.ColorTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ColorTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ColorTextBox.Location = new System.Drawing.Point(178, 175);
             this.ColorTextBox.Margin = new System.Windows.Forms.Padding(22);
             this.ColorTextBox.Name = "ColorTextBox";
@@ -594,9 +586,8 @@
             // 
             // WidthTextBox
             // 
-            this.WidthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.WidthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.WidthTextBox.Location = new System.Drawing.Point(178, 108);
             this.WidthTextBox.Margin = new System.Windows.Forms.Padding(22);
             this.WidthTextBox.Name = "WidthTextBox";
@@ -606,9 +597,8 @@
             // 
             // LengthTextBox
             // 
-            this.LengthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LengthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.LengthTextBox.Location = new System.Drawing.Point(178, 41);
             this.LengthTextBox.Margin = new System.Windows.Forms.Padding(22);
             this.LengthTextBox.Name = "LengthTextBox";
