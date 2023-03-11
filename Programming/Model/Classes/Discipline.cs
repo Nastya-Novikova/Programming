@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Programming.Model.Classes
 {
-    internal class Discipline
+    public class Discipline
     {
         private string _surname;
         private string _teacher;

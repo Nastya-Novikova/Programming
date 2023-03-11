@@ -6,7 +6,7 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
-        const int Quantity = 5;
+        private const int Quantity = 5;
         private Rectangle[] _rectangles = new Rectangle[Quantity];
         private Rectangle _currentRectangle;
 
