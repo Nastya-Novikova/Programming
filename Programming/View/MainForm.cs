@@ -1,4 +1,6 @@
-﻿using System.Drawing.Text;
+﻿using Programming.Model.Classes;
+using System.Drawing.Text;
+using Rectangle = Programming.Model.Classes.Rectangle;
 
 namespace Programming
 {
@@ -44,7 +46,8 @@ namespace Programming
             foreach (var _rectangle in _rectangles)
             {
                 i++;
-                RectanglesListBox.Items.Add(_rectangle + $" {i}");
+                string currentRectangle = _rectangle.ToString().Substring(26);
+                RectanglesListBox.Items.Add(currentRectangle + $" {i}");
             }
             RectanglesListBox.SelectedIndex = 0;
 
@@ -53,7 +56,8 @@ namespace Programming
             foreach (var _movie in _movies)
             {
                 j++;
-                MoviesListBox.Items.Add(_movie + $" {j}");
+                string currentMovie = _movie.ToString().Substring(26);
+                MoviesListBox.Items.Add(currentMovie + $" {j}");
             }
             MoviesListBox.SelectedIndex = 0;
         }

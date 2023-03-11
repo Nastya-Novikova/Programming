@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+namespace Programming.Model.Classes
+{
     internal class Movie
     {
         private string _name;
@@ -19,7 +20,7 @@ using System.Threading.Tasks;
             get { return _duration; }
             set
             {
-                if (value >0)
+                if (value > 0)
                 {
                     _duration = value;
                 }
@@ -51,7 +52,7 @@ using System.Threading.Tasks;
             get { return _rating; }
             set
             {
-                if (value>=0 && value<=10)
+                if (value >= 0 && value <= 10)
                 {
                     _rating = value;
                 }
@@ -62,7 +63,7 @@ using System.Threading.Tasks;
             }
         }
 
-        public Movie ()
+        public Movie()
         {
 
         }
@@ -76,5 +77,6 @@ using System.Threading.Tasks;
             Rating = rating;
         }
     }
+}
 
 
