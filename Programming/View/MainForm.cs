@@ -34,32 +34,14 @@ namespace Programming
 
             // массив, содержащий элементы перечисления Season
             var seasonValues = Enum.GetValues(typeof(Season));   
-            //заполнение HandleComboBox
-            foreach (var seasonValue in seasonValues)                                                       
-            {
-                HandleComboBox.Items.Add(seasonValue);
-            }
+            FillHandleComboBox(seasonValues);
 
-            // заполнение RectanglesListBox
+            // заполнение RectanglesListBox и MoviesListBox
             InitRectangles(_rectangles);
-            int i=0;
-            foreach (var _rectangle in _rectangles)
-            {
-                i++;
-                string currentRectangle = _rectangle.ToString().Substring(26);
-                RectanglesListBox.Items.Add(currentRectangle + $" {i}");
-            }
-            RectanglesListBox.SelectedIndex = 0;
+            FillRectangles(_rectangles);
 
             InitMovies(_movies);
-            int j = 0;
-            foreach (var _movie in _movies)
-            {
-                j++;
-                string currentMovie = _movie.ToString().Substring(26);
-                MoviesListBox.Items.Add(currentMovie + $" {j}");
-            }
-            MoviesListBox.SelectedIndex = 0;
+            FillMovies(_movies);
         }
     // работа с окном Enums
         // работа с ValuesListBox
@@ -121,6 +103,13 @@ namespace Programming
             }
         }
 
+        private void FillHandleComboBox(Array seasonValues)
+        {
+            foreach (var seasonValue in seasonValues)
+            {
+                HandleComboBox.Items.Add(seasonValue);
+            }
+        }
         // работа с окном Season Handle
         private void HandleButton_Click(object sender, EventArgs e)                                         
         {
@@ -191,6 +180,17 @@ namespace Programming
                 double width = Math.Round(_random.NextDouble() * size,6);
                 string color = colorValues.GetValue(_random.Next(0, 7)).ToString();
                 rectangles[i] = new Rectangle(length, width, color);
+            }
+        }
+
+        private void FillRectangles(Rectangle[] rectangles)
+        {
+            int i = 0;
+            foreach (var _rectangle in rectangles)
+            {
+                i++;
+                RectanglesListBox.Items.Add($"Rectangle {i}");
+                RectanglesListBox.SelectedIndex = 0;
             }
         }
 
@@ -276,6 +276,16 @@ namespace Programming
                 double rating = Math.Round(_random.NextDouble() * 10, 1);
                 movies[i] = new Movie(name, duration, year,genre,rating);
             }
+        }
+        private void FillMovies(Movie[] movies)
+        {
+            int i = 0;
+            foreach (var _movie in movies)
+            {
+                i++;
+                MoviesListBox.Items.Add($"Movie {i}");
+            }
+            MoviesListBox.SelectedIndex = 0;
         }
         // заполнение всех элементов TextBox
         private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
