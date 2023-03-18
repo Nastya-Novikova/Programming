@@ -19,7 +19,7 @@ namespace Programming.Model.Classes
             get { return _number; }
             set
             {
-                if (value>0)
+                if (value > 0)
                 {
                     _number = value;
                 }

@@ -1,8 +1,10 @@
 ﻿using Programming.Model.Classes;
+using Programming.Model.Enums;
 using System.Drawing.Text;
+using Color = Programming.Model.Enums.Color;
 using Rectangle = Programming.Model.Classes.Rectangle;
 
-namespace Programming
+namespace Programming.View
 {
     public partial class MainForm : Form
     {
@@ -27,8 +29,9 @@ namespace Programming
                 typeof(Manufactures),
                 typeof(Season),
                 typeof(Weekday)
-            }; 
+            };
             // добавление перечислений в ListBox
+            EnumsListBox.DisplayMember = nameof(Type.Name);
             EnumsListBox.Items.AddRange(enums);                                                             
             EnumsListBox.SelectedIndex = 0;
 
@@ -89,11 +92,10 @@ namespace Programming
             // результат преобразования пользовательского ввода
             bool result = Enum.TryParse(typeof(Weekday), ParsingTextBox.Text, true, out enteredDay);        
 
-            int number;
             if (result)
             {
                 // получение номера введенного дня недели
-                number = (int)enteredDay + 1;                                                               
+                var number = (int)enteredDay + 1;                                                               
                 ParsingAnswerLabel.Text = ($"Это день недели ({enteredDay} = {number})");
                 return;
             }
