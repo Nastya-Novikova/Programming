@@ -20,14 +20,8 @@ namespace Programming.Model.Classes
             get { return _duration; }
             set
             {
-                if (value > 0)
-                {
-                    _duration = value;
-                }
-                else
-                {
-                    throw new ArgumentException(message: "Продолжительность фильма должна быть больше 0");
-                }
+                Validator.AssertOnPositiveValue(value);
+                _duration = value;
             }
         }
         public int Year
@@ -35,14 +29,10 @@ namespace Programming.Model.Classes
             get { return _year; }
             set
             {
-                if (value >= 1900 && value <= 2023)
-                {
-                    _year = value;
-                }
-                else
-                {
-                    throw new ArgumentException(message: "Дата релиза фильма должна быть с 1900 до 2023");
-                }
+                int min = 1900;
+                int max = 2023;
+                Validator.AssertValueInRange(value, min, max);
+                _year = value;
             }
         }
 
@@ -52,14 +42,10 @@ namespace Programming.Model.Classes
             get { return _rating; }
             set
             {
-                if (value >= 0 && value <= 10)
-                {
-                    _rating = value;
-                }
-                else
-                {
-                    throw new ArgumentException(message: "Рейтинг фильма должен быть от 0 до 10");
-                }
+                int min = 0;
+                int max = 10;
+                Validator.AssertValueInRange(value, min, max);
+                _rating = value;
             }
         }
 

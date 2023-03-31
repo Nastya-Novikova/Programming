@@ -17,14 +17,8 @@ namespace Programming.Model.Classes
             get { return _length; }
             set
             {
-                if (value > 0)
-                {
-                    _length = value;
-                }
-                else
-                {
-                    throw new ArgumentException(message: "Длина стороны должна быть больше 0");
-                }
+                Validator.AssertOnPositiveValue(value);
+                _length = value;
             }
         }
 
@@ -33,14 +27,8 @@ namespace Programming.Model.Classes
             get { return _width; }
             set
             {
-                if (value > 0)
-                {
-                    _width = value;
-                }
-                else
-                {
-                    throw new ArgumentException(message: "Ширина стороны должна быть больше 0");
-                }
+                Validator.AssertOnPositiveValue(value);
+                _width = value;
             }
         }
 

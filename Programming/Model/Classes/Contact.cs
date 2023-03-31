@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
@@ -12,21 +14,31 @@ namespace Programming.Model.Classes
         private string _surname;
         private long _number;
 
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                AssertStringContainsOnlyLetters(value);
+                _name = value;
+            }
+        }
+        public string Surname
+        {
+            get { return _surname; }
+            set
+            {
+                AssertStringContainsOnlyLetters(value);
+                _surname = value;
+            }
+        }
         public long Number
         {
             get { return _number; }
             set
             {
-                if (value > 0)
-                {
-                    _number = value;
-                }
-                else
-                {
-                    throw new ArgumentException(message: "Номер телефона должен быть больше 0");
-                }
+                Validator.AssertOnPositiveValue(value);
+                _number = value;
             }
         }
 
@@ -40,6 +52,16 @@ namespace Programming.Model.Classes
             Name = name;
             Surname = surname;
             Number = number;
+        }
+
+        private void AssertStringContainsOnlyLetters(string value, [CallerMemberName] string property = "")
+        {
+            string pattern = @"[A-Z]{1}[a-z]{1,}";
+            Regex regex = new Regex(pattern);
+            if (!regex.IsMatch(value))
+            {
+                throw new ArgumentException($"Указано некорректное значение в поле {property}");
+            }
         }
     }
 }

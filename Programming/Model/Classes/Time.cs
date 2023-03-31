@@ -17,14 +17,10 @@ namespace Programming.Model.Classes
             get { return _hours; }
             set
             {
-                if (value >=0 && value <= 23)
-                {
-                    _hours = value;
-                }
-                else
-                {
-                    throw new ArgumentException(message: "Количество часов должно быть больше 0");
-                }
+                int min = 0;
+                int max = 23;
+                Validator.AssertValueInRange(value, min, max);
+                _hours = value;
             }
         }
 
@@ -33,14 +29,10 @@ namespace Programming.Model.Classes
             get { return _minutes; }
             set
             {
-                if (value >= 0 && value<60)
-                {
-                    _minutes = value;
-                }
-                else
-                {
-                    throw new ArgumentException(message: "Количество минут должно быть не меньше 0 и меньше 60");
-                }
+                int min = 0;
+                int max = 59;
+                Validator.AssertValueInRange(value, min, max);
+                _minutes = value;
             }
         }
 
@@ -49,14 +41,10 @@ namespace Programming.Model.Classes
             get { return _seconds; }
             set
             {
-                if (value >= 0 && value<60)
-                {
-                    _seconds = value;
-                }
-                else
-                {
-                    throw new ArgumentException(message: "Количество секунд должно быть не меньше 0 и меньше 60");
-                }
+                int min = 0;
+                int max = 59;
+                Validator.AssertValueInRange(value, min, max);
+                _seconds = value;
             }
         }
 

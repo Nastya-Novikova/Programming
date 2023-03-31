@@ -19,14 +19,8 @@ namespace Programming.Model.Classes
             get { return _seconds; }
             set
             {
-                if (value > 0)
-                {
-                    _seconds = value;
-                }
-                else
-                {
-                    throw new ArgumentException(message: "Продолжительность песни должна быть больше 0");
-                }
+                Validator.AssertOnPositiveValue(value);
+                _seconds = value;
             }
         }
 
