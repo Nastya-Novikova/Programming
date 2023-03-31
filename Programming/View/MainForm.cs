@@ -193,8 +193,7 @@ namespace Programming.View
             int i = 0;
             foreach (var _rectangle in rectangles)
             {
-                i++;
-                RectanglesListBox.Items.Add($"Rectangle {i}");
+                RectanglesListBox.Items.Add($"Rectangle {_rectangle.Id}");
                 RectanglesListBox.SelectedIndex = 0;
             }
         }
@@ -213,6 +212,7 @@ namespace Programming.View
             ColorTextBox.Text = _currentRectangle.Color.ToString();
             XTextBox.Text = _currentRectangle.Center.X.ToString();
             YTextBox.Text = _currentRectangle.Center.Y.ToString();
+            IdTextBox.Text = _currentRectangle.Id.ToString();
         }
 
         // реализация возможности ручного ввода с формы 
