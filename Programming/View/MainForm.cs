@@ -175,13 +175,16 @@ namespace Programming.View
         private void InitRectangles(Rectangle[] rectangles)
         {
             var size = 10;
+            var round = 6;
             var colorValues = Enum.GetValues(typeof(Color));
             for (int i=0; i<Quantity; i++)
             {
-                double length = Math.Round(_random.NextDouble() * size,6);
-                double width = Math.Round(_random.NextDouble() * size,6);
+                double length = Math.Round(_random.NextDouble() * size, round);
+                double width = Math.Round(_random.NextDouble() * size, round);
                 string color = colorValues.GetValue(_random.Next(0, 7)).ToString();
-                rectangles[i] = new Rectangle(length, width, color);
+                Point2D center = new Point2D(Math.Round(_random.NextDouble() * size, round),
+                                             Math.Round(_random.NextDouble() * size, round));
+                rectangles[i] = new Rectangle(length, width, color, center);
             }
         }
 
@@ -208,6 +211,8 @@ namespace Programming.View
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color.ToString();
+            XTextBox.Text = _currentRectangle.Center.X.ToString();
+            YTextBox.Text = _currentRectangle.Center.Y.ToString();
         }
 
         // реализация возможности ручного ввода с формы 
@@ -368,6 +373,21 @@ namespace Programming.View
         private void MoviesButton_Click(object sender, EventArgs e)
         {
             MoviesListBox.SelectedIndex = FindMovieWithMaxRating(_movies);
+        }
+        // Запрет на изменение полей X, Y, ID
+        private void XTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void YTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void IdTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }
