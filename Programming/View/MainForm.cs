@@ -193,7 +193,7 @@ namespace Programming.View
             int i = 0;
             foreach (var _rectangle in rectangles)
             {
-                RectanglesListBox.Items.Add($"Rectangle {_rectangle.Id}");
+                RectanglesListBox.Items.Add($"Rectangle {_rectangle.Id+1}");
                 RectanglesListBox.SelectedIndex = 0;
             }
         }

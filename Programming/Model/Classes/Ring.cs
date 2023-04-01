@@ -8,7 +8,6 @@ namespace Programming.Model.Classes
 {
     public class Ring
     {
-        private Point2D _center;
         private double _radiusOut;
         private double _radiusIn;
 
@@ -16,7 +15,7 @@ namespace Programming.Model.Classes
 
         public double RadiusOut
         {
-            get { return _radiusOut; }
+            get => _radiusOut;
             set
             {
                 if (_radiusIn == default)
@@ -33,7 +32,7 @@ namespace Programming.Model.Classes
 
         public double RadiusIn
         {
-            get { return _radiusIn; }
+            get => _radiusIn;
             set
             {
                 if (_radiusOut == default)
@@ -52,8 +51,7 @@ namespace Programming.Model.Classes
         {
             get
             {
-                double area = Math.PI*(Math.Pow(RadiusOut,2) - Math.Pow(RadiusIn,2));
-                return area;
+                return Math.PI*(Math.Pow(RadiusOut,2) - Math.Pow(RadiusIn,2));
             }
         }
 

@@ -9,15 +9,13 @@ namespace Programming.Model.Classes
 {
     public class Discipline
     {
-        private string _surname;
-        private string _teacher;
         private int _mark;
 
         public string Surname { get; set; }
         public string Teacher { get; set; }
         public int Mark
         {
-            get { return _mark; }
+            get => _mark;
             set
             {
                 int min = 2;
