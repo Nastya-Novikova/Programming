@@ -177,7 +177,7 @@ namespace Programming.View
             var size = 10;
             var round = 6;
             var colorValues = Enum.GetValues(typeof(Color));
-            for (int i=0; i<Quantity; i++)
+            for (int i = 0; i < Quantity; i++)
             {
                 double length = Math.Round(_random.NextDouble() * size, round);
                 double width = Math.Round(_random.NextDouble() * size, round);
@@ -190,10 +190,9 @@ namespace Programming.View
 
         private void FillRectangles(Rectangle[] rectangles)
         {
-            int i = 0;
-            foreach (var _rectangle in rectangles)
+            foreach (var rectangle in rectangles)
             {
-                RectanglesListBox.Items.Add($"Rectangle {_rectangle.Id+1}");
+                RectanglesListBox.Items.Add($"Rectangle {rectangle.Id + 1}");
                 RectanglesListBox.SelectedIndex = 0;
             }
         }
@@ -252,7 +251,7 @@ namespace Programming.View
         {
             double maxWidth = -1;
             int index = -1;
-            for (int i=0; i<rectangles.Length; i++)
+            for (int i = 0; i < rectangles.Length; i++)
             {
                 if (rectangles[i].Width > maxWidth)
                 {
@@ -287,7 +286,7 @@ namespace Programming.View
         private void FillMovies(Movie[] movies)
         {
             int i = 0;
-            foreach (var _movie in movies)
+            foreach (var movie in movies)
             {
                 i++;
                 MoviesListBox.Items.Add($"Movie {i}");

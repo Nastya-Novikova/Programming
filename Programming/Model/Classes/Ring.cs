@@ -47,13 +47,8 @@ namespace Programming.Model.Classes
             }
         }
 
-        public double Area
-        {
-            get
-            {
-                return Math.PI*(Math.Pow(RadiusOut,2) - Math.Pow(RadiusIn,2));
-            }
-        }
+        public double Area => 
+            Math.PI*(Math.Pow(RadiusOut,2) - Math.Pow(RadiusIn,2));
 
         public Ring (Point2D center, double radiusOut, double radiusIn)
         {

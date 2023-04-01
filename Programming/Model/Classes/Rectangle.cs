@@ -13,14 +13,11 @@ namespace Programming.Model.Classes
         private double _width;
         private static int _allRectanglesCount;
 
-        public int Id
-        {
-            get => _id;
-        }
+        public int Id => _id;
 
         public double Length
         {
-            get { return _length; }
+            get => _length;
             set
             {
                 Validator.AssertOnPositiveValue(value);
@@ -30,7 +27,7 @@ namespace Programming.Model.Classes
 
         public double Width
         {
-            get { return _width; }
+            get => _width;
             set
             {
                 Validator.AssertOnPositiveValue(value);

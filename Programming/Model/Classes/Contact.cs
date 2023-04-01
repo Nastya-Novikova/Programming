@@ -16,7 +16,7 @@ namespace Programming.Model.Classes
 
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
                 AssertStringContainsOnlyLetters(value);
@@ -25,7 +25,7 @@ namespace Programming.Model.Classes
         }
         public string Surname
         {
-            get { return _surname; }
+            get => _surname;
             set
             {
                 AssertStringContainsOnlyLetters(value);
@@ -34,7 +34,7 @@ namespace Programming.Model.Classes
         }
         public long Number
         {
-            get { return _number; }
+            get => _number;
             set
             {
                 Validator.AssertOnPositiveValue(value);
