@@ -388,5 +388,24 @@ namespace Programming.View
         {
             e.Handled = true;
         }
+        private void AddPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            AddPictureBox.Image = Properties.Resources.AddIconGreen_30x30;
+        }
+         
+        private void RemovePictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            RemovePictureBox.Image = Properties.Resources.RemoveIconRed_30x30;
+        }
+
+        private void RemovePictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            RemovePictureBox.Image = Properties.Resources.RemoveIcon_30x30;
+        }
+
+        private void AddPictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            AddPictureBox.Image = Properties.Resources.AddIcon_30x30;
+        }
     }
 }
