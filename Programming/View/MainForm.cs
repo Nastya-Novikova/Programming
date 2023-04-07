@@ -1,5 +1,6 @@
 ﻿using Programming.Model.Classes;
 using Programming.Model.Enums;
+using System.ComponentModel;
 using System.Drawing.Text;
 using Color = Programming.Model.Enums.Color;
 using Rectangle = Programming.Model.Classes.Rectangle;
@@ -9,7 +10,9 @@ namespace Programming.View
     public partial class MainForm : Form
     {
         private const int Quantity = 5;
-        private Rectangle[] _rectangles = new Rectangle[Quantity];
+        private Rectangle[] _classesRectangles = new Rectangle[Quantity];
+        private Rectangle _classesCurrentRectangle;
+        private BindingList<Rectangle> _rectangles;
         private Rectangle _currentRectangle;
 
         private Movie[] _movies = new Movie[Quantity];
@@ -40,11 +43,17 @@ namespace Programming.View
             FillHandleComboBox(seasonValues);
 
             // заполнение RectanglesListBox и MoviesListBox
-            InitRectangles(_rectangles);
-            FillRectangles(_rectangles);
+            for (int i = 0; i < Quantity; i++)
+            {
+                _classesRectangles[i] = InitRectangle();
+            }
+            FillRectangles(_classesRectangles);
 
             InitMovies(_movies);
             FillMovies(_movies);
+
+            InitBindingListOfRectangles();
+            FillInfoRectanglesListBox();
         }
     // работа с окном Enums
         // работа с ValuesListBox
@@ -172,27 +181,41 @@ namespace Programming.View
 
     // работа с элементами RectanglesGroupBox (Classes)
         // инициализация массива прямоугольников
-        private void InitRectangles(Rectangle[] rectangles)
+        private Rectangle InitRectangle()
         {
-            var size = 10;
-            var round = 6;
+            var size = 15;
+            var round = 3;
             var colorValues = Enum.GetValues(typeof(Color));
+            double length = Math.Round(_random.NextDouble() * size + 1, round);
+            double width = Math.Round(_random.NextDouble() * size + 1, round);
+            string color = colorValues.GetValue(_random.Next(0, 7)).ToString();
+            Point2D center = new Point2D(Math.Round(_random.NextDouble() * size, round),
+                                         Math.Round(_random.NextDouble() * size, round));
+            return new Rectangle(length, width, color, center);  
+        }
+
+        private void InitBindingListOfRectangles()
+        {
+            _rectangles = new BindingList<Rectangle>();
+            _rectangles.AllowNew = true;
             for (int i = 0; i < Quantity; i++)
             {
-                double length = Math.Round(_random.NextDouble() * size, round);
-                double width = Math.Round(_random.NextDouble() * size, round);
-                string color = colorValues.GetValue(_random.Next(0, 7)).ToString();
-                Point2D center = new Point2D(Math.Round(_random.NextDouble() * size, round),
-                                             Math.Round(_random.NextDouble() * size, round));
-                rectangles[i] = new Rectangle(length, width, color, center);
+                _rectangles.Add(_classesRectangles[i]);
             }
+        }
+
+        private void FillInfoRectanglesListBox()
+        {
+            InfoRectanglesListBox.DataSource = null;
+            InfoRectanglesListBox.DisplayMember = nameof(Rectangle.Info);
+            InfoRectanglesListBox.DataSource = _rectangles;
         }
 
         private void FillRectangles(Rectangle[] rectangles)
         {
             foreach (var rectangle in rectangles)
             {
-                RectanglesListBox.Items.Add($"Rectangle {rectangle.Id + 1}");
+                RectanglesListBox.Items.Add($"Rectangle {rectangle.Id}");
                 RectanglesListBox.SelectedIndex = 0;
             }
         }
@@ -205,45 +228,27 @@ namespace Programming.View
                 return;
             }
 
-            _currentRectangle = _rectangles[RectanglesListBox.SelectedIndex];
-            LengthTextBox.Text = _currentRectangle.Length.ToString();
-            WidthTextBox.Text = _currentRectangle.Width.ToString();
-            ColorTextBox.Text = _currentRectangle.Color.ToString();
-            XTextBox.Text = _currentRectangle.Center.X.ToString();
-            YTextBox.Text = _currentRectangle.Center.Y.ToString();
-            IdTextBox.Text = _currentRectangle.Id.ToString();
+            _classesCurrentRectangle = _classesRectangles[RectanglesListBox.SelectedIndex];
+            LengthTextBox.Text = _classesCurrentRectangle.Length.ToString();
+            WidthTextBox.Text = _classesCurrentRectangle.Width.ToString();
+            ColorTextBox.Text = _classesCurrentRectangle.Color.ToString();
+            XTextBox.Text = _classesCurrentRectangle.Center.X.ToString();
+            YTextBox.Text = _classesCurrentRectangle.Center.Y.ToString();
+            IdTextBox.Text = _classesCurrentRectangle.Id.ToString();
         }
 
-        // реализация возможности ручного ввода с формы 
-        private void LengthTextBox_TextChanged(object sender, EventArgs e)
+        private void InfoRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if (InfoRectanglesListBox.SelectedItem == null)
             {
-                LengthTextBox.BackColor = System.Drawing.Color.White;
-                _currentRectangle.Length = Double.Parse(LengthTextBox.Text);
+                return;
             }
-            catch
-            {
-                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-        }
-
-        private void WidthTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                WidthTextBox.BackColor = System.Drawing.Color.White;
-                _currentRectangle.Width = Double.Parse(WidthTextBox.Text);
-            }
-            catch
-            {
-                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-        }
-
-        private void ColorTextBox_TextChanged(object sender, EventArgs e)
-        {
-            _currentRectangle.Color = ColorTextBox.Text;
+            _currentRectangle = _rectangles[InfoRectanglesListBox.SelectedIndex];
+            SelectedLengthTextBox.Text = _currentRectangle.Length.ToString();
+            SelectedWidthTextBox.Text = _currentRectangle.Width.ToString();
+            SelectedXTextBox.Text = _currentRectangle.Center.X.ToString();
+            SelectedYTextBox.Text = _currentRectangle.Center.Y.ToString();
+            SelectedIdTextBox.Text = _currentRectangle.Id.ToString();
         }
 
         // нахождение прямоугольника с максимальной шириной
@@ -264,25 +269,40 @@ namespace Programming.View
 
         private void RectanglesButton_Click(object sender, EventArgs e)
         {
-            RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth(_rectangles);
+            RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth(_classesRectangles);
         }
-    // конец работы с элементами RectanglesGroupBox
 
-    // работа с элементами MoviesGroupBox
+        private void AddPictureBox_Click(object sender, EventArgs e)
+        {
+            _rectangles.Add(InitRectangle());
+        }
+
+        private void RemovePictureBox_Click(object sender, EventArgs e)
+        {
+            if (InfoRectanglesListBox.SelectedItem == null)
+            {
+                return;
+            }
+            _rectangles.Remove(_rectangles[InfoRectanglesListBox.SelectedIndex]);
+        }
+        // конец работы с элементами RectanglesGroupBox
+
+        // работа с элементами MoviesGroupBox
         // инициализация массива фильмов
         private void InitMovies(Movie[] movies)
         {
-            var GenreValues = Enum.GetValues(typeof(Genre));
+            var genreValues = Enum.GetValues(typeof(Genre));
             for (int i = 0; i < Quantity; i++)
             {
                 string name = $"Movie {i + 1}";
                 int duration = _random.Next(1,181);
                 int year = _random.Next(1900,2024);
-                string genre = GenreValues.GetValue(_random.Next(0, 6)).ToString();
+                string genre = genreValues.GetValue(_random.Next(0, 6)).ToString();
                 double rating = Math.Round(_random.NextDouble() * 10, 1);
                 movies[i] = new Movie(name, duration, year,genre,rating);
             }
         }
+
         private void FillMovies(Movie[] movies)
         {
             int i = 0;
@@ -304,7 +324,117 @@ namespace Programming.View
             GenreTextBox.Text = _currentMovie.Genre;
             RatingTextBox.Text = _currentMovie.Rating.ToString();
         }
-        // реализация возможности ручного ввода с формы 
+        
+        // нахождение фильма с максимальным рейтингом
+        private int FindMovieWithMaxRating(Movie[] movies)
+        {
+            double maxRating = -1;
+            int index = -1;
+            for (int i = 0; i < movies.Length; i++)
+            {
+                if (movies[i].Rating > maxRating)
+                {
+                    maxRating = movies[i].Rating;
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+        private void MoviesButton_Click(object sender, EventArgs e)
+        {
+            MoviesListBox.SelectedIndex = FindMovieWithMaxRating(_movies);
+        }
+
+        // реализация возможности ручного ввода с формы Rectangles
+        private void LengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LengthTextBox.BackColor = System.Drawing.Color.White;
+                _classesCurrentRectangle.Length = Double.Parse(LengthTextBox.Text);
+            }
+            catch
+            {
+                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void WidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                WidthTextBox.BackColor = System.Drawing.Color.White;
+                _classesCurrentRectangle.Width = Double.Parse(WidthTextBox.Text);
+            }
+            catch
+            {
+                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void ColorTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _classesCurrentRectangle.Color = ColorTextBox.Text;
+        }
+
+        //реализация возможности ручного ввода с формы Rectangles
+        private void SelectedWidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SelectedWidthTextBox.BackColor = System.Drawing.Color.White;
+                _currentRectangle.Width = Double.Parse(SelectedWidthTextBox.Text);
+                FillInfoRectanglesListBox();
+            }
+            catch
+            {
+                SelectedWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void SelectedLengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SelectedLengthTextBox.BackColor = System.Drawing.Color.White;
+                _currentRectangle.Length = Double.Parse(SelectedLengthTextBox.Text);
+                FillInfoRectanglesListBox();
+            }
+            catch
+            {
+                SelectedLengthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void SelectedXTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SelectedXTextBox.BackColor = System.Drawing.Color.White;
+                _currentRectangle.Center.X = Double.Parse(SelectedXTextBox.Text);
+                FillInfoRectanglesListBox();
+            }
+            catch
+            {
+                SelectedXTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void SelectedYTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SelectedYTextBox.BackColor = System.Drawing.Color.White;
+                _currentRectangle.Center.Y = Double.Parse(SelectedYTextBox.Text);
+                FillInfoRectanglesListBox();
+            }
+            catch
+            {
+                SelectedYTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+        // реализация возможности ручного ввода с формы Movie
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             _currentMovie.Name = NameTextBox.Text;
@@ -353,26 +483,7 @@ namespace Programming.View
                 RatingTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
-        // нахождение фильма с максимальным рейтингом
-        private int FindMovieWithMaxRating(Movie[] movies)
-        {
-            double maxRating = -1;
-            int index = -1;
-            for (int i = 0; i < movies.Length; i++)
-            {
-                if (movies[i].Rating > maxRating)
-                {
-                    maxRating = movies[i].Rating;
-                    index = i;
-                }
-            }
-            return index;
-        }
 
-        private void MoviesButton_Click(object sender, EventArgs e)
-        {
-            MoviesListBox.SelectedIndex = FindMovieWithMaxRating(_movies);
-        }
         // Запрет на изменение полей X, Y, ID
         private void XTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -388,6 +499,12 @@ namespace Programming.View
         {
             e.Handled = true;
         }
+
+        private void SelectedIdTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
         private void AddPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             AddPictureBox.Image = Properties.Resources.AddIconGreen_30x30;

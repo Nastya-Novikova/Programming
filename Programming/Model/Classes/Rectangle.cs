@@ -46,6 +46,10 @@ namespace Programming.Model.Classes
 
         public Point2D Center { get; set; }
 
+        public string Info =>
+             $"{Id}: (X = {Math.Round(Center.X)}; Y = {Math.Round(Center.Y)}; " +
+                    $"W = {Math.Round(Width)}; L = {Math.Round(Length)})";
+
         public Rectangle()
         {
 
@@ -53,7 +57,7 @@ namespace Programming.Model.Classes
 
         public Rectangle(double length, double width, string color, Point2D center)
         {
-            _id = AllRectanglesCount;
+            _id = AllRectanglesCount + 1;
             AllRectanglesCount++;
             Length = length;
             Width = width;
