@@ -1,6 +1,7 @@
 ﻿using Programming.Model.Classes;
 using Programming.Model.Enums;
 using System.ComponentModel;
+using System.Drawing;
 using System.Drawing.Text;
 using Color = Programming.Model.Enums.Color;
 using Rectangle = Programming.Model.Classes.Rectangle;
@@ -13,6 +14,7 @@ namespace Programming.View
         private Rectangle[] _classesRectangles = new Rectangle[Quantity];
         private Rectangle _classesCurrentRectangle;
         private BindingList<Rectangle> _rectangles;
+        private BindingList<Panel> _rectanglePanels = new BindingList<Panel>();
         private Rectangle _currentRectangle;
 
         private Movie[] _movies = new Movie[Quantity];
@@ -277,15 +279,30 @@ namespace Programming.View
 
         private void AddPictureBox_Click(object sender, EventArgs e)
         {
-            _rectangles.Add(RectangleFactory.Randomize());
+            Rectangle newRectangle = RectangleFactory.Randomize(CanvasPanel);
+            _rectangles.Add(newRectangle);
+            AddPanel(newRectangle);
         }
 
+        private void AddPanel(Rectangle rectangle)
+        {
+            Panel panel = new Panel();
+            panel.Height = (int)rectangle.Height;
+            panel.Width = (int)rectangle.Width;
+            panel.Location = new Point((int)rectangle.Center.X,
+                                       (int)rectangle.Center.Y);
+            panel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+            CanvasPanel.Controls.Add(panel);
+            _rectanglePanels.Add(panel);
+        }
         private void RemovePictureBox_Click(object sender, EventArgs e)
         {
             if (InfoRectanglesListBox.SelectedItem == null)
             {
                 return;
             }
+            CanvasPanel.Controls.RemoveAt(InfoRectanglesListBox.SelectedIndex);
+            _rectanglePanels.Remove(_rectanglePanels[InfoRectanglesListBox.SelectedIndex]);
             _rectangles.Remove(_rectangles[InfoRectanglesListBox.SelectedIndex]);
             InfoRectanglesListBox.SelectedIndex = -1;
         }

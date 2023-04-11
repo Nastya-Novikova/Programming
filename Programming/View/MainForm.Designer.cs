@@ -98,7 +98,7 @@
             this.InfoRectanglesListBox = new System.Windows.Forms.ListBox();
             this.RemovePictureBox = new System.Windows.Forms.PictureBox();
             this.AddPictureBox = new System.Windows.Forms.PictureBox();
-            this.CollisionPanel = new System.Windows.Forms.Panel();
+            this.CanvasPanel = new System.Windows.Forms.Panel();
             this.ProgrammingTabControl.SuspendLayout();
             this.EnumsTabPage.SuspendLayout();
             this.tableLayoutPanelMain.SuspendLayout();
@@ -756,7 +756,7 @@
             this.RectanglesTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.RectanglesTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.RectanglesTableLayoutPanel.Controls.Add(this.InfoRectanglesTableLayoutPanel, 0, 0);
-            this.RectanglesTableLayoutPanel.Controls.Add(this.CollisionPanel, 1, 0);
+            this.RectanglesTableLayoutPanel.Controls.Add(this.CanvasPanel, 1, 0);
             this.RectanglesTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RectanglesTableLayoutPanel.Location = new System.Drawing.Point(3, 4);
             this.RectanglesTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -955,15 +955,15 @@
             this.AddPictureBox.MouseLeave += new System.EventHandler(this.AddPictureBox_MouseLeave);
             this.AddPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AddPictureBox_MouseMove);
             // 
-            // CollisionPanel
+            // CanvasPanel
             // 
-            this.CollisionPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CollisionPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CollisionPanel.Location = new System.Drawing.Point(389, 4);
-            this.CollisionPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.CollisionPanel.Name = "CollisionPanel";
-            this.CollisionPanel.Size = new System.Drawing.Size(713, 627);
-            this.CollisionPanel.TabIndex = 1;
+            this.CanvasPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CanvasPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CanvasPanel.Location = new System.Drawing.Point(389, 4);
+            this.CanvasPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CanvasPanel.Name = "CanvasPanel";
+            this.CanvasPanel.Size = new System.Drawing.Size(713, 627);
+            this.CanvasPanel.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -1061,7 +1061,7 @@
         private TabPage RectanglesTabPage;
         private PictureBox RemovePictureBox;
         private PictureBox AddPictureBox;
-        private Panel CollisionPanel;
+        private Panel CanvasPanel;
         private ListBox InfoRectanglesListBox;
         private TableLayoutPanel RectanglesTableLayoutPanel;
         private TableLayoutPanel InfoRectanglesTableLayoutPanel;
