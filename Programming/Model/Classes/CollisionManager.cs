@@ -12,8 +12,8 @@ namespace Programming.Model.Classes
         {
             double deltaX = Math.Abs(rectangle1.Center.X - rectangle2.Center.X);
             double deltaY = Math.Abs(rectangle1.Center.Y - rectangle2.Center.Y);
-            return (deltaX < ((rectangle1.Length + rectangle2.Length) / 2) &&
-                    deltaY < ((rectangle1.Width + rectangle2.Width) / 2));
+            return (deltaX < ((rectangle1.Width + rectangle2.Width) / 2) &&
+                    deltaY < ((rectangle1.Height + rectangle2.Height) / 2));
         }
 
         public static bool IsCollision(Ring ring1, Ring ring2)

@@ -9,19 +9,19 @@ namespace Programming.Model.Classes
     public class Rectangle
     {
         private int _id;
-        private double _length;
+        private double _height;
         private double _width;
         private static int _allRectanglesCount;
 
         public int Id => _id;
 
-        public double Length
+        public double Height
         {
-            get => _length;
+            get => _height;
             set
             {
                 Validator.AssertOnPositiveValue(value);
-                _length = value;
+                _height = value;
             }
         }
 
@@ -48,18 +48,18 @@ namespace Programming.Model.Classes
 
         public string Info =>
              $"{Id}: (X = {Math.Round(Center.X)}; Y = {Math.Round(Center.Y)}; " +
-                    $"W = {Math.Round(Width)}; L = {Math.Round(Length)})";
+                    $"W = {Math.Round(Width)}; L = {Math.Round(Height)})";
 
         public Rectangle()
         {
 
         }
 
-        public Rectangle(double length, double width, string color, Point2D center)
+        public Rectangle(double height, double width, string color, Point2D center)
         {
             _id = AllRectanglesCount + 1;
             AllRectanglesCount++;
-            Length = length;
+            Height = height;
             Width = width;
             Color = color;
             Center = center;

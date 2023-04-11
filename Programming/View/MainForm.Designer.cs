@@ -75,21 +75,21 @@
             this.IdLabel = new System.Windows.Forms.Label();
             this.ColorLabel = new System.Windows.Forms.Label();
             this.WidthLabel = new System.Windows.Forms.Label();
-            this.LengthLabel = new System.Windows.Forms.Label();
+            this.HeightLabel = new System.Windows.Forms.Label();
             this.ColorTextBox = new System.Windows.Forms.TextBox();
             this.WidthTextBox = new System.Windows.Forms.TextBox();
-            this.LengthTextBox = new System.Windows.Forms.TextBox();
+            this.HeightTextBox = new System.Windows.Forms.TextBox();
             this.RectanglesListBox = new System.Windows.Forms.ListBox();
             this.RectanglesTabPage = new System.Windows.Forms.TabPage();
             this.RectanglesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.InfoRectanglesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.SelectedRectangleGroupBox = new System.Windows.Forms.GroupBox();
-            this.SelectedLengthLabel = new System.Windows.Forms.Label();
+            this.SelectedHeightLabel = new System.Windows.Forms.Label();
             this.SelectedWidthLabel = new System.Windows.Forms.Label();
             this.SelectedYLabel = new System.Windows.Forms.Label();
             this.SelectedXLabel = new System.Windows.Forms.Label();
             this.SelectedIdLabel = new System.Windows.Forms.Label();
-            this.SelectedLengthTextBox = new System.Windows.Forms.TextBox();
+            this.SelectedHeightTextBox = new System.Windows.Forms.TextBox();
             this.SelectedWidthTextBox = new System.Windows.Forms.TextBox();
             this.SelectedYTextBox = new System.Windows.Forms.TextBox();
             this.SelectedXTextBox = new System.Windows.Forms.TextBox();
@@ -558,10 +558,10 @@
             this.RectanglesGroupBox.Controls.Add(this.IdLabel);
             this.RectanglesGroupBox.Controls.Add(this.ColorLabel);
             this.RectanglesGroupBox.Controls.Add(this.WidthLabel);
-            this.RectanglesGroupBox.Controls.Add(this.LengthLabel);
+            this.RectanglesGroupBox.Controls.Add(this.HeightLabel);
             this.RectanglesGroupBox.Controls.Add(this.ColorTextBox);
             this.RectanglesGroupBox.Controls.Add(this.WidthTextBox);
-            this.RectanglesGroupBox.Controls.Add(this.LengthTextBox);
+            this.RectanglesGroupBox.Controls.Add(this.HeightTextBox);
             this.RectanglesGroupBox.Controls.Add(this.RectanglesListBox);
             this.RectanglesGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RectanglesGroupBox.Location = new System.Drawing.Point(3, 4);
@@ -680,17 +680,17 @@
             this.WidthLabel.TabIndex = 5;
             this.WidthLabel.Text = "Width:";
             // 
-            // LengthLabel
+            // HeightLabel
             // 
-            this.LengthLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.HeightLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.LengthLabel.AutoSize = true;
-            this.LengthLabel.Location = new System.Drawing.Point(201, 117);
-            this.LengthLabel.Name = "LengthLabel";
-            this.LengthLabel.Size = new System.Drawing.Size(57, 20);
-            this.LengthLabel.TabIndex = 4;
-            this.LengthLabel.Text = "Length:";
+            this.HeightLabel.AutoSize = true;
+            this.HeightLabel.Location = new System.Drawing.Point(201, 117);
+            this.HeightLabel.Name = "HeightLabel";
+            this.HeightLabel.Size = new System.Drawing.Size(57, 20);
+            this.HeightLabel.TabIndex = 4;
+            this.HeightLabel.Text = "Height:";
             // 
             // ColorTextBox
             // 
@@ -714,16 +714,16 @@
             this.WidthTextBox.TabIndex = 2;
             this.WidthTextBox.TextChanged += new System.EventHandler(this.WidthTextBox_TextChanged);
             // 
-            // LengthTextBox
+            // HeightTextBox
             // 
-            this.LengthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.HeightTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.LengthTextBox.Location = new System.Drawing.Point(203, 147);
-            this.LengthTextBox.Margin = new System.Windows.Forms.Padding(25, 29, 25, 29);
-            this.LengthTextBox.Name = "LengthTextBox";
-            this.LengthTextBox.Size = new System.Drawing.Size(228, 27);
-            this.LengthTextBox.TabIndex = 1;
-            this.LengthTextBox.TextChanged += new System.EventHandler(this.LengthTextBox_TextChanged);
+            this.HeightTextBox.Location = new System.Drawing.Point(203, 147);
+            this.HeightTextBox.Margin = new System.Windows.Forms.Padding(25, 29, 25, 29);
+            this.HeightTextBox.Name = "HeightTextBox";
+            this.HeightTextBox.Size = new System.Drawing.Size(228, 27);
+            this.HeightTextBox.TabIndex = 1;
+            this.HeightTextBox.TextChanged += new System.EventHandler(this.HeightTextBox_TextChanged);
             // 
             // RectanglesListBox
             // 
@@ -784,12 +784,12 @@
             // 
             // SelectedRectangleGroupBox
             // 
-            this.SelectedRectangleGroupBox.Controls.Add(this.SelectedLengthLabel);
+            this.SelectedRectangleGroupBox.Controls.Add(this.SelectedHeightLabel);
             this.SelectedRectangleGroupBox.Controls.Add(this.SelectedWidthLabel);
             this.SelectedRectangleGroupBox.Controls.Add(this.SelectedYLabel);
             this.SelectedRectangleGroupBox.Controls.Add(this.SelectedXLabel);
             this.SelectedRectangleGroupBox.Controls.Add(this.SelectedIdLabel);
-            this.SelectedRectangleGroupBox.Controls.Add(this.SelectedLengthTextBox);
+            this.SelectedRectangleGroupBox.Controls.Add(this.SelectedHeightTextBox);
             this.SelectedRectangleGroupBox.Controls.Add(this.SelectedWidthTextBox);
             this.SelectedRectangleGroupBox.Controls.Add(this.SelectedYTextBox);
             this.SelectedRectangleGroupBox.Controls.Add(this.SelectedXTextBox);
@@ -804,14 +804,14 @@
             this.SelectedRectangleGroupBox.TabStop = false;
             this.SelectedRectangleGroupBox.Text = "Selected Rectangle:";
             // 
-            // SelectedLengthLabel
+            // SelectedHeightLabel
             // 
-            this.SelectedLengthLabel.AutoSize = true;
-            this.SelectedLengthLabel.Location = new System.Drawing.Point(6, 188);
-            this.SelectedLengthLabel.Name = "SelectedLengthLabel";
-            this.SelectedLengthLabel.Size = new System.Drawing.Size(57, 20);
-            this.SelectedLengthLabel.TabIndex = 9;
-            this.SelectedLengthLabel.Text = "Length:";
+            this.SelectedHeightLabel.AutoSize = true;
+            this.SelectedHeightLabel.Location = new System.Drawing.Point(6, 188);
+            this.SelectedHeightLabel.Name = "SelectedHeightLabel";
+            this.SelectedHeightLabel.Size = new System.Drawing.Size(57, 20);
+            this.SelectedHeightLabel.TabIndex = 9;
+            this.SelectedHeightLabel.Text = "Height:";
             // 
             // SelectedWidthLabel
             // 
@@ -849,14 +849,14 @@
             this.SelectedIdLabel.TabIndex = 5;
             this.SelectedIdLabel.Text = "Id:";
             // 
-            // SelectedLengthTextBox
+            // SelectedHeightTextBox
             // 
-            this.SelectedLengthTextBox.Location = new System.Drawing.Point(64, 184);
-            this.SelectedLengthTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.SelectedLengthTextBox.Name = "SelectedLengthTextBox";
-            this.SelectedLengthTextBox.Size = new System.Drawing.Size(171, 27);
-            this.SelectedLengthTextBox.TabIndex = 4;
-            this.SelectedLengthTextBox.TextChanged += new System.EventHandler(this.SelectedLengthTextBox_TextChanged);
+            this.SelectedHeightTextBox.Location = new System.Drawing.Point(64, 184);
+            this.SelectedHeightTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.SelectedHeightTextBox.Name = "SelectedHeightTextBox";
+            this.SelectedHeightTextBox.Size = new System.Drawing.Size(171, 27);
+            this.SelectedHeightTextBox.TabIndex = 4;
+            this.SelectedHeightTextBox.TextChanged += new System.EventHandler(this.SelectedHeightTextBox_TextChanged);
             // 
             // SelectedWidthTextBox
             // 
@@ -1031,7 +1031,7 @@
         private TableLayoutPanel ClassesTableLayoutPanel;
         private GroupBox MoviesGroupBox1;
         private GroupBox RectanglesGroupBox;
-        private TextBox LengthTextBox;
+        private TextBox HeightTextBox;
         private ListBox RectanglesListBox;
         private TextBox ColorTextBox;
         private TextBox WidthTextBox;
@@ -1046,7 +1046,7 @@
         private ListBox MoviesListBox;
         private Label ColorLabel;
         private Label WidthLabel;
-        private Label LengthLabel;
+        private Label HeightLabel;
         private Label RatingLabel;
         private Label GenreLabel;
         private Button MoviesButton;
@@ -1067,12 +1067,12 @@
         private TableLayoutPanel InfoRectanglesTableLayoutPanel;
         private GroupBox SelectedRectangleGroupBox;
         private GroupBox InfoGroupBox;
-        private TextBox SelectedLengthTextBox;
+        private TextBox SelectedHeightTextBox;
         private TextBox SelectedWidthTextBox;
         private TextBox SelectedYTextBox;
         private TextBox SelectedXTextBox;
         private TextBox SelectedIdTextBox;
-        private Label SelectedLengthLabel;
+        private Label SelectedHeightLabel;
         private Label SelectedWidthLabel;
         private Label SelectedYLabel;
         private Label SelectedXLabel;

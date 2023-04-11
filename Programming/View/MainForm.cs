@@ -45,7 +45,7 @@ namespace Programming.View
             // заполнение RectanglesListBox и MoviesListBox
             for (int i = 0; i < Quantity; i++)
             {
-                _classesRectangles[i] = InitRectangle();
+                _classesRectangles[i] = RectangleFactory.Randomize();
             }
             FillRectangles(_classesRectangles);
 
@@ -181,36 +181,34 @@ namespace Programming.View
 
     // работа с элементами RectanglesGroupBox (Classes)
         // инициализация массива прямоугольников
-        private Rectangle InitRectangle()
-        {
-            var size = 15;
-            var round = 3;
-            var colorValues = Enum.GetValues(typeof(Color));
-            double length = Math.Round(_random.NextDouble() * size + 1, round);
-            double width = Math.Round(_random.NextDouble() * size + 1, round);
-            string color = colorValues.GetValue(_random.Next(0, 7)).ToString();
-            Point2D center = new Point2D(Math.Round(_random.NextDouble() * size, round),
-                                         Math.Round(_random.NextDouble() * size, round));
-            return new Rectangle(length, width, color, center);  
-        }
+
 
         private void InitBindingListOfRectangles()
         {
             _rectangles = new BindingList<Rectangle>();
             _rectangles.AllowNew = true;
-            for (int i = 0; i < Quantity; i++)
-            {
-                _rectangles.Add(_classesRectangles[i]);
-            }
         }
 
         private void FillInfoRectanglesListBox()
         {
-            InfoRectanglesListBox.DataSource = null;
             InfoRectanglesListBox.DisplayMember = nameof(Rectangle.Info);
             InfoRectanglesListBox.DataSource = _rectangles;
         }
 
+        private void UpdateRectangleInfo(Rectangle rectangle)
+        {
+            InfoRectanglesListBox.DisplayMember = null;
+            InfoRectanglesListBox.DisplayMember = nameof(Rectangle.Info);
+        }
+
+        private void ClearRectanglesInfo()
+        {
+            SelectedIdTextBox.Clear();
+            SelectedHeightTextBox.Clear();
+            SelectedYTextBox.Clear();
+            SelectedWidthTextBox.Clear();
+            SelectedXTextBox.Clear();
+        }
         private void FillRectangles(Rectangle[] rectangles)
         {
             foreach (var rectangle in rectangles)
@@ -229,7 +227,7 @@ namespace Programming.View
             }
 
             _classesCurrentRectangle = _classesRectangles[RectanglesListBox.SelectedIndex];
-            LengthTextBox.Text = _classesCurrentRectangle.Length.ToString();
+            HeightTextBox.Text = _classesCurrentRectangle.Height.ToString();
             WidthTextBox.Text = _classesCurrentRectangle.Width.ToString();
             ColorTextBox.Text = _classesCurrentRectangle.Color.ToString();
             XTextBox.Text = _classesCurrentRectangle.Center.X.ToString();
@@ -241,10 +239,15 @@ namespace Programming.View
         {
             if (InfoRectanglesListBox.SelectedItem == null)
             {
+                ClearRectanglesInfo();
+                return;
+            }
+            if (_currentRectangle == _rectangles[InfoRectanglesListBox.SelectedIndex])
+            {
                 return;
             }
             _currentRectangle = _rectangles[InfoRectanglesListBox.SelectedIndex];
-            SelectedLengthTextBox.Text = _currentRectangle.Length.ToString();
+            SelectedHeightTextBox.Text = _currentRectangle.Height.ToString();
             SelectedWidthTextBox.Text = _currentRectangle.Width.ToString();
             SelectedXTextBox.Text = _currentRectangle.Center.X.ToString();
             SelectedYTextBox.Text = _currentRectangle.Center.Y.ToString();
@@ -274,7 +277,7 @@ namespace Programming.View
 
         private void AddPictureBox_Click(object sender, EventArgs e)
         {
-            _rectangles.Add(InitRectangle());
+            _rectangles.Add(RectangleFactory.Randomize());
         }
 
         private void RemovePictureBox_Click(object sender, EventArgs e)
@@ -284,6 +287,7 @@ namespace Programming.View
                 return;
             }
             _rectangles.Remove(_rectangles[InfoRectanglesListBox.SelectedIndex]);
+            InfoRectanglesListBox.SelectedIndex = -1;
         }
         // конец работы с элементами RectanglesGroupBox
 
@@ -347,16 +351,16 @@ namespace Programming.View
         }
 
         // реализация возможности ручного ввода с формы Rectangles
-        private void LengthTextBox_TextChanged(object sender, EventArgs e)
+        private void HeightTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LengthTextBox.BackColor = System.Drawing.Color.White;
-                _classesCurrentRectangle.Length = Double.Parse(LengthTextBox.Text);
+                HeightTextBox.BackColor = System.Drawing.Color.White;
+                _classesCurrentRectangle.Height = Double.Parse(HeightTextBox.Text);
             }
             catch
             {
-                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+                HeightTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
@@ -385,25 +389,31 @@ namespace Programming.View
             {
                 SelectedWidthTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Width = Double.Parse(SelectedWidthTextBox.Text);
-                FillInfoRectanglesListBox();
+                UpdateRectangleInfo(_currentRectangle);
             }
             catch
             {
-                SelectedWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                if (InfoRectanglesListBox.SelectedItem != null)
+                {
+                    SelectedWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
             }
         }
 
-        private void SelectedLengthTextBox_TextChanged(object sender, EventArgs e)
+        private void SelectedHeightTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                SelectedLengthTextBox.BackColor = System.Drawing.Color.White;
-                _currentRectangle.Length = Double.Parse(SelectedLengthTextBox.Text);
-                FillInfoRectanglesListBox();
+                SelectedHeightTextBox.BackColor = System.Drawing.Color.White;
+                _currentRectangle.Height = Double.Parse(SelectedHeightTextBox.Text);
+                UpdateRectangleInfo(_currentRectangle);
             }
             catch
             {
-                SelectedLengthTextBox.BackColor = System.Drawing.Color.LightPink;
+                if (InfoRectanglesListBox.SelectedItem != null)
+                {
+                    SelectedHeightTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
             }
         }
 
@@ -413,11 +423,14 @@ namespace Programming.View
             {
                 SelectedXTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Center.X = Double.Parse(SelectedXTextBox.Text);
-                FillInfoRectanglesListBox();
+                UpdateRectangleInfo(_currentRectangle);
             }
             catch
             {
-                SelectedXTextBox.BackColor = System.Drawing.Color.LightPink;
+                if (InfoRectanglesListBox.SelectedItem != null)
+                {
+                    SelectedXTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
             }
         }
 
@@ -427,11 +440,14 @@ namespace Programming.View
             {
                 SelectedYTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Center.Y = Double.Parse(SelectedYTextBox.Text);
-                FillInfoRectanglesListBox();
+                UpdateRectangleInfo(_currentRectangle);
             }
             catch
             {
-                SelectedYTextBox.BackColor = System.Drawing.Color.LightPink;
+                if (InfoRectanglesListBox.SelectedItem != null)
+                {
+                    SelectedYTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
             }
         }
         // реализация возможности ручного ввода с формы Movie
