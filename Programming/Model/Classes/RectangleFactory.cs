@@ -27,13 +27,13 @@ namespace Programming.Model.Classes
 
         public static Rectangle Randomize(Panel panel)
         {
-            var size = 15;
-            var round = 3;
+            int devider = 2;
             var colorValues = Enum.GetValues(typeof(Color));
-            Point2D center = new Point2D((double)(_random.Next(15, panel.Width - 15)),
-                                         (double)(_random.Next(_random.Next(15, panel.Height - 15))));
-            double height = _random.Next(1, (int)Math.Min(center.Y, panel.Height - center.Y));
-            double width = _random.Next(1, (int)Math.Min(center.X, panel.Width - center.X));
+            Point2D location = new Point2D((double)(_random.Next(15, panel.Width - 15)),
+                                         (double)(_random.Next(15, panel.Height - 15)));
+            double height = _random.Next(1, (int)((panel.Height - location.Y)/devider));
+            double width = _random.Next(1, (int)((panel.Width - location.X)/devider));
+            Point2D center = new Point2D(location.X + (width / 2), location.Y + (height / 2));
             string color = colorValues.GetValue(_random.Next(0, 7)).ToString();
             return new Rectangle(height, width, color, center);
         }

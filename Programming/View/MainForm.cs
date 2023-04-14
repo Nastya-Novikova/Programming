@@ -1,8 +1,11 @@
-﻿using Programming.Model.Classes;
+﻿using Microsoft.VisualBasic.FileIO;
+using Programming.Model.Classes;
 using Programming.Model.Enums;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Security.Policy;
+using System.Windows.Forms;
 using Color = Programming.Model.Enums.Color;
 using Rectangle = Programming.Model.Classes.Rectangle;
 
@@ -282,6 +285,11 @@ namespace Programming.View
             Rectangle newRectangle = RectangleFactory.Randomize(CanvasPanel);
             _rectangles.Add(newRectangle);
             AddPanel(newRectangle);
+            if (SelectedIdTextBox.Text == "")
+            {
+                InfoRectanglesListBox.SelectedIndex = -1;
+            }
+            FindCollisionsOfOne(newRectangle);
         }
 
         private void AddPanel(Rectangle rectangle)
@@ -289,8 +297,8 @@ namespace Programming.View
             Panel panel = new Panel();
             panel.Height = (int)rectangle.Height;
             panel.Width = (int)rectangle.Width;
-            panel.Location = new Point((int)rectangle.Center.X,
-                                       (int)rectangle.Center.Y);
+            panel.Location = new Point((int)(rectangle.Location.X),
+                                       (int)(rectangle.Location.Y));
             panel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
             CanvasPanel.Controls.Add(panel);
             _rectanglePanels.Add(panel);
@@ -305,7 +313,58 @@ namespace Programming.View
             _rectanglePanels.Remove(_rectanglePanels[InfoRectanglesListBox.SelectedIndex]);
             _rectangles.Remove(_rectangles[InfoRectanglesListBox.SelectedIndex]);
             InfoRectanglesListBox.SelectedIndex = -1;
+            FindAndMarkCollisions();
         }
+
+        private void FindAndMarkCollisions()
+        {
+            for (int i = 0; i < _rectangles.Count; i++)
+            {
+                _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+            }
+
+            for (int i = 0; i < _rectangles.Count - 1; i++)
+            {
+                for (int j = i + 1; j < _rectangles.Count; j++)
+                {
+                    if (CollisionManager.IsCollision(_rectangles[i], _rectangles[j]))
+                    {
+                        _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 255, 127, 127);
+                        _rectanglePanels[j].BackColor = System.Drawing.Color.FromArgb(127, 255, 127, 127);
+                    }
+                }
+            }
+            CanvasPanel.Controls.Clear();
+            for (int i = 0; i < _rectanglePanels.Count; i++)
+            {
+                CanvasPanel.Controls.Add(_rectanglePanels[i]);
+            }
+        }
+
+        private void FindCollisionsOfOne(Rectangle rectangle)
+        {
+            _rectanglePanels[_rectangles.IndexOf(rectangle)].BackColor =
+                                   System.Drawing.Color.FromArgb(127, 127, 255, 127);
+            for (int i = 0; i < _rectangles.Count; i++)
+            {
+                if (rectangle != _rectangles[i] && CollisionManager.IsCollision(rectangle, _rectangles[i]))
+                {
+                    _rectanglePanels[_rectangles.IndexOf(rectangle)].BackColor =
+                                  System.Drawing.Color.FromArgb(127, 255, 127, 127);
+                    _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 255, 127, 127);
+                }
+            }
+        }
+        private void UpdateCanvasPanel(Rectangle rectangle)
+        {
+            int index = _rectangles.IndexOf(rectangle);
+            _rectanglePanels[index].Height = (int)rectangle.Height;
+            _rectanglePanels[index].Width = (int)rectangle.Width;
+            _rectanglePanels[index].Location = new Point((int)(rectangle.Center.X - (rectangle.Width)/2),
+                                                         (int)(rectangle.Center.Y - (rectangle.Height)/2));
+        }
+
+
         // конец работы с элементами RectanglesGroupBox
 
         // работа с элементами MoviesGroupBox
@@ -404,9 +463,16 @@ namespace Programming.View
         {
             try
             {
+                if (_currentRectangle.Width == Double.Parse(SelectedWidthTextBox.Text))
+                {
+                    return;
+                }
+
                 SelectedWidthTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Width = Double.Parse(SelectedWidthTextBox.Text);
                 UpdateRectangleInfo(_currentRectangle);
+                UpdateCanvasPanel(_currentRectangle);
+                FindAndMarkCollisions();
             }
             catch
             {
@@ -421,9 +487,16 @@ namespace Programming.View
         {
             try
             {
+                if (_currentRectangle.Height == Double.Parse(SelectedHeightTextBox.Text))
+                {
+                    return;
+                }
+
                 SelectedHeightTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Height = Double.Parse(SelectedHeightTextBox.Text);
                 UpdateRectangleInfo(_currentRectangle);
+                UpdateCanvasPanel(_currentRectangle);
+                FindAndMarkCollisions();
             }
             catch
             {
@@ -438,9 +511,16 @@ namespace Programming.View
         {
             try
             {
+                if (_currentRectangle.Center.X == Double.Parse(SelectedXTextBox.Text))
+                {
+                    return;
+                }
+
                 SelectedXTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Center.X = Double.Parse(SelectedXTextBox.Text);
                 UpdateRectangleInfo(_currentRectangle);
+                UpdateCanvasPanel(_currentRectangle);
+                FindAndMarkCollisions();
             }
             catch
             {
@@ -455,9 +535,16 @@ namespace Programming.View
         {
             try
             {
+                if (_currentRectangle.Center.Y == Double.Parse(SelectedYTextBox.Text))
+                {
+                    return;
+                }
+
                 SelectedYTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Center.Y = Double.Parse(SelectedYTextBox.Text);
                 UpdateRectangleInfo(_currentRectangle);
+                UpdateCanvasPanel(_currentRectangle);
+                FindAndMarkCollisions();
             }
             catch
             {
