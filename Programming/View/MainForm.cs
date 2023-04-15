@@ -1,13 +1,14 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using Programming.Model.Classes;
 using Programming.Model.Enums;
+using Programming.Model.Geometry;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Security.Policy;
 using System.Windows.Forms;
 using Color = Programming.Model.Enums.Color;
-using Rectangle = Programming.Model.Classes.Rectangle;
+using Rectangle = Programming.Model.Geometry.Rectangle;
 
 namespace Programming.View
 {
@@ -247,6 +248,7 @@ namespace Programming.View
                 ClearRectanglesInfo();
                 return;
             }
+            //fix для запятой в текстбоксах
             if (_currentRectangle == _rectangles[InfoRectanglesListBox.SelectedIndex])
             {
                 return;
@@ -285,10 +287,7 @@ namespace Programming.View
             Rectangle newRectangle = RectangleFactory.Randomize(CanvasPanel);
             _rectangles.Add(newRectangle);
             AddPanel(newRectangle);
-            if (SelectedIdTextBox.Text == "")
-            {
-                InfoRectanglesListBox.SelectedIndex = -1;
-            }
+            InfoRectanglesListBox.SelectedItem = newRectangle;
             FindCollisionsOfOne(newRectangle);
         }
 
@@ -313,6 +312,7 @@ namespace Programming.View
             _rectanglePanels.Remove(_rectanglePanels[InfoRectanglesListBox.SelectedIndex]);
             _rectangles.Remove(_rectangles[InfoRectanglesListBox.SelectedIndex]);
             InfoRectanglesListBox.SelectedIndex = -1;
+            _currentRectangle = null;
             FindAndMarkCollisions();
         }
 
@@ -333,11 +333,6 @@ namespace Programming.View
                         _rectanglePanels[j].BackColor = System.Drawing.Color.FromArgb(127, 255, 127, 127);
                     }
                 }
-            }
-            CanvasPanel.Controls.Clear();
-            for (int i = 0; i < _rectanglePanels.Count; i++)
-            {
-                CanvasPanel.Controls.Add(_rectanglePanels[i]);
             }
         }
 
@@ -462,13 +457,12 @@ namespace Programming.View
         private void SelectedWidthTextBox_TextChanged(object sender, EventArgs e)
         {
             try
-            {
+            { 
+                SelectedWidthTextBox.BackColor = System.Drawing.Color.White;
                 if (_currentRectangle.Width == Double.Parse(SelectedWidthTextBox.Text))
                 {
                     return;
                 }
-
-                SelectedWidthTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Width = Double.Parse(SelectedWidthTextBox.Text);
                 UpdateRectangleInfo(_currentRectangle);
                 UpdateCanvasPanel(_currentRectangle);
@@ -487,12 +481,11 @@ namespace Programming.View
         {
             try
             {
+                SelectedHeightTextBox.BackColor = System.Drawing.Color.White;
                 if (_currentRectangle.Height == Double.Parse(SelectedHeightTextBox.Text))
                 {
                     return;
                 }
-
-                SelectedHeightTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Height = Double.Parse(SelectedHeightTextBox.Text);
                 UpdateRectangleInfo(_currentRectangle);
                 UpdateCanvasPanel(_currentRectangle);
@@ -511,12 +504,11 @@ namespace Programming.View
         {
             try
             {
+                SelectedXTextBox.BackColor = System.Drawing.Color.White;
                 if (_currentRectangle.Center.X == Double.Parse(SelectedXTextBox.Text))
                 {
                     return;
                 }
-
-                SelectedXTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Center.X = Double.Parse(SelectedXTextBox.Text);
                 UpdateRectangleInfo(_currentRectangle);
                 UpdateCanvasPanel(_currentRectangle);
@@ -535,12 +527,11 @@ namespace Programming.View
         {
             try
             {
+                SelectedYTextBox.BackColor = System.Drawing.Color.White;
                 if (_currentRectangle.Center.Y == Double.Parse(SelectedYTextBox.Text))
                 {
                     return;
                 }
-
-                SelectedYTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Center.Y = Double.Parse(SelectedYTextBox.Text);
                 UpdateRectangleInfo(_currentRectangle);
                 UpdateCanvasPanel(_currentRectangle);

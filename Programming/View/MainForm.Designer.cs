@@ -932,7 +932,7 @@
             this.RemovePictureBox.Location = new System.Drawing.Point(208, 248);
             this.RemovePictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.RemovePictureBox.Name = "RemovePictureBox";
-            this.RemovePictureBox.Size = new System.Drawing.Size(34, 40);
+            this.RemovePictureBox.Size = new System.Drawing.Size(33, 33);
             this.RemovePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.RemovePictureBox.TabIndex = 3;
             this.RemovePictureBox.TabStop = false;
@@ -947,7 +947,7 @@
             this.AddPictureBox.Location = new System.Drawing.Point(125, 247);
             this.AddPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddPictureBox.Name = "AddPictureBox";
-            this.AddPictureBox.Size = new System.Drawing.Size(34, 40);
+            this.AddPictureBox.Size = new System.Drawing.Size(33, 33);
             this.AddPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.AddPictureBox.TabIndex = 2;
             this.AddPictureBox.TabStop = false;

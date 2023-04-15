@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Programming.Model.Classes;
 
-namespace Programming.Model.Classes
+namespace Programming.Model.Geometry
 {
     public class Rectangle
     {
@@ -42,13 +43,13 @@ namespace Programming.Model.Classes
             get => _allRectanglesCount;
             private set => _allRectanglesCount = value;
         }
-        
+
 
         public Point2D Center { get; set; }
 
         public Point2D Location =>
-            new Point2D(Center.X - (Width / 2), Center.Y - (Height / 2));
-            
+            new Point2D(Center.X - Width / 2, Center.Y - Height / 2);
+
         public string Info =>
              $"{Id}: (X = {Math.Round(Center.X)}; Y = {Math.Round(Center.Y)}; " +
                     $"W = {Math.Round(Width)}; H = {Math.Round(Height)})";

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Programming.Model.Classes;
 
-namespace Programming.Model.Classes
+namespace Programming.Model.Geometry
 {
     public class Ring
     {
@@ -24,7 +25,7 @@ namespace Programming.Model.Classes
                 }
                 else
                 {
-                    Validator.AssertValueInRange(value, RadiusIn, Double.MaxValue);
+                    Validator.AssertValueInRange(value, RadiusIn, double.MaxValue);
                 }
                 _radiusOut = value;
             }
@@ -43,14 +44,14 @@ namespace Programming.Model.Classes
                 {
                     Validator.AssertValueInRange(value, 0, RadiusOut);
                 }
-                _radiusIn = value; 
+                _radiusIn = value;
             }
         }
 
-        public double Area => 
-            Math.PI*(Math.Pow(RadiusOut,2) - Math.Pow(RadiusIn,2));
+        public double Area =>
+            Math.PI * (Math.Pow(RadiusOut, 2) - Math.Pow(RadiusIn, 2));
 
-        public Ring (Point2D center, double radiusOut, double radiusIn)
+        public Ring(Point2D center, double radiusOut, double radiusIn)
         {
             Center = center;
             RadiusOut = radiusOut;
