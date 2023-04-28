@@ -9,9 +9,17 @@ using Color = Programming.Model.Enums.Color;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Предоставляет методы для случайной генерации объектов класса <see cref="Rectangle"/>.
+    /// </summary>
     public static class RectangleFactory
     {
         private static Random _random = new Random();
+
+        /// <summary>
+        /// Создает случайно сгенерированный объект-прямоугольник.
+        /// </summary>
+        /// <returns>Объект класса <see cref="Rectangle"/>.</returns>
         public static Rectangle Randomize()
         {
             var size = 15;
@@ -25,6 +33,11 @@ namespace Programming.Model.Geometry
             return new Rectangle(height, width, color, center);
         }
 
+        /// <summary>
+        /// Создает случайно сгенерированный объект-прямоугольник, не выходящий за границы panel.
+        /// </summary>
+        /// <param name="panel">Панель.</param>
+        /// <returns>Объект класса <see cref="Rectangle"/>.</returns>
         public static Rectangle Randomize(Panel panel)
         {
             var devider = 2;

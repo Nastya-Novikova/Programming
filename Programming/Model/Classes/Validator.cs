@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Programming.Model.Classes
 {
     /// <summary>
-    /// Содержит методы для валидации полей.
+    /// Предоставляет методы для валидации полей.
     /// </summary>
     public class Validator
     {
