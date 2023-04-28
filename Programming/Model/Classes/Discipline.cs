@@ -7,12 +7,29 @@ using System.Xml.Linq;
 
 namespace Programming.Model.Classes
 {
+    /// <summary>
+    /// Хранит данные о дисциплине, преподавателе и оценке.
+    /// </summary>
     public class Discipline
     {
+        /// <summary>
+        /// Оценка по дисциплине.
+        /// </summary>
         private int _mark;
 
-        public string Surname { get; set; }
+        /// <summary>
+        /// Возвращает и задает название дисциплины.
+        /// </summary>
+        public string NameOfDiscipline { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает имя преподавателя.
+        /// </summary>
         public string Teacher { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает оценку. Должно находиться в интервале от 2 до 5.
+        /// </summary>
         public int Mark
         {
             get => _mark;
@@ -25,14 +42,23 @@ namespace Programming.Model.Classes
             }
         }
 
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Discipline"/> без инициализации.
+        /// </summary>
         public Discipline()
         {
 
         }
 
-        public Discipline(string surname, string teacher, int mark)
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Discipline"/>.
+        /// </summary>
+        /// <param name="nameOfDiscipline">Дисциплина.</param>
+        /// <param name="teacher">Преподаватель.</param>
+        /// <param name="mark">Оценка. Должна быть в диапазоне от 2 до 5.</param>
+        public Discipline(string nameOfDiscipline, string teacher, int mark)
         {
-            Surname = surname;
+            NameOfDiscipline = nameOfDiscipline;
             Teacher = teacher;
             Mark = mark;
         }
