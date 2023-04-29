@@ -12,13 +12,35 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Содержит логику пользовательского элемента управления MoviesControl.
+    /// </summary>
     public partial class MoviesControl : UserControl
     {
+        /// <summary>
+        /// Количество фильмов.
+        /// </summary>
         private const int Quantity = 5;
+
+        /// <summary>
+        /// Массив объектов класса <see cref="Movie"/>.
+        /// </summary>
         private Movie[] _movies = new Movie[Quantity];
+
+        /// <summary>
+        /// Объект класса <see cref="Movie"/>.
+        /// </summary>
         private Movie _currentMovie;
+
+        /// <summary>
+        /// Объект класса <see cref="Random"/>.
+        /// </summary>
         private Random _random = new Random();
 
+        /// <summary>
+        /// Создает объект типа <see cref="MoviesControl"/>.
+        /// Инициализирует массив объектов класса <see cref="Movie"/> и заполняет ими MoviesListBox.
+        /// </summary>
         public MoviesControl()
         {
             InitializeComponent();
@@ -27,6 +49,10 @@ namespace Programming.View.Panels
             FillMovies(_movies);
         }
 
+        /// <summary>
+        /// Инициализирует массив объектов.
+        /// </summary>
+        /// <param name="movies">Массив объектов класса <see cref="Movie"/>.</param>
         private void InitMovies(Movie[] movies)
         {
             var genreValues = Enum.GetValues(typeof(Genre));
@@ -41,6 +67,10 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Заполняет MoviesListBox переданным массивом объектов.
+        /// </summary>
+        /// <param name="movies">Массив объектов класса <see cref="Movie"/>.</param>
         private void FillMovies(Movie[] movies)
         {
             int i = 0;
@@ -52,6 +82,9 @@ namespace Programming.View.Panels
             MoviesListBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Заполняет текстбоксы соответвующими значениями выбранного элемента. 
+        /// </summary>
         private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -63,7 +96,11 @@ namespace Programming.View.Panels
             RatingTextBox.Text = _currentMovie.Rating.ToString();
         }
 
-        // нахождение фильма с максимальным рейтингом
+        /// <summary>
+        /// Находит объект класса с наибольшим рейтингом. 
+        /// </summary>
+        /// <param name="movies">Массив объектов класса <see cref="Movie"/>.</param>
+        /// <returns>Возвращает индекс элемента с наибольшим рейтингом.</returns>
         private int FindMovieWithMaxRating(Movie[] movies)
         {
             double maxRating = -1;
@@ -79,17 +116,26 @@ namespace Programming.View.Panels
             return index;
         }
 
+        /// <summary>
+        /// Показывает в MoviesListBox объект класса <see cref="Movie"/> с наибольшим рейтингом.
+        /// </summary>
         private void MoviesButton_Click(object sender, EventArgs e)
         {
             MoviesListBox.SelectedIndex = FindMovieWithMaxRating(_movies);
         }
 
-        // реализация возможности ручного ввода с формы Movie
+        /// <summary>
+        /// Записывает в поле <see cref="Movie.Name"/> введенное значение.
+        /// </summary>
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             _currentMovie.Name = NameTextBox.Text;
         }
 
+        /// <summary>
+        /// Записывает в поле <see cref="Movie.Duration"/> введенное значение.
+        /// Принимает только положительные числа.
+        /// </summary>
         private void DurationTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -103,6 +149,10 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Записывает в поле <see cref="Movie.Year"/> введенное значение.
+        /// Принимает числа из интервала от 1900 до 2023.
+        /// </summary>
         private void YearTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -116,11 +166,18 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Записывает в поле <see cref="Movie.Genre"/> введенное значение.
+        /// </summary>
         private void GenreTextBox_TextChanged(object sender, EventArgs e)
         {
             _currentMovie.Genre = GenreTextBox.Text;
         }
 
+        /// <summary>
+        /// Записывает в поле <see cref="Movie.Rating"/> введенное значение.
+        /// Принимает числа из интервала от 0 до 10.
+        /// </summary>
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
         {
             try

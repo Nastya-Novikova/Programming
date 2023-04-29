@@ -14,6 +14,9 @@ namespace Programming.Model.Geometry
     /// </summary>
     public static class RectangleFactory
     {
+        /// <summary>
+        /// Создает объект класса <see cref="Random"/>.
+        /// </summary>
         private static Random _random = new Random();
 
         /// <summary>

@@ -11,8 +11,14 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Содержит логику пользовательского элемента управления SeasonsControl.
+    /// </summary>
     public partial class SeasonsControl : UserControl
     {
+        /// <summary>
+        /// Создает объект типа <see cref="SeasonsControl"/>.
+        /// </summary>
         public SeasonsControl()
         {
             InitializeComponent();
@@ -21,6 +27,10 @@ namespace Programming.View.Panels
             FillHandleComboBox(seasonValues);
         }
 
+        /// <summary>
+        /// Заполняет HandleComboBox.
+        /// </summary>
+        /// <param name="seasonValues">Массив, содержащий перечисление <see cref="Season"/></param>
         private void FillHandleComboBox(Array seasonValues)
         {
             foreach (var seasonValue in seasonValues)
@@ -28,10 +38,14 @@ namespace Programming.View.Panels
                 HandleComboBox.Items.Add(seasonValue);
             }
         }
-        // работа с окном Season Handle
+
+        /// <summary>
+        /// Проверяет введенное значение на совпадение с элементами перечисления <see cref="Season"/>.
+        /// В зависимости от совпадения выполняет определенную логику.
+        /// Метод ожидает передачу значения не равного null.
+        /// </summary>
         private void HandleButton_Click(object sender, EventArgs e)
         {
-            // установка базового цвета MainForm
             this.BackColor = AppColor.White;
             SeasonGroupBox.BackColor = AppColor.White;
 

@@ -12,8 +12,14 @@ using Color = Programming.Model.Enums.Color;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Содержит логику пользовательского элемента управления AllEnumerationsControl.
+    /// </summary>
     public partial class AllEnumerationsControl : UserControl
     {
+        /// <summary>
+        /// Создает объект типа <see cref="AllEnumerationsControl"/>.
+        /// </summary>
         public AllEnumerationsControl()
         {
             InitializeComponent();
@@ -34,7 +40,10 @@ namespace Programming.View.Panels
             EnumsListBox.SelectedIndex = 0;
         }
 
-        // работа с ValuesListBox
+        /// <summary>
+        /// Отображает в ValuesListBox коллекцию элементов из выбранного перечисления.
+        /// Метод ожидает передачу значения не равного null.
+        /// </summary>
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (EnumsListBox.SelectedItem == null)
@@ -56,7 +65,10 @@ namespace Programming.View.Panels
             }
         }
 
-        // работа с IntTextBox
+        /// <summary>
+        /// Отображает в IntTextBox индекс элемента, выбранного в ValuesListBox.
+        /// Метод ожидает передачу значения не равного null.
+        /// </summary>
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ValuesListBox.SelectedItem == null)
