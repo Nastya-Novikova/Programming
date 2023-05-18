@@ -1,14 +1,14 @@
-﻿namespace MusicApp.View
+﻿namespace MusicApp
 {
-    partial class MainForm
+    partial class AdditionalForm
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,17 +23,14 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.EditPictureBox = new System.Windows.Forms.PictureBox();
-            this.RemovePictureBox = new System.Windows.Forms.PictureBox();
-            this.AddPictureBox = new System.Windows.Forms.PictureBox();
-            this.SongsListBox = new System.Windows.Forms.ListBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdditionalForm));
             this.SelectedSongGroupBox = new System.Windows.Forms.GroupBox();
+            this.OkPictureBox = new System.Windows.Forms.PictureBox();
             this.GenreLabel = new System.Windows.Forms.Label();
             this.DurationLabel = new System.Windows.Forms.Label();
             this.SingerLabel = new System.Windows.Forms.Label();
@@ -42,65 +39,16 @@
             this.DurationTextBox = new System.Windows.Forms.TextBox();
             this.SingerTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.EditPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RemovePictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddPictureBox)).BeginInit();
             this.SelectedSongGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OkPictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // EditPictureBox
-            // 
-            this.EditPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.EditPictureBox.Image = global::MusicApp.Properties.Resources.editSong_40x40;
-            this.EditPictureBox.Location = new System.Drawing.Point(133, 377);
-            this.EditPictureBox.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.EditPictureBox.Name = "EditPictureBox";
-            this.EditPictureBox.Size = new System.Drawing.Size(40, 40);
-            this.EditPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EditPictureBox.TabIndex = 8;
-            this.EditPictureBox.TabStop = false;
-            this.EditPictureBox.Click += new System.EventHandler(this.EditPictureBox_Click);
-            // 
-            // RemovePictureBox
-            // 
-            this.RemovePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.RemovePictureBox.Image = global::MusicApp.Properties.Resources.removeSong_40x40;
-            this.RemovePictureBox.Location = new System.Drawing.Point(184, 377);
-            this.RemovePictureBox.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.RemovePictureBox.Name = "RemovePictureBox";
-            this.RemovePictureBox.Size = new System.Drawing.Size(40, 40);
-            this.RemovePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.RemovePictureBox.TabIndex = 7;
-            this.RemovePictureBox.TabStop = false;
-            // 
-            // AddPictureBox
-            // 
-            this.AddPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddPictureBox.Image = global::MusicApp.Properties.Resources.addSong_40x40;
-            this.AddPictureBox.Location = new System.Drawing.Point(80, 377);
-            this.AddPictureBox.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.AddPictureBox.Name = "AddPictureBox";
-            this.AddPictureBox.Size = new System.Drawing.Size(40, 40);
-            this.AddPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.AddPictureBox.TabIndex = 6;
-            this.AddPictureBox.TabStop = false;
-            this.AddPictureBox.Click += new System.EventHandler(this.AddPictureBox_Click);
-            // 
-            // SongsListBox
-            // 
-            this.SongsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.SongsListBox.FormattingEnabled = true;
-            this.SongsListBox.IntegralHeight = false;
-            this.SongsListBox.ItemHeight = 20;
-            this.SongsListBox.Location = new System.Drawing.Point(19, 20);
-            this.SongsListBox.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.SongsListBox.Name = "SongsListBox";
-            this.SongsListBox.Size = new System.Drawing.Size(301, 344);
-            this.SongsListBox.TabIndex = 5;
             // 
             // SelectedSongGroupBox
             // 
+            this.SelectedSongGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedSongGroupBox.Controls.Add(this.OkPictureBox);
             this.SelectedSongGroupBox.Controls.Add(this.GenreLabel);
             this.SelectedSongGroupBox.Controls.Add(this.DurationLabel);
             this.SelectedSongGroupBox.Controls.Add(this.SingerLabel);
@@ -109,12 +57,23 @@
             this.SelectedSongGroupBox.Controls.Add(this.DurationTextBox);
             this.SelectedSongGroupBox.Controls.Add(this.SingerTextBox);
             this.SelectedSongGroupBox.Controls.Add(this.NameTextBox);
-            this.SelectedSongGroupBox.Location = new System.Drawing.Point(333, 20);
+            this.SelectedSongGroupBox.Location = new System.Drawing.Point(48, 26);
             this.SelectedSongGroupBox.Name = "SelectedSongGroupBox";
             this.SelectedSongGroupBox.Size = new System.Drawing.Size(455, 235);
-            this.SelectedSongGroupBox.TabIndex = 9;
+            this.SelectedSongGroupBox.TabIndex = 10;
             this.SelectedSongGroupBox.TabStop = false;
-            this.SelectedSongGroupBox.Text = "Selected Song";
+            this.SelectedSongGroupBox.Text = "Your Song";
+            // 
+            // OkPictureBox
+            // 
+            this.OkPictureBox.Image = global::MusicApp.Properties.Resources.ok_40x40;
+            this.OkPictureBox.Location = new System.Drawing.Point(409, 189);
+            this.OkPictureBox.Name = "OkPictureBox";
+            this.OkPictureBox.Size = new System.Drawing.Size(40, 40);
+            this.OkPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.OkPictureBox.TabIndex = 11;
+            this.OkPictureBox.TabStop = false;
+            this.OkPictureBox.Click += new System.EventHandler(this.OkPictureBox_Click);
             // 
             // GenreLabel
             // 
@@ -181,35 +140,27 @@
             this.NameTextBox.Size = new System.Drawing.Size(151, 27);
             this.NameTextBox.TabIndex = 10;
             // 
-            // MainForm
+            // AdditionalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 451);
+            this.ClientSize = new System.Drawing.Size(547, 296);
             this.Controls.Add(this.SelectedSongGroupBox);
-            this.Controls.Add(this.EditPictureBox);
-            this.Controls.Add(this.RemovePictureBox);
-            this.Controls.Add(this.AddPictureBox);
-            this.Controls.Add(this.SongsListBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MainForm";
+            this.MaximizeBox = false;
+            this.Name = "AdditionalForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MusicApp";
-            ((System.ComponentModel.ISupportInitialize)(this.EditPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RemovePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddPictureBox)).EndInit();
+            this.Text = "Add Or Edit Song";
             this.SelectedSongGroupBox.ResumeLayout(false);
             this.SelectedSongGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OkPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private PictureBox EditPictureBox;
-        private PictureBox RemovePictureBox;
-        private PictureBox AddPictureBox;
-        private ListBox SongsListBox;
         private GroupBox SelectedSongGroupBox;
         private Label GenreLabel;
         private Label DurationLabel;
@@ -219,5 +170,6 @@
         private TextBox DurationTextBox;
         private TextBox SingerTextBox;
         private TextBox NameTextBox;
+        private PictureBox OkPictureBox;
     }
 }

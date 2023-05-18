@@ -83,6 +83,16 @@ namespace MusicApp.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ok_40x40 {
+            get {
+                object obj = ResourceManager.GetObject("ok_40x40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap removeSong_40x40 {
             get {
                 object obj = ResourceManager.GetObject("removeSong_40x40", resourceCulture);
