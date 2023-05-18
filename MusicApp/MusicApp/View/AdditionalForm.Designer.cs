@@ -1,4 +1,4 @@
-﻿namespace MusicApp
+﻿namespace MusicApp.View
 {
     partial class AdditionalForm
     {
