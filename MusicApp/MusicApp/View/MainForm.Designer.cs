@@ -96,7 +96,7 @@
             this.SongsListBox.Location = new System.Drawing.Point(19, 20);
             this.SongsListBox.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.SongsListBox.Name = "SongsListBox";
-            this.SongsListBox.Size = new System.Drawing.Size(301, 344);
+            this.SongsListBox.Size = new System.Drawing.Size(301, 335);
             this.SongsListBox.TabIndex = 5;
             // 
             // SelectedSongGroupBox

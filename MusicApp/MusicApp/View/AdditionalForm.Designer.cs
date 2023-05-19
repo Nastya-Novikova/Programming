@@ -113,11 +113,13 @@
             // 
             // GenreComboBox
             // 
+            this.GenreComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GenreComboBox.FormattingEnabled = true;
             this.GenreComboBox.Location = new System.Drawing.Point(171, 158);
             this.GenreComboBox.Name = "GenreComboBox";
             this.GenreComboBox.Size = new System.Drawing.Size(151, 28);
             this.GenreComboBox.TabIndex = 13;
+            this.GenreComboBox.SelectedIndexChanged += new System.EventHandler(this.GenreComboBox_SelectedIndexChanged);
             // 
             // DurationTextBox
             // 
@@ -125,6 +127,7 @@
             this.DurationTextBox.Name = "DurationTextBox";
             this.DurationTextBox.Size = new System.Drawing.Size(151, 27);
             this.DurationTextBox.TabIndex = 12;
+            this.DurationTextBox.TextChanged += new System.EventHandler(this.DurationTextBox_TextChanged);
             // 
             // SingerTextBox
             // 
@@ -132,6 +135,7 @@
             this.SingerTextBox.Name = "SingerTextBox";
             this.SingerTextBox.Size = new System.Drawing.Size(151, 27);
             this.SingerTextBox.TabIndex = 11;
+            this.SingerTextBox.TextChanged += new System.EventHandler(this.SingerTextBox_TextChanged);
             // 
             // NameTextBox
             // 
@@ -139,6 +143,7 @@
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(151, 27);
             this.NameTextBox.TabIndex = 10;
+            this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // AdditionalForm
             // 

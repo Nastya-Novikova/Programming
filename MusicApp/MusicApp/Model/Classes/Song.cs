@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicApp.Model
+namespace MusicApp.Model.Classes
 {
     public class Song
     {
@@ -49,6 +49,9 @@ namespace MusicApp.Model
         }
 
         public string Genre { get; set; }
+
+        public string Info => $"{Singer} - {Name}";
+
 
         public Song()
         {
