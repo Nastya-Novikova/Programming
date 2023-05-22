@@ -68,6 +68,10 @@ namespace MusicApp.View
             try
             {
                 NameTextBox.BackColor = Color.White;
+                /*if (Data.Value.Name != null)
+                {
+                    return;
+                }*/
                 Data.Value.Name = Convert.ToString(NameTextBox.Text);
             }
             catch
@@ -110,6 +114,11 @@ namespace MusicApp.View
             }
 
             Data.Value.Genre = GenreComboBox.Text;
+        }
+
+        private void GenreComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

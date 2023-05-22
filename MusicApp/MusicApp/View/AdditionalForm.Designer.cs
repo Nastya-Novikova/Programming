@@ -113,13 +113,13 @@
             // 
             // GenreComboBox
             // 
-            this.GenreComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GenreComboBox.FormattingEnabled = true;
             this.GenreComboBox.Location = new System.Drawing.Point(171, 158);
             this.GenreComboBox.Name = "GenreComboBox";
             this.GenreComboBox.Size = new System.Drawing.Size(151, 28);
             this.GenreComboBox.TabIndex = 13;
             this.GenreComboBox.SelectedIndexChanged += new System.EventHandler(this.GenreComboBox_SelectedIndexChanged);
+            this.GenreComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GenreComboBox_KeyPress);
             // 
             // DurationTextBox
             // 
