@@ -2,6 +2,9 @@ using MusicApp.Model.Classes;
 using MusicApp.Model.Enums;
 using System.ComponentModel;
 using Song = MusicApp.Model.Classes.Song;
+using System;
+using System.IO;
+using Newtonsoft.Json;
 using System.Linq;
 
 namespace MusicApp.View
@@ -14,9 +17,31 @@ namespace MusicApp.View
         public MainForm()
         {
             InitializeComponent();
+            DeserializeData();
             FillSongsListBox();
         }
 
+        private void SerializeData()
+        {
+            File.WriteAllText("input.json", string.Empty);
+            for (int i = 0; i < _songs.Count; i++)
+            {
+                File.AppendAllText("input.json", JsonConvert.SerializeObject(_songs[i]));
+            }
+        }
+
+        private void DeserializeData()
+        {
+            JsonTextReader reader = new JsonTextReader(new StreamReader("input.json"));
+            reader.SupportMultipleContent = true;
+            while (reader.Read())
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                Song tempSong = serializer.Deserialize<Song>(reader);
+                _songs.Add(tempSong);
+            }
+            reader.Close();
+        }
         private void FillSongsListBox()
         {
             SongsListBox.DisplayMember = nameof(Song.Info);
@@ -73,6 +98,7 @@ namespace MusicApp.View
                 SortAlphabetically();
                 UpdateSongsListBox();
                 SongsListBox.SelectedItem = Data.Value;
+                SerializeData();
             }
         }
 
@@ -97,6 +123,7 @@ namespace MusicApp.View
                 SortAlphabetically();
                 UpdateSongsListBox();
                 SongsListBox.SelectedItem = Data.Value;
+                SerializeData();
             }
         }
 
@@ -110,6 +137,7 @@ namespace MusicApp.View
             UpdateSongsListBox();
             SongsListBox.SelectedIndex = -1;
             _currentSong = null;
+            SerializeData();
         }
 
         private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)
