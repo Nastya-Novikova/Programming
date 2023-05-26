@@ -20,12 +20,17 @@ namespace MusicApp.View
         {
             InitializeComponent();
             FillGenreComboBox();
+            if (Data.Value.Name != null)
+            {
+                FillAllTextBox();
+            }
         }
 
         private void OkPictureBox_Click(object sender, EventArgs e)
         {
             if (CheckTextBox())
             {
+                Data.Flag = true;
                 this.Close();
             }
         }
@@ -37,6 +42,14 @@ namespace MusicApp.View
             {
                 GenreComboBox.Items.Add(genre);
             }
+        }
+
+        private void FillAllTextBox()
+        {
+            NameTextBox.Text = Data.Value.Name;
+            SingerTextBox.Text = Data.Value.Singer;
+            DurationTextBox.Text = Data.Value.Duration.ToString();
+            GenreComboBox.Text = Data.Value.Genre;
         }
         private bool CheckTextBox()
         {
@@ -68,10 +81,6 @@ namespace MusicApp.View
             try
             {
                 NameTextBox.BackColor = Color.White;
-                /*if (Data.Value.Name != null)
-                {
-                    return;
-                }*/
                 Data.Value.Name = Convert.ToString(NameTextBox.Text);
             }
             catch

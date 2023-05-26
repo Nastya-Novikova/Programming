@@ -2,25 +2,19 @@ using MusicApp.Model.Classes;
 using MusicApp.Model.Enums;
 using System.ComponentModel;
 using Song = MusicApp.Model.Classes.Song;
+using System.Linq;
 
 namespace MusicApp.View
 {
     public partial class MainForm : Form
     {
-        private BindingList<Song> _songs;
+        private List<Song> _songs = new List<Song>();
         private Song _currentSong;
 
         public MainForm()
         {
             InitializeComponent();
-            InitBindingListOfSongs();
             FillSongsListBox();
-        }
-
-        private void InitBindingListOfSongs()
-        {
-            _songs = new BindingList<Song>();
-            _songs.AllowNew = true;
         }
 
         private void FillSongsListBox()
@@ -29,10 +23,19 @@ namespace MusicApp.View
             SongsListBox.DataSource = _songs;
         }
 
-        private void UpdateSongInfo()
+        private void UpdateSongsListBox()
         {
-            SongsListBox.DisplayMember = null;
+            SongsListBox.DataSource = null;
+            SongsListBox.DataSource = _songs;
             SongsListBox.DisplayMember = nameof(Song.Info);
+        }
+
+        private void SortAlphabetically()
+        {
+             var sortedSongs = from song in _songs
+                               orderby song.Singer, song.Name
+                               select song;
+             _songs = sortedSongs.ToList();
         }
 
         private void ClearSongsInfo()
@@ -42,6 +45,7 @@ namespace MusicApp.View
             DurationTextBox.Clear();
             GenreTextBox.Clear();
         }
+
         private void SongsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SongsListBox.SelectedItem == null)
@@ -56,31 +60,44 @@ namespace MusicApp.View
             DurationTextBox.Text = _currentSong.Duration.ToString();
             GenreTextBox.Text = _currentSong.Genre.ToString();
         }
+
         private void AddPictureBox_Click(object sender, EventArgs e)
         {
-            AdditionalForm f = new AdditionalForm();
             Data.Value = new Song();
+            Data.Flag = false;
+            AdditionalForm f = new AdditionalForm();
             f.ShowDialog();
-            try
+            if (Data.Flag == true)
             {
-                Song newsong = new Song(Data.Value.Name, Data.Value.Singer,
-                                        Data.Value.Duration, Data.Value.Genre);
-                _songs.Add(newsong);
-                SongsListBox.SelectedItem = newsong;
-                UpdateSongInfo();
+                _songs.Add(Data.Value);
+                SortAlphabetically();
+                UpdateSongsListBox();
+                SongsListBox.SelectedItem = Data.Value;
             }
-            catch
-            {
-                MessageBox.Show("Объект не был создан.");
-            }
-
         }
 
         private void EditPictureBox_Click(object sender, EventArgs e)
         {
+            if (SongsListBox.SelectedItem == null)
+            {
+                return;
+            }
+            Data.Flag = false;
+            Data.Value = new Song(_currentSong.Name, _currentSong.Singer,
+                                  _currentSong.Duration, _currentSong.Genre);
             AdditionalForm f = new AdditionalForm();
             f.ShowDialog();
-            Data.Value = _currentSong;
+            if (Data.Flag == true)
+            {
+                _currentSong.Name = Data.Value.Name;
+                _currentSong.Singer = Data.Value.Singer;
+                _currentSong.Duration = Data.Value.Duration;
+                _currentSong.Genre = Data.Value.Genre;
+                Data.Value = _currentSong;
+                SortAlphabetically();
+                UpdateSongsListBox();
+                SongsListBox.SelectedItem = Data.Value;
+            }
         }
 
         private void RemovePictureBox_Click(object sender, EventArgs e)
@@ -90,6 +107,7 @@ namespace MusicApp.View
                 return;
             }
             _songs.RemoveAt(SongsListBox.SelectedIndex);
+            UpdateSongsListBox();
             SongsListBox.SelectedIndex = -1;
             _currentSong = null;
         }

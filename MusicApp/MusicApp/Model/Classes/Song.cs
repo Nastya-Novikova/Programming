@@ -11,16 +11,15 @@ namespace MusicApp.Model.Classes
         private string _name;
         private string _singer;
         private int _duration;
-        private string _genre;
 
         public string Name
         {
-            get => _name;
+            get { return _name;}
             set
             {
                 int min = 1;
                 int max = 50;
-                Validator.AssertValueInRange(value, min, max);
+                Validator.AssertValueInRange(value.Length, min, max);
                 _name = value;
             }
         }
@@ -32,7 +31,7 @@ namespace MusicApp.Model.Classes
             {
                 int min = 1;
                 int max = 50;
-                Validator.AssertValueInRange(value, min, max);
+                Validator.AssertValueInRange(value.Length, min, max);
                 _singer = value;
             }
         }
@@ -49,21 +48,7 @@ namespace MusicApp.Model.Classes
             }
         }
 
-        public string Genre
-        {
-            get => _genre;
-            set
-            {
-                if (value != null)
-                {
-                    _genre = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Значение поля было null");
-                }
-            }
-        }
+        public string Genre { get; set; }
 
         public string Info => $"{Singer} - {Name}";
 
