@@ -14,6 +14,9 @@ using MusicApp.Model.Enums;
 
 namespace MusicApp.View
 {
+    /// <summary>
+    /// Реализовывает логику работы дополнительной формы.
+    /// </summary>
     public partial class AdditionalForm : Form
     {
         public AdditionalForm()
@@ -26,6 +29,9 @@ namespace MusicApp.View
             }
         }
 
+        /// <summary>
+        /// Закрывает дополнительную форму, если все условия выполнены.
+        /// </summary>
         private void OkPictureBox_Click(object sender, EventArgs e)
         {
             if (CheckTextBox())
@@ -35,6 +41,9 @@ namespace MusicApp.View
             }
         }
 
+        /// <summary>
+        /// Заполняет GenreComboBox значениями перечисления <see cref="Genre"/>.
+        /// </summary>
         private void FillGenreComboBox()
         {
             var genreValues = Enum.GetValues(typeof(Genre));
@@ -44,6 +53,9 @@ namespace MusicApp.View
             }
         }
 
+        /// <summary>
+        /// Запоняет все текстбоксы.
+        /// </summary>
         private void FillAllTextBox()
         {
             NameTextBox.Text = Data.Value.Name;
@@ -51,6 +63,11 @@ namespace MusicApp.View
             DurationTextBox.Text = Data.Value.Duration.ToString();
             GenreComboBox.Text = Data.Value.Genre;
         }
+
+        /// <summary>
+        /// Провеяет наличие текста в текстбоксах и его правильность.
+        /// </summary>
+        /// <returns>Возвращает true, если все верно, иначе false.</returns>
         private bool CheckTextBox()
         {
 
@@ -76,6 +93,10 @@ namespace MusicApp.View
             }
             return true;
         }
+
+        /// <summary>
+        /// Отправляет в Data.Value.Name введенный текст.
+        /// </summary>
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -89,6 +110,9 @@ namespace MusicApp.View
             }
         }
 
+        /// <summary>
+        /// Отправляет в Data.Value.Singer введенный текст.
+        /// </summary>
         private void SingerTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -102,6 +126,9 @@ namespace MusicApp.View
             }
         }
 
+        /// <summary>
+        /// Отправляет в Data.Value.Duration введенный текст.
+        /// </summary>
         private void DurationTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -115,6 +142,9 @@ namespace MusicApp.View
             }
         }
 
+        /// <summary>
+        /// Отправляет в Data.Value.Genre выбранный жанр.
+        /// </summary>
         private void GenreComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (GenreComboBox.SelectedIndex == -1)
@@ -125,6 +155,9 @@ namespace MusicApp.View
             Data.Value.Genre = GenreComboBox.Text;
         }
 
+        /// <summary>
+        /// Контролирует ввод в GenreComboBox.
+        /// </summary>
         private void GenreComboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;

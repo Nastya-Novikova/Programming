@@ -6,12 +6,20 @@ using System;
 using System.IO;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace MusicApp.View
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Коллекция объектов типа <see cref="Song"/>.
+        /// </summary>
         private List<Song> _songs = new List<Song>();
+
+        /// <summary>
+        /// Объект класса <see cref="Song"/>.
+        /// </summary>
         private Song _currentSong;
 
         public MainForm()
@@ -21,6 +29,9 @@ namespace MusicApp.View
             FillSongsListBox();
         }
 
+        /// <summary>
+        /// Сериализует лист _songs и записывает в файл.
+        /// </summary>
         private void SerializeData()
         {
             File.WriteAllText("input.json", string.Empty);
@@ -30,6 +41,9 @@ namespace MusicApp.View
             }
         }
 
+        /// <summary>
+        /// Десериализует информацию из файла (лист _songs).
+        /// </summary>
         private void DeserializeData()
         {
             JsonTextReader reader = new JsonTextReader(new StreamReader("input.json"));
@@ -42,12 +56,19 @@ namespace MusicApp.View
             }
             reader.Close();
         }
+
+        /// <summary>
+        /// Заполняет SongsListBox значениями из _songs.
+        /// </summary>
         private void FillSongsListBox()
         {
             SongsListBox.DisplayMember = nameof(Song.Info);
             SongsListBox.DataSource = _songs;
         }
 
+        /// <summary>
+        /// Обновляет SongsListBox при изменении _songs.
+        /// </summary>
         private void UpdateSongsListBox()
         {
             SongsListBox.DataSource = null;
@@ -55,6 +76,10 @@ namespace MusicApp.View
             SongsListBox.DisplayMember = nameof(Song.Info);
         }
 
+        /// <summary>
+        /// Сортирует _songs в алфавитном порядке.
+        /// Сначала по исполнителю, внутри него - по названию песни.
+        /// </summary>
         private void SortAlphabetically()
         {
              var sortedSongs = from song in _songs
@@ -63,6 +88,29 @@ namespace MusicApp.View
              _songs = sortedSongs.ToList();
         }
 
+        /// <summary>
+        /// Проверяет есть ли в списке _songs добавляемая песня.
+        /// </summary>
+        /// <param name="song">Добавляемая песня.</param>
+        /// <returns>Возвращает true если объект не повторяется, иначе false.</returns>
+        private bool FindMatches(Song song)
+        {
+            for (int i = 0; i < _songs.Count; i++)
+            {
+                if (String.Compare(_songs[i].Name, song.Name, true) == 0 &&
+                    String.Compare(_songs[i].Singer, song.Singer, true) == 0 &&
+                    _songs[i].Duration == song.Duration &&
+                    String.Compare(_songs[i].Genre, song.Genre, true) == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Очищает все текстбоксы.
+        /// </summary>
         private void ClearSongsInfo()
         {
             NameTextBox.Clear();
@@ -71,6 +119,11 @@ namespace MusicApp.View
             GenreTextBox.Clear();
         }
 
+        /// <summary>
+        /// Заполняет текстбоксы и изменяет поле _currentSong при 
+        /// выборе элемента в SongsListBox.
+        /// Метод ожидает передачу значения не равного null, иначе очищает все поля.
+        /// </summary>
         private void SongsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SongsListBox.SelectedItem == null)
@@ -86,13 +139,16 @@ namespace MusicApp.View
             GenreTextBox.Text = _currentSong.Genre.ToString();
         }
 
+        /// <summary>
+        /// Добавляет новую песню в лист _songs. Вызывает сортировку. 
+        /// </summary>
         private void AddPictureBox_Click(object sender, EventArgs e)
         {
             Data.Value = new Song();
             Data.Flag = false;
             AdditionalForm f = new AdditionalForm();
             f.ShowDialog();
-            if (Data.Flag == true)
+            if (Data.Flag == true && FindMatches(Data.Value))
             {
                 _songs.Add(Data.Value);
                 SortAlphabetically();
@@ -100,8 +156,16 @@ namespace MusicApp.View
                 SongsListBox.SelectedItem = Data.Value;
                 SerializeData();
             }
+            else if (FindMatches(Data.Value) == false)
+            {
+                MessageBox.Show("Такой объект уже существует.");
+            }
         }
 
+        /// <summary>
+        /// Редактрирует песню в листе _songs. Вызывает сортировку.
+        /// Метод ожидает передачу значения не равного null, иначе не выполняется.
+        /// </summary>
         private void EditPictureBox_Click(object sender, EventArgs e)
         {
             if (SongsListBox.SelectedItem == null)
@@ -113,7 +177,7 @@ namespace MusicApp.View
                                   _currentSong.Duration, _currentSong.Genre);
             AdditionalForm f = new AdditionalForm();
             f.ShowDialog();
-            if (Data.Flag == true)
+            if (Data.Flag == true && FindMatches(Data.Value))
             {
                 _currentSong.Name = Data.Value.Name;
                 _currentSong.Singer = Data.Value.Singer;
@@ -125,8 +189,15 @@ namespace MusicApp.View
                 SongsListBox.SelectedItem = Data.Value;
                 SerializeData();
             }
+            else if (FindMatches(Data.Value) == false)
+            {
+                MessageBox.Show("Такой объект уже существует.");
+            }
         }
 
+        /// <summary>
+        /// Удаляет выбранную песню из листа _songs.
+        /// </summary>
         private void RemovePictureBox_Click(object sender, EventArgs e)
         {
             if (SongsListBox.SelectedItem == null)
@@ -140,26 +211,33 @@ namespace MusicApp.View
             SerializeData();
         }
 
+        /// <summary>
+        /// Контролирует ввод в NameTextBox.
+        /// </summary>
         private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
 
+        /// <summary>
+        /// Контролирует ввод в SingerTextBox.
+        /// </summary>
         private void SingerTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
 
+        /// <summary>
+        /// Контролирует ввод в DurationTextBox.
+        /// </summary>
         private void DurationTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
 
-        private void GenreComboBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-        }
-
+        /// <summary>
+        /// Контролирует ввод в GenreTextBox.
+        /// </summary>
         private void GenreTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled= true;

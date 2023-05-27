@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MusicApp.Model.Enums
 {
+    /// <summary>
+    /// Хранит коллекцию жанров.
+    /// </summary>
     public enum Genre
     {
         Pop,
