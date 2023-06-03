@@ -103,6 +103,8 @@
             // 
             // SelectedSongGroupBox
             // 
+            this.SelectedSongGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectedSongGroupBox.Controls.Add(this.GenreTextBox);
             this.SelectedSongGroupBox.Controls.Add(this.GenreLabel);
             this.SelectedSongGroupBox.Controls.Add(this.DurationLabel);
@@ -120,7 +122,7 @@
             // 
             // GenreTextBox
             // 
-            this.GenreTextBox.Location = new System.Drawing.Point(171, 158);
+            this.GenreTextBox.Location = new System.Drawing.Point(77, 158);
             this.GenreTextBox.Name = "GenreTextBox";
             this.GenreTextBox.Size = new System.Drawing.Size(151, 27);
             this.GenreTextBox.TabIndex = 18;
@@ -129,7 +131,7 @@
             // GenreLabel
             // 
             this.GenreLabel.AutoSize = true;
-            this.GenreLabel.Location = new System.Drawing.Point(116, 161);
+            this.GenreLabel.Location = new System.Drawing.Point(22, 161);
             this.GenreLabel.Name = "GenreLabel";
             this.GenreLabel.Size = new System.Drawing.Size(51, 20);
             this.GenreLabel.TabIndex = 17;
@@ -138,7 +140,7 @@
             // DurationLabel
             // 
             this.DurationLabel.AutoSize = true;
-            this.DurationLabel.Location = new System.Drawing.Point(97, 128);
+            this.DurationLabel.Location = new System.Drawing.Point(3, 128);
             this.DurationLabel.Name = "DurationLabel";
             this.DurationLabel.Size = new System.Drawing.Size(70, 20);
             this.DurationLabel.TabIndex = 16;
@@ -147,7 +149,7 @@
             // SingerLabel
             // 
             this.SingerLabel.AutoSize = true;
-            this.SingerLabel.Location = new System.Drawing.Point(113, 95);
+            this.SingerLabel.Location = new System.Drawing.Point(19, 95);
             this.SingerLabel.Name = "SingerLabel";
             this.SingerLabel.Size = new System.Drawing.Size(54, 20);
             this.SingerLabel.TabIndex = 15;
@@ -156,7 +158,7 @@
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(113, 62);
+            this.NameLabel.Location = new System.Drawing.Point(19, 62);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(52, 20);
             this.NameLabel.TabIndex = 14;
@@ -164,7 +166,7 @@
             // 
             // DurationTextBox
             // 
-            this.DurationTextBox.Location = new System.Drawing.Point(171, 125);
+            this.DurationTextBox.Location = new System.Drawing.Point(77, 125);
             this.DurationTextBox.Name = "DurationTextBox";
             this.DurationTextBox.Size = new System.Drawing.Size(151, 27);
             this.DurationTextBox.TabIndex = 12;
@@ -172,17 +174,21 @@
             // 
             // SingerTextBox
             // 
-            this.SingerTextBox.Location = new System.Drawing.Point(171, 92);
+            this.SingerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SingerTextBox.Location = new System.Drawing.Point(77, 92);
             this.SingerTextBox.Name = "SingerTextBox";
-            this.SingerTextBox.Size = new System.Drawing.Size(151, 27);
+            this.SingerTextBox.Size = new System.Drawing.Size(242, 27);
             this.SingerTextBox.TabIndex = 11;
             this.SingerTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SingerTextBox_KeyPress);
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(171, 59);
+            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NameTextBox.Location = new System.Drawing.Point(77, 59);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(151, 27);
+            this.NameTextBox.Size = new System.Drawing.Size(242, 27);
             this.NameTextBox.TabIndex = 10;
             this.NameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameTextBox_KeyPress);
             // 

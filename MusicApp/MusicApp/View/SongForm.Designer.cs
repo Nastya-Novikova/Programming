@@ -1,6 +1,6 @@
 ﻿namespace MusicApp.View
 {
-    partial class AdditionalForm
+    partial class SongForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdditionalForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SongForm));
             this.SelectedSongGroupBox = new System.Windows.Forms.GroupBox();
+            this.CancelPictureBox = new System.Windows.Forms.PictureBox();
             this.OkPictureBox = new System.Windows.Forms.PictureBox();
             this.GenreLabel = new System.Windows.Forms.Label();
             this.DurationLabel = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
             this.SingerTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.SelectedSongGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CancelPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OkPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,6 +50,7 @@
             this.SelectedSongGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedSongGroupBox.Controls.Add(this.CancelPictureBox);
             this.SelectedSongGroupBox.Controls.Add(this.OkPictureBox);
             this.SelectedSongGroupBox.Controls.Add(this.GenreLabel);
             this.SelectedSongGroupBox.Controls.Add(this.DurationLabel);
@@ -64,6 +67,17 @@
             this.SelectedSongGroupBox.TabStop = false;
             this.SelectedSongGroupBox.Text = "Your Song";
             // 
+            // CancelPictureBox
+            // 
+            this.CancelPictureBox.Image = global::MusicApp.Properties.Resources.close_40x40;
+            this.CancelPictureBox.Location = new System.Drawing.Point(348, 189);
+            this.CancelPictureBox.Name = "CancelPictureBox";
+            this.CancelPictureBox.Size = new System.Drawing.Size(40, 40);
+            this.CancelPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.CancelPictureBox.TabIndex = 18;
+            this.CancelPictureBox.TabStop = false;
+            this.CancelPictureBox.Click += new System.EventHandler(this.CancelPictureBox_Click);
+            // 
             // OkPictureBox
             // 
             this.OkPictureBox.Image = global::MusicApp.Properties.Resources.ok_40x40;
@@ -78,7 +92,7 @@
             // GenreLabel
             // 
             this.GenreLabel.AutoSize = true;
-            this.GenreLabel.Location = new System.Drawing.Point(114, 161);
+            this.GenreLabel.Location = new System.Drawing.Point(21, 161);
             this.GenreLabel.Name = "GenreLabel";
             this.GenreLabel.Size = new System.Drawing.Size(51, 20);
             this.GenreLabel.TabIndex = 17;
@@ -87,7 +101,7 @@
             // DurationLabel
             // 
             this.DurationLabel.AutoSize = true;
-            this.DurationLabel.Location = new System.Drawing.Point(97, 128);
+            this.DurationLabel.Location = new System.Drawing.Point(4, 128);
             this.DurationLabel.Name = "DurationLabel";
             this.DurationLabel.Size = new System.Drawing.Size(70, 20);
             this.DurationLabel.TabIndex = 16;
@@ -96,7 +110,7 @@
             // SingerLabel
             // 
             this.SingerLabel.AutoSize = true;
-            this.SingerLabel.Location = new System.Drawing.Point(113, 95);
+            this.SingerLabel.Location = new System.Drawing.Point(20, 95);
             this.SingerLabel.Name = "SingerLabel";
             this.SingerLabel.Size = new System.Drawing.Size(54, 20);
             this.SingerLabel.TabIndex = 15;
@@ -105,7 +119,7 @@
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(113, 62);
+            this.NameLabel.Location = new System.Drawing.Point(20, 62);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(52, 20);
             this.NameLabel.TabIndex = 14;
@@ -114,7 +128,7 @@
             // GenreComboBox
             // 
             this.GenreComboBox.FormattingEnabled = true;
-            this.GenreComboBox.Location = new System.Drawing.Point(171, 158);
+            this.GenreComboBox.Location = new System.Drawing.Point(78, 158);
             this.GenreComboBox.Name = "GenreComboBox";
             this.GenreComboBox.Size = new System.Drawing.Size(151, 28);
             this.GenreComboBox.TabIndex = 13;
@@ -123,7 +137,7 @@
             // 
             // DurationTextBox
             // 
-            this.DurationTextBox.Location = new System.Drawing.Point(171, 125);
+            this.DurationTextBox.Location = new System.Drawing.Point(78, 125);
             this.DurationTextBox.Name = "DurationTextBox";
             this.DurationTextBox.Size = new System.Drawing.Size(151, 27);
             this.DurationTextBox.TabIndex = 12;
@@ -131,21 +145,21 @@
             // 
             // SingerTextBox
             // 
-            this.SingerTextBox.Location = new System.Drawing.Point(171, 92);
+            this.SingerTextBox.Location = new System.Drawing.Point(78, 92);
             this.SingerTextBox.Name = "SingerTextBox";
-            this.SingerTextBox.Size = new System.Drawing.Size(151, 27);
+            this.SingerTextBox.Size = new System.Drawing.Size(371, 27);
             this.SingerTextBox.TabIndex = 11;
             this.SingerTextBox.TextChanged += new System.EventHandler(this.SingerTextBox_TextChanged);
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(171, 59);
+            this.NameTextBox.Location = new System.Drawing.Point(78, 59);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(151, 27);
+            this.NameTextBox.Size = new System.Drawing.Size(371, 27);
             this.NameTextBox.TabIndex = 10;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
-            // AdditionalForm
+            // SongForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -154,11 +168,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "AdditionalForm";
+            this.Name = "SongForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Or Edit Song";
             this.SelectedSongGroupBox.ResumeLayout(false);
             this.SelectedSongGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CancelPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OkPictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -176,5 +191,6 @@
         private TextBox SingerTextBox;
         private TextBox NameTextBox;
         private PictureBox OkPictureBox;
+        private PictureBox CancelPictureBox;
     }
 }

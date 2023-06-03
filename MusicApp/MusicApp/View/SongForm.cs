@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
-using Data = MusicApp.Model.Classes.Data;
 using MusicApp.Model.Enums;
 
 namespace MusicApp.View
@@ -17,16 +16,19 @@ namespace MusicApp.View
     /// <summary>
     /// Реализовывает логику работы дополнительной формы.
     /// </summary>
-    public partial class AdditionalForm : Form
+    public partial class SongForm : Form
     {
-        public AdditionalForm()
+        /// <summary>
+        /// Содержит объект класса <see cref="Song">.
+        /// </summary>
+        public Song currentSong { get; set;}
+
+        public SongForm(Song song, string title)
         {
             InitializeComponent();
+            currentSong = song;
             FillGenreComboBox();
-            if (Data.Value.Name != null)
-            {
-                FillAllTextBox();
-            }
+            FillAllTextBox();
         }
 
         /// <summary>
@@ -36,7 +38,6 @@ namespace MusicApp.View
         {
             if (CheckTextBox())
             {
-                Data.Flag = true;
                 this.Close();
             }
         }
@@ -58,10 +59,13 @@ namespace MusicApp.View
         /// </summary>
         private void FillAllTextBox()
         {
-            NameTextBox.Text = Data.Value.Name;
-            SingerTextBox.Text = Data.Value.Singer;
-            DurationTextBox.Text = Data.Value.Duration.ToString();
-            GenreComboBox.Text = Data.Value.Genre;
+            NameTextBox.Text = currentSong.Name;
+            SingerTextBox.Text = currentSong.Singer;
+            if (currentSong.Duration != 0)
+            {
+                DurationTextBox.Text = currentSong.Duration.ToString();
+            }
+            GenreComboBox.Text = currentSong.Genre;
         }
 
         /// <summary>
@@ -91,6 +95,7 @@ namespace MusicApp.View
                 MessageBox.Show("Выберите жанр из выпадающего списка.");
                 return false;
             }
+            DialogResult = DialogResult.OK; 
             return true;
         }
 
@@ -102,7 +107,7 @@ namespace MusicApp.View
             try
             {
                 NameTextBox.BackColor = Color.White;
-                Data.Value.Name = Convert.ToString(NameTextBox.Text);
+                currentSong.Name = Convert.ToString(NameTextBox.Text);
             }
             catch
             {
@@ -118,7 +123,7 @@ namespace MusicApp.View
             try
             {
                 SingerTextBox.BackColor = Color.White;
-                Data.Value.Singer = Convert.ToString(SingerTextBox.Text);
+                currentSong.Singer = Convert.ToString(SingerTextBox.Text);
             }
             catch
             {
@@ -134,7 +139,7 @@ namespace MusicApp.View
             try
             {
                 DurationTextBox.BackColor = Color.White;
-                Data.Value.Duration = Int32.Parse(DurationTextBox.Text);
+                currentSong.Duration = Int32.Parse(DurationTextBox.Text);
             }
             catch
             {
@@ -152,7 +157,7 @@ namespace MusicApp.View
                 return;
             }
 
-            Data.Value.Genre = GenreComboBox.Text;
+            currentSong.Genre = GenreComboBox.Text;
         }
 
         /// <summary>
@@ -161,6 +166,11 @@ namespace MusicApp.View
         private void GenreComboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void CancelPictureBox_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

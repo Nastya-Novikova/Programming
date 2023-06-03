@@ -9,7 +9,7 @@ namespace MusicApp.Model.Classes
     /// <summary>
     /// Хранит данные о песне.
     /// </summary>
-    public class Song
+    public class Song : ICloneable
     {
         /// <summary>
         /// Название песни.
@@ -51,7 +51,7 @@ namespace MusicApp.Model.Classes
             get => _singer;
             set
             {
-                int min = 1;
+                const int min = 1;
                 int max = 50;
                 Validator.AssertValueInRange(value.Length, min, max);
                 _singer = value;
@@ -105,6 +105,15 @@ namespace MusicApp.Model.Classes
             Singer = singer;
             Duration = duration;
             Genre = genre;
+        }
+
+        /// <summary>
+        /// Создает копию объекта.
+        /// </summary>
+        /// <returns>Возвращает копию объекта.</returns>
+        public object Clone()
+        {
+            return new Song(Name, Singer, Duration, Genre); 
         }
     }
 }

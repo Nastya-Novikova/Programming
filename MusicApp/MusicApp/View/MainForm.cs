@@ -7,6 +7,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace MusicApp.View
 {
@@ -22,6 +23,11 @@ namespace MusicApp.View
         /// </summary>
         private Song _currentSong;
 
+        /// <summary>
+        /// Имя файла.
+        /// </summary>
+        private string _fileName;
+
         public MainForm()
         {
             InitializeComponent();
@@ -34,10 +40,10 @@ namespace MusicApp.View
         /// </summary>
         private void SerializeData()
         {
-            File.WriteAllText("input.json", string.Empty);
+            File.WriteAllText(_fileName, string.Empty);
             for (int i = 0; i < _songs.Count; i++)
             {
-                File.AppendAllText("input.json", JsonConvert.SerializeObject(_songs[i]));
+                File.AppendAllText(_fileName, JsonConvert.SerializeObject(_songs[i]));
             }
         }
 
@@ -46,15 +52,30 @@ namespace MusicApp.View
         /// </summary>
         private void DeserializeData()
         {
-            JsonTextReader reader = new JsonTextReader(new StreamReader("input.json"));
-            reader.SupportMultipleContent = true;
-            while (reader.Read())
+            string directoryName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MusicApp");
+            DirectoryInfo directoryInfo = new DirectoryInfo(directoryName);
+            if (!directoryInfo.Exists)
             {
-                JsonSerializer serializer = new JsonSerializer();
-                Song tempSong = serializer.Deserialize<Song>(reader);
-                _songs.Add(tempSong);
+                Directory.CreateDirectory(directoryName);
             }
-            reader.Close();
+            _fileName = Path.Combine(directoryName, "input.json");
+            FileInfo fileInfo = new FileInfo(_fileName);
+            if (fileInfo.Exists)
+            {
+                JsonTextReader reader = new JsonTextReader(new StreamReader(_fileName));
+                reader.SupportMultipleContent = true;
+                while (reader.Read())
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    Song tempSong = serializer.Deserialize<Song>(reader);
+                    _songs.Add(tempSong);
+                }
+                reader.Close();
+            }
+            else
+            {
+                File.WriteAllText(_fileName, string.Empty);
+            }
         }
 
         /// <summary>
@@ -144,19 +165,23 @@ namespace MusicApp.View
         /// </summary>
         private void AddPictureBox_Click(object sender, EventArgs e)
         {
-            Data.Value = new Song();
-            Data.Flag = false;
-            AdditionalForm f = new AdditionalForm();
-            f.ShowDialog();
-            if (Data.Flag == true && FindMatches(Data.Value))
+            SongForm songForm = new SongForm(new Song(), "Add new song");
+            var dialogResult = songForm.ShowDialog();
+
+            if (dialogResult == DialogResult.Cancel)
             {
-                _songs.Add(Data.Value);
+                return;
+            }
+
+            if (FindMatches(songForm.currentSong))
+            {
+                _songs.Add(songForm.currentSong);
                 SortAlphabetically();
                 UpdateSongsListBox();
-                SongsListBox.SelectedItem = Data.Value;
+                SongsListBox.SelectedItem = songForm.currentSong;
                 SerializeData();
             }
-            else if (FindMatches(Data.Value) == false)
+            else if (FindMatches(songForm.currentSong) == false)
             {
                 MessageBox.Show("Такой объект уже существует.");
             }
@@ -172,24 +197,27 @@ namespace MusicApp.View
             {
                 return;
             }
-            Data.Flag = false;
-            Data.Value = new Song(_currentSong.Name, _currentSong.Singer,
-                                  _currentSong.Duration, _currentSong.Genre);
-            AdditionalForm f = new AdditionalForm();
-            f.ShowDialog();
-            if (Data.Flag == true && FindMatches(Data.Value))
+
+            SongForm songForm = new SongForm((Song)_currentSong.Clone(), "Edit your song");
+            var dialogResult = songForm.ShowDialog();
+
+            if (dialogResult == DialogResult.Cancel)
             {
-                _currentSong.Name = Data.Value.Name;
-                _currentSong.Singer = Data.Value.Singer;
-                _currentSong.Duration = Data.Value.Duration;
-                _currentSong.Genre = Data.Value.Genre;
-                Data.Value = _currentSong;
+                return;
+            }
+
+            if (FindMatches(songForm.currentSong))
+            {
+                _currentSong.Name = songForm.currentSong.Name;
+                _currentSong.Singer = songForm.currentSong.Singer;
+                _currentSong.Duration = songForm.currentSong.Duration;
+                _currentSong.Genre = songForm.currentSong.Genre;
                 SortAlphabetically();
                 UpdateSongsListBox();
-                SongsListBox.SelectedItem = Data.Value;
+                SongsListBox.SelectedItem = songForm.currentSong;
                 SerializeData();
             }
-            else if (FindMatches(Data.Value) == false)
+            else if (FindMatches(songForm.currentSong) == false)
             {
                 MessageBox.Show("Такой объект уже существует.");
             }
@@ -204,6 +232,7 @@ namespace MusicApp.View
             {
                 return;
             }
+
             _songs.RemoveAt(SongsListBox.SelectedIndex);
             UpdateSongsListBox();
             SongsListBox.SelectedIndex = -1;
