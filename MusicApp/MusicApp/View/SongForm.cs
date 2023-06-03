@@ -29,6 +29,7 @@ namespace MusicApp.View
             currentSong = song;
             FillGenreComboBox();
             FillAllTextBox();
+            this.Text = title;
         }
 
         /// <summary>
