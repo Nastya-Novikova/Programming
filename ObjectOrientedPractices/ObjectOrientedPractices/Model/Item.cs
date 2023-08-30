@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractices.Services;
 
 namespace ObjectOrientedPractices.Model
 {
@@ -32,26 +33,12 @@ namespace ObjectOrientedPractices.Model
         private double _cost;
 
         /// <summary>
-        /// Счетчик созданных товаров.
-        /// </summary>
-        private static int _allItemsCount;
-
-        /// <summary>
         /// Возвращает уникальный номер товара.
         /// </summary>
         public int Id => _id;
 
         /// <summary>
-        /// Возвращает и задает количество созданных товаров.
-        /// </summary>
-        public static int AllItemsCount
-        {
-            get => _allItemsCount;
-            private set => _allItemsCount = value;
-        }
-
-        /// <summary>
-        /// Возвращает и задает название песни.
+        /// Возвращает и задает название товара.
         /// Должно быть от 1 до 200 символов.
         /// </summary>
         public string Name
@@ -107,8 +94,7 @@ namespace ObjectOrientedPractices.Model
         /// Класс контролирует уникальность присвоенного id.
         public Item(string name, string info, double cost)
         {
-            _id = AllItemsCount + 1;
-            AllItemsCount++;
+            _id = IdGenerator.GetNextId();
             Name = name;
             Info = info;
             Cost = cost;
