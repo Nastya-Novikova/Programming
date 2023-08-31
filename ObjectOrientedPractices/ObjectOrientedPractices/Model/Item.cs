@@ -99,5 +99,10 @@ namespace ObjectOrientedPractices.Model
             Info = info;
             Cost = cost;
         }
+
+        public Item()
+        {
+
+        }
     }
 }
