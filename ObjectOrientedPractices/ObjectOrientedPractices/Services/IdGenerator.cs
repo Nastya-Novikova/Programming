@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractices.Services
 {
-    public class IdGenerator
+    public static class IdGenerator
     {
-        private static int _id = 0;
+        private static int _id;
         public static int GetNextId()
         {
             _id++;

@@ -30,9 +30,53 @@ namespace ObjectOrientedPractices.View.Tabs
             ItemsListBox.DisplayMember = nameof(Item.Name);
         }
 
+        private void ClearAllTextBoxes()
+        {
+            IdTextBox.Clear();
+            CostTextBox.Clear();
+            NameTextBox.Clear();
+            DescriptionTextBox.Clear();
+        }
+
+        private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ItemsListBox.SelectedItem == null)
+            {
+                ClearAllTextBoxes();
+                return;
+            }
+            _currentItem = _items[ItemsListBox.SelectedIndex];
+            IdTextBox.Text = _currentItem.Id.ToString();
+            NameTextBox.Text = _currentItem.Name.ToString();
+            CostTextBox.Text = _currentItem.Cost.ToString();
+            DescriptionTextBox.Text = _currentItem.Info.ToString();
+        }
+
         private void AddButton_Click(object sender, EventArgs e)
         {
+            if (ItemsListBox.SelectedItem != null ||
+                CostTextBox.Text == String.Empty ||
+                NameTextBox.Text == String.Empty ||
+                DescriptionTextBox.Text == String.Empty)
+            {
+                return;
+            }
             _items.Add(_currentItem);
+            ItemsListBox.SelectedIndex = -1;
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            if (ItemsListBox.SelectedItem == null)
+            {
+                return;
+            }
+            _items.RemoveAt(ItemsListBox.SelectedIndex);
+            ItemsListBox.SelectedIndex = -1;
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
             ItemsListBox.SelectedIndex = -1;
         }
 
@@ -45,7 +89,10 @@ namespace ObjectOrientedPractices.View.Tabs
             }
             catch
             {
-                CostTextBox.BackColor = System.Drawing.Color.LightPink;
+                if (CostTextBox.Text != String.Empty)
+                {
+                    CostTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
             }
         }
 
@@ -58,7 +105,10 @@ namespace ObjectOrientedPractices.View.Tabs
             }
             catch
             {
-                NameTextBox.BackColor = System.Drawing.Color.LightPink;
+                if (NameTextBox.Text != String.Empty)
+                {
+                    NameTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
             }
         }
 
@@ -71,11 +121,14 @@ namespace ObjectOrientedPractices.View.Tabs
             }
             catch
             {
-                DescriptionTextBox.BackColor = System.Drawing.Color.LightPink;
+                if (DescriptionTextBox.Text != String.Empty)
+                {
+                    DescriptionTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
             }
         }
 
-        private void IdTtextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void IdTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }

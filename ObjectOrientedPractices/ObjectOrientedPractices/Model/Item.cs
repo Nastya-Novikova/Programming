@@ -102,7 +102,7 @@ namespace ObjectOrientedPractices.Model
 
         public Item()
         {
-
+            _id = IdGenerator.GetNextId();
         }
     }
 }
