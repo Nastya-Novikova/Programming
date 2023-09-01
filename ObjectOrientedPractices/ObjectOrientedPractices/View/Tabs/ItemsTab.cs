@@ -17,6 +17,8 @@ namespace ObjectOrientedPractices.View.Tabs
 
         private Item _currentItem = new Item();
 
+        private Item _newItem;
+
         public ItemsTab()
         {
             InitializeComponent();
@@ -42,6 +44,11 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             if (ItemsListBox.SelectedItem == null)
             {
+                //ClearAllTextBoxes();
+                if (_currentItem == null)
+                {
+                    _currentItem = _newItem;
+                }
                 ClearAllTextBoxes();
                 return;
             }
@@ -62,6 +69,8 @@ namespace ObjectOrientedPractices.View.Tabs
                 return;
             }
             _items.Add(_currentItem);
+            _newItem = new Item();
+            _currentItem = null;
             ItemsListBox.SelectedIndex = -1;
         }
 
@@ -71,12 +80,14 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 return;
             }
+            _currentItem = null;
             _items.RemoveAt(ItemsListBox.SelectedIndex);
             ItemsListBox.SelectedIndex = -1;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
+            _currentItem = null;
             ItemsListBox.SelectedIndex = -1;
         }
 
