@@ -31,6 +31,7 @@
             this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ItemsGroupBox = new System.Windows.Forms.GroupBox();
             this.ButtonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.ItemsListBox = new System.Windows.Forms.ListBox();
@@ -43,7 +44,6 @@
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.CostTextBox = new System.Windows.Forms.TextBox();
             this.IdTextBox = new System.Windows.Forms.TextBox();
-            this.CloseButton = new System.Windows.Forms.Button();
             this.TableLayoutPanel.SuspendLayout();
             this.ItemsGroupBox.SuspendLayout();
             this.ButtonsTableLayoutPanel.SuspendLayout();
@@ -59,10 +59,11 @@
             this.TableLayoutPanel.Controls.Add(this.SelectedItemGroupBox, 1, 0);
             this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.TableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TableLayoutPanel.Name = "TableLayoutPanel";
             this.TableLayoutPanel.RowCount = 1;
             this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TableLayoutPanel.Size = new System.Drawing.Size(818, 497);
+            this.TableLayoutPanel.Size = new System.Drawing.Size(716, 373);
             this.TableLayoutPanel.TabIndex = 0;
             // 
             // ItemsGroupBox
@@ -71,9 +72,11 @@
             this.ItemsGroupBox.Controls.Add(this.ItemsListBox);
             this.ItemsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ItemsGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ItemsGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.ItemsGroupBox.Location = new System.Drawing.Point(3, 2);
+            this.ItemsGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ItemsGroupBox.Name = "ItemsGroupBox";
-            this.ItemsGroupBox.Size = new System.Drawing.Size(359, 491);
+            this.ItemsGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ItemsGroupBox.Size = new System.Drawing.Size(313, 369);
             this.ItemsGroupBox.TabIndex = 0;
             this.ItemsGroupBox.TabStop = false;
             this.ItemsGroupBox.Text = "Items";
@@ -88,20 +91,35 @@
             this.ButtonsTableLayoutPanel.Controls.Add(this.AddButton, 0, 0);
             this.ButtonsTableLayoutPanel.Controls.Add(this.RemoveButton, 1, 0);
             this.ButtonsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ButtonsTableLayoutPanel.Location = new System.Drawing.Point(3, 429);
+            this.ButtonsTableLayoutPanel.Location = new System.Drawing.Point(3, 323);
+            this.ButtonsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ButtonsTableLayoutPanel.Name = "ButtonsTableLayoutPanel";
             this.ButtonsTableLayoutPanel.RowCount = 1;
             this.ButtonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ButtonsTableLayoutPanel.Size = new System.Drawing.Size(353, 59);
+            this.ButtonsTableLayoutPanel.Size = new System.Drawing.Size(307, 44);
             this.ButtonsTableLayoutPanel.TabIndex = 1;
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CloseButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CloseButton.Location = new System.Drawing.Point(207, 2);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(97, 40);
+            this.CloseButton.TabIndex = 8;
+            this.CloseButton.Text = "Close";
+            this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // AddButton
             // 
             this.AddButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AddButton.Location = new System.Drawing.Point(3, 3);
+            this.AddButton.Location = new System.Drawing.Point(3, 2);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(111, 53);
+            this.AddButton.Size = new System.Drawing.Size(96, 40);
             this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -111,9 +129,10 @@
             // 
             this.RemoveButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RemoveButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.RemoveButton.Location = new System.Drawing.Point(120, 3);
+            this.RemoveButton.Location = new System.Drawing.Point(105, 2);
+            this.RemoveButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(111, 53);
+            this.RemoveButton.Size = new System.Drawing.Size(96, 40);
             this.RemoveButton.TabIndex = 3;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
@@ -127,10 +146,11 @@
             this.ItemsListBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ItemsListBox.FormattingEnabled = true;
             this.ItemsListBox.IntegralHeight = false;
-            this.ItemsListBox.ItemHeight = 20;
-            this.ItemsListBox.Location = new System.Drawing.Point(3, 24);
+            this.ItemsListBox.ItemHeight = 15;
+            this.ItemsListBox.Location = new System.Drawing.Point(3, 18);
+            this.ItemsListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(351, 399);
+            this.ItemsListBox.Size = new System.Drawing.Size(307, 301);
             this.ItemsListBox.TabIndex = 0;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
@@ -148,9 +168,11 @@
             this.SelectedItemGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SelectedItemGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SelectedItemGroupBox.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.SelectedItemGroupBox.Location = new System.Drawing.Point(368, 3);
+            this.SelectedItemGroupBox.Location = new System.Drawing.Point(322, 2);
+            this.SelectedItemGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SelectedItemGroupBox.Name = "SelectedItemGroupBox";
-            this.SelectedItemGroupBox.Size = new System.Drawing.Size(447, 491);
+            this.SelectedItemGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SelectedItemGroupBox.Size = new System.Drawing.Size(391, 369);
             this.SelectedItemGroupBox.TabIndex = 4;
             this.SelectedItemGroupBox.TabStop = false;
             this.SelectedItemGroupBox.Text = "Selected Item";
@@ -159,9 +181,9 @@
             // 
             this.DescriptionLabel.AutoSize = true;
             this.DescriptionLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DescriptionLabel.Location = new System.Drawing.Point(6, 259);
+            this.DescriptionLabel.Location = new System.Drawing.Point(5, 194);
             this.DescriptionLabel.Name = "DescriptionLabel";
-            this.DescriptionLabel.Size = new System.Drawing.Size(88, 20);
+            this.DescriptionLabel.Size = new System.Drawing.Size(70, 15);
             this.DescriptionLabel.TabIndex = 7;
             this.DescriptionLabel.Text = "Description:";
             // 
@@ -169,9 +191,9 @@
             // 
             this.NameLabel.AutoSize = true;
             this.NameLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.NameLabel.Location = new System.Drawing.Point(6, 128);
+            this.NameLabel.Location = new System.Drawing.Point(5, 96);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(52, 20);
+            this.NameLabel.Size = new System.Drawing.Size(42, 15);
             this.NameLabel.TabIndex = 6;
             this.NameLabel.Text = "Name:";
             // 
@@ -179,9 +201,9 @@
             // 
             this.CostLabel.AutoSize = true;
             this.CostLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CostLabel.Location = new System.Drawing.Point(6, 88);
+            this.CostLabel.Location = new System.Drawing.Point(5, 67);
             this.CostLabel.Name = "CostLabel";
-            this.CostLabel.Size = new System.Drawing.Size(41, 20);
+            this.CostLabel.Size = new System.Drawing.Size(34, 15);
             this.CostLabel.TabIndex = 5;
             this.CostLabel.Text = "Cost:";
             // 
@@ -189,9 +211,9 @@
             // 
             this.IdLabel.AutoSize = true;
             this.IdLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.IdLabel.Location = new System.Drawing.Point(6, 52);
+            this.IdLabel.Location = new System.Drawing.Point(6, 38);
             this.IdLabel.Name = "IdLabel";
-            this.IdLabel.Size = new System.Drawing.Size(27, 20);
+            this.IdLabel.Size = new System.Drawing.Size(21, 15);
             this.IdLabel.TabIndex = 4;
             this.IdLabel.Text = "ID:";
             // 
@@ -200,10 +222,11 @@
             this.DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DescriptionTextBox.Location = new System.Drawing.Point(6, 283);
+            this.DescriptionTextBox.Location = new System.Drawing.Point(5, 212);
+            this.DescriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DescriptionTextBox.Multiline = true;
             this.DescriptionTextBox.Name = "DescriptionTextBox";
-            this.DescriptionTextBox.Size = new System.Drawing.Size(435, 151);
+            this.DescriptionTextBox.Size = new System.Drawing.Size(381, 114);
             this.DescriptionTextBox.TabIndex = 3;
             this.DescriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
@@ -212,50 +235,40 @@
             this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.NameTextBox.Location = new System.Drawing.Point(6, 151);
+            this.NameTextBox.Location = new System.Drawing.Point(5, 113);
+            this.NameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NameTextBox.Multiline = true;
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(435, 92);
+            this.NameTextBox.Size = new System.Drawing.Size(381, 70);
             this.NameTextBox.TabIndex = 2;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // CostTextBox
             // 
             this.CostTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CostTextBox.Location = new System.Drawing.Point(62, 85);
+            this.CostTextBox.Location = new System.Drawing.Point(54, 64);
             this.CostTextBox.Name = "CostTextBox";
-            this.CostTextBox.Size = new System.Drawing.Size(180, 27);
+            this.CostTextBox.Size = new System.Drawing.Size(158, 23);
             this.CostTextBox.TabIndex = 1;
             this.CostTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
             // 
             // IdTextBox
             // 
             this.IdTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.IdTextBox.Location = new System.Drawing.Point(62, 52);
+            this.IdTextBox.Location = new System.Drawing.Point(54, 35);
             this.IdTextBox.Name = "IdTextBox";
-            this.IdTextBox.Size = new System.Drawing.Size(180, 27);
+            this.IdTextBox.Size = new System.Drawing.Size(158, 23);
             this.IdTextBox.TabIndex = 0;
             this.IdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdTextBox_KeyPress);
             // 
-            // CloseButton
-            // 
-            this.CloseButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CloseButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CloseButton.Location = new System.Drawing.Point(237, 3);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(113, 53);
-            this.CloseButton.TabIndex = 8;
-            this.CloseButton.Text = "Close";
-            this.CloseButton.UseVisualStyleBackColor = true;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
             // ItemsTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TableLayoutPanel);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ItemsTab";
-            this.Size = new System.Drawing.Size(818, 497);
+            this.Size = new System.Drawing.Size(716, 373);
             this.TableLayoutPanel.ResumeLayout(false);
             this.ItemsGroupBox.ResumeLayout(false);
             this.ButtonsTableLayoutPanel.ResumeLayout(false);
