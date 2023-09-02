@@ -32,6 +32,14 @@ namespace ObjectOrientedPractices.View.Tabs
             ItemsListBox.DisplayMember = nameof(Item.Name);
         }
 
+        /*private void UpdateItemsListBox()
+        {
+            int index = ItemsListBox.SelectedIndex;
+            ItemsListBox.DisplayMember = null;
+            ItemsListBox.DisplayMember = nameof(Item.Name);
+            ItemsListBox.SelectedIndex = index;
+        }*/
+
         private void ClearAllTextBoxes()
         {
             IdTextBox.Clear();
@@ -94,14 +102,14 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             try
             {
-                CostTextBox.BackColor = System.Drawing.Color.White;
+                CostTextBox.BackColor = Color.White;
                 _currentItem.Cost = Double.Parse(CostTextBox.Text);
             }
             catch
             {
                 if (CostTextBox.Text != String.Empty)
                 {
-                    CostTextBox.BackColor = System.Drawing.Color.LightPink;
+                    CostTextBox.BackColor = Color.LightPink;
                 }
             }
         }
@@ -110,14 +118,15 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             try
             {
-                NameTextBox.BackColor = System.Drawing.Color.White;
-                _currentItem.Name = Convert.ToString(NameTextBox.Text);
+                NameTextBox.BackColor = Color.White;
+                _currentItem.Name = NameTextBox.Text.ToString();
+                //UpdateItemsListBox();
             }
             catch
             {
                 if (NameTextBox.Text != String.Empty)
                 {
-                    NameTextBox.BackColor = System.Drawing.Color.LightPink;
+                    NameTextBox.BackColor = Color.LightPink;
                 }
             }
         }
@@ -126,14 +135,14 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             try
             {
-                DescriptionTextBox.BackColor = System.Drawing.Color.White;
-                _currentItem.Info = Convert.ToString(DescriptionTextBox.Text);
+                DescriptionTextBox.BackColor = Color.White;
+                _currentItem.Info = DescriptionTextBox.Text.ToString();
             }
             catch
             {
                 if (DescriptionTextBox.Text != String.Empty)
                 {
-                    DescriptionTextBox.BackColor = System.Drawing.Color.LightPink;
+                    DescriptionTextBox.BackColor = Color.LightPink;
                 }
             }
         }

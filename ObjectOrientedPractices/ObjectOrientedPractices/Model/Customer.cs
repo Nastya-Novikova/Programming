@@ -73,5 +73,13 @@ namespace ObjectOrientedPractices.Model
             Fullname = fullname;
             Address = address;
         }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Customer"/> без инициализации.
+        /// </summary>
+        public Customer()
+        {
+            _id = IdGenerator.GetNextId();
+        }
     }
 }
