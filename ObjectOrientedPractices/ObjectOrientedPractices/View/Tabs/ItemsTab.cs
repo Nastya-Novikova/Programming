@@ -44,7 +44,6 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             if (ItemsListBox.SelectedItem == null)
             {
-                //ClearAllTextBoxes();
                 if (_currentItem == null)
                 {
                     _currentItem = _newItem;
