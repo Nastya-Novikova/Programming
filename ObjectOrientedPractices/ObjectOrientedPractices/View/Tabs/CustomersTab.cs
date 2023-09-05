@@ -32,6 +32,12 @@ namespace ObjectOrientedPractices.View.Tabs
             CustomersListBox.DisplayMember = nameof(Customer.Fullname);
         }
 
+        private void UpdateCustomersListBox()
+        {
+            CustomersListBox.DisplayMember = null;
+            CustomersListBox.DisplayMember = nameof(Customer.Fullname);
+        }
+
         private void ClearAllTextBoxes()
         {
             IdTextBox.Clear();
@@ -41,22 +47,51 @@ namespace ObjectOrientedPractices.View.Tabs
 
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (CustomersListBox.SelectedItem == null)
+            {
+                if (_currentCustomer == null)
+                {
+                    _currentCustomer = _newCustomer;
+                }
+                ClearAllTextBoxes();
+                return;
+            }
+            _currentCustomer = _customers[CustomersListBox.SelectedIndex];
+            IdTextBox.Text = _currentCustomer.Id.ToString();
+            NameTextBox.Text = _currentCustomer.Fullname.ToString();
+            AddressTextBox.Text = _currentCustomer.Address.ToString();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-
+            if (CustomersListBox.SelectedItem != null ||
+                NameTextBox.Text == String.Empty ||
+                AddressTextBox.Text == String.Empty)
+            {
+                return;
+            }
+            _customers.Add(_currentCustomer);
+            _newCustomer = new Customer();
+            _currentCustomer = null;
+            CustomersListBox.SelectedIndex = -1;
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-
+            if (CustomersListBox.SelectedItem == null)
+            {
+                return;
+            }
+            _currentCustomer = null;
+            _customers.RemoveAt(CustomersListBox.SelectedIndex);
+            CustomersListBox.SelectedIndex = -1;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-
+            UpdateCustomersListBox();
+            _currentCustomer = null;
+            CustomersListBox.SelectedIndex = -1;
         }
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)

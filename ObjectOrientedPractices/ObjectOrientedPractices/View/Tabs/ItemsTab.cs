@@ -32,13 +32,11 @@ namespace ObjectOrientedPractices.View.Tabs
             ItemsListBox.DisplayMember = nameof(Item.Name);
         }
 
-        /*private void UpdateItemsListBox()
+        private void UpdateItemsListBox()
         {
-            int index = ItemsListBox.SelectedIndex;
             ItemsListBox.DisplayMember = null;
             ItemsListBox.DisplayMember = nameof(Item.Name);
-            ItemsListBox.SelectedIndex = index;
-        }*/
+        }
 
         private void ClearAllTextBoxes()
         {
@@ -94,6 +92,7 @@ namespace ObjectOrientedPractices.View.Tabs
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
+            UpdateItemsListBox();
             _currentItem = null;
             ItemsListBox.SelectedIndex = -1;
         }
@@ -120,7 +119,6 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 NameTextBox.BackColor = Color.White;
                 _currentItem.Name = NameTextBox.Text.ToString();
-                //UpdateItemsListBox();
             }
             catch
             {
