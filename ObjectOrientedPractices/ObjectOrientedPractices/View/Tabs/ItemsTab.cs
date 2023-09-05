@@ -19,6 +19,8 @@ namespace ObjectOrientedPractices.View.Tabs
 
         private Item _newItem;
 
+        private static int _count;
+
         public ItemsTab()
         {
             InitializeComponent();
@@ -74,6 +76,19 @@ namespace ObjectOrientedPractices.View.Tabs
                 return;
             }
             _items.Add(_currentItem);
+            _newItem = new Item();
+            _currentItem = null;
+            ItemsListBox.SelectedIndex = -1;
+        }
+
+        private void AddListButton_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                _count++;
+                _currentItem = new Item("Item " + _count.ToString(), _count.ToString(), _count);
+                _items.Add(_currentItem);
+            }
             _newItem = new Item();
             _currentItem = null;
             ItemsListBox.SelectedIndex = -1;

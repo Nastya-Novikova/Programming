@@ -43,6 +43,7 @@
             this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.IdTextBox = new System.Windows.Forms.TextBox();
+            this.AddListButton = new System.Windows.Forms.Button();
             this.TableLayoutPanel.SuspendLayout();
             this.CustomersGroupBox.SuspendLayout();
             this.ButtonsTableLayoutPanel.SuspendLayout();
@@ -81,13 +82,15 @@
             // 
             // ButtonsTableLayoutPanel
             // 
-            this.ButtonsTableLayoutPanel.ColumnCount = 3;
-            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.ButtonsTableLayoutPanel.Controls.Add(this.CloseButton, 2, 0);
-            this.ButtonsTableLayoutPanel.Controls.Add(this.AddButton, 0, 0);
-            this.ButtonsTableLayoutPanel.Controls.Add(this.RemoveButton, 1, 0);
+            this.ButtonsTableLayoutPanel.ColumnCount = 4;
+            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ButtonsTableLayoutPanel.Controls.Add(this.CloseButton, 3, 0);
+            this.ButtonsTableLayoutPanel.Controls.Add(this.AddButton, 1, 0);
+            this.ButtonsTableLayoutPanel.Controls.Add(this.RemoveButton, 2, 0);
+            this.ButtonsTableLayoutPanel.Controls.Add(this.AddListButton, 0, 0);
             this.ButtonsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ButtonsTableLayoutPanel.Location = new System.Drawing.Point(3, 429);
             this.ButtonsTableLayoutPanel.Name = "ButtonsTableLayoutPanel";
@@ -100,9 +103,9 @@
             // 
             this.CloseButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CloseButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CloseButton.Location = new System.Drawing.Point(237, 3);
+            this.CloseButton.Location = new System.Drawing.Point(267, 3);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(112, 53);
+            this.CloseButton.Size = new System.Drawing.Size(82, 53);
             this.CloseButton.TabIndex = 8;
             this.CloseButton.Text = "Close";
             this.CloseButton.UseVisualStyleBackColor = true;
@@ -112,9 +115,9 @@
             // 
             this.AddButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AddButton.Location = new System.Drawing.Point(3, 3);
+            this.AddButton.Location = new System.Drawing.Point(91, 3);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(111, 53);
+            this.AddButton.Size = new System.Drawing.Size(82, 53);
             this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -124,9 +127,9 @@
             // 
             this.RemoveButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RemoveButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.RemoveButton.Location = new System.Drawing.Point(120, 3);
+            this.RemoveButton.Location = new System.Drawing.Point(179, 3);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(111, 53);
+            this.RemoveButton.Size = new System.Drawing.Size(82, 53);
             this.RemoveButton.TabIndex = 3;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
@@ -246,6 +249,18 @@
             this.IdTextBox.TabIndex = 0;
             this.IdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdTextBox_KeyPress);
             // 
+            // AddListButton
+            // 
+            this.AddListButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddListButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AddListButton.Location = new System.Drawing.Point(3, 3);
+            this.AddListButton.Name = "AddListButton";
+            this.AddListButton.Size = new System.Drawing.Size(82, 53);
+            this.AddListButton.TabIndex = 9;
+            this.AddListButton.Text = "Add List";
+            this.AddListButton.UseVisualStyleBackColor = true;
+            this.AddListButton.Click += new System.EventHandler(this.AddListButton_Click);
+            // 
             // CustomersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -281,5 +296,6 @@
         private Button CloseButton;
         private Button AddButton;
         private Button RemoveButton;
+        private Button AddListButton;
     }
 }

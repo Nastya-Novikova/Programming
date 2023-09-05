@@ -19,6 +19,8 @@ namespace ObjectOrientedPractices.View.Tabs
 
         private Customer _newCustomer;
 
+        private static int _count;
+
         public CustomersTab()
         {
             InitializeComponent();
@@ -71,6 +73,19 @@ namespace ObjectOrientedPractices.View.Tabs
                 return;
             }
             _customers.Add(_currentCustomer);
+            _newCustomer = new Customer();
+            _currentCustomer = null;
+            CustomersListBox.SelectedIndex = -1;
+        }
+
+        private void AddListButton_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                _count++;
+                _currentCustomer = new Customer("Customer " + _count.ToString(), _count.ToString());
+                _customers.Add(_currentCustomer);
+            }
             _newCustomer = new Customer();
             _currentCustomer = null;
             CustomersListBox.SelectedIndex = -1;
