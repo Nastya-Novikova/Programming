@@ -7,6 +7,9 @@ using ObjectOrientedPractices.Services;
 
 namespace ObjectOrientedPractices.Model
 {
+    /// <summary>
+    /// Покупатель.
+    /// </summary>
     public class Customer
     {
         /// <summary>

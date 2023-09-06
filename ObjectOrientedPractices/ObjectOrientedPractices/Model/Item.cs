@@ -8,7 +8,7 @@ using ObjectOrientedPractices.Services;
 namespace ObjectOrientedPractices.Model
 {
     /// <summary>
-    ///Хранит данные о товаре.
+    ///Товар.
     /// </summary>
     public class Item
     {
