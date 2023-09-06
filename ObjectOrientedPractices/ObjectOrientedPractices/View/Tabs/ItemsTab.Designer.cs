@@ -31,7 +31,6 @@
             this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ItemsGroupBox = new System.Windows.Forms.GroupBox();
             this.ButtonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.CloseButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.AddListButton = new System.Windows.Forms.Button();
@@ -81,12 +80,10 @@
             // 
             // ButtonsTableLayoutPanel
             // 
-            this.ButtonsTableLayoutPanel.ColumnCount = 4;
-            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.ButtonsTableLayoutPanel.Controls.Add(this.CloseButton, 3, 0);
+            this.ButtonsTableLayoutPanel.ColumnCount = 3;
+            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.ButtonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.ButtonsTableLayoutPanel.Controls.Add(this.AddButton, 1, 0);
             this.ButtonsTableLayoutPanel.Controls.Add(this.RemoveButton, 2, 0);
             this.ButtonsTableLayoutPanel.Controls.Add(this.AddListButton, 0, 0);
@@ -97,18 +94,6 @@
             this.ButtonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ButtonsTableLayoutPanel.Size = new System.Drawing.Size(353, 59);
             this.ButtonsTableLayoutPanel.TabIndex = 1;
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CloseButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CloseButton.Location = new System.Drawing.Point(267, 3);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(83, 53);
-            this.CloseButton.TabIndex = 8;
-            this.CloseButton.Text = "Close";
-            this.CloseButton.UseVisualStyleBackColor = true;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // AddButton
             // 
@@ -299,7 +284,6 @@
         private TextBox NameTextBox;
         private TextBox CostTextBox;
         private TextBox IdTextBox;
-        private Button CloseButton;
         private Button AddListButton;
     }
 }

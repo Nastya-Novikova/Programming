@@ -15,9 +15,7 @@ namespace ObjectOrientedPractices.View.Tabs
     {
         private BindingList<Item> _items = new();
 
-        private Item _currentItem = new Item();
-
-        private Item _newItem;
+        private Item _currentItem;
 
         private static int _count;
 
@@ -52,10 +50,6 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             if (ItemsListBox.SelectedItem == null)
             {
-                if (_currentItem == null)
-                {
-                    _currentItem = _newItem;
-                }
                 ClearAllTextBoxes();
                 return;
             }
@@ -68,17 +62,10 @@ namespace ObjectOrientedPractices.View.Tabs
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedItem != null ||
-                CostTextBox.Text == String.Empty ||
-                NameTextBox.Text == String.Empty ||
-                DescriptionTextBox.Text == String.Empty)
-            {
-                return;
-            }
+            _currentItem = new Item("Item", " ", 0);
             _items.Add(_currentItem);
-            _newItem = new Item();
-            _currentItem = null;
-            ItemsListBox.SelectedIndex = -1;
+            ItemsListBox.SelectedItem = _currentItem;
+            UpdateItemsListBox();
         }
 
         private void AddListButton_Click(object sender, EventArgs e)
@@ -86,11 +73,9 @@ namespace ObjectOrientedPractices.View.Tabs
             for (int i = 0; i < 10; i++)
             {
                 _count++;
-                _currentItem = new Item("Item " + _count.ToString(), _count.ToString(), _count);
+                _currentItem = new Item("Item " + _count.ToString(), " ", _count);
                 _items.Add(_currentItem);
             }
-            _newItem = new Item();
-            _currentItem = null;
             ItemsListBox.SelectedIndex = -1;
         }
 
@@ -100,15 +85,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 return;
             }
-            _currentItem = null;
             _items.RemoveAt(ItemsListBox.SelectedIndex);
-            ItemsListBox.SelectedIndex = -1;
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            UpdateItemsListBox();
-            _currentItem = null;
             ItemsListBox.SelectedIndex = -1;
         }
 
@@ -134,6 +111,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 NameTextBox.BackColor = Color.White;
                 _currentItem.Name = NameTextBox.Text.ToString();
+                UpdateItemsListBox();
             }
             catch
             {

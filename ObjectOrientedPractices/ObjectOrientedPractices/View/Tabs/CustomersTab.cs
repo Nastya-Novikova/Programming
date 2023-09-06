@@ -15,9 +15,7 @@ namespace ObjectOrientedPractices.View.Tabs
     {
         private BindingList<Customer> _customers = new ();
 
-        private Customer _currentCustomer = new Customer();
-
-        private Customer _newCustomer;
+        private Customer _currentCustomer;
 
         private static int _count;
 
@@ -51,10 +49,6 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             if (CustomersListBox.SelectedItem == null)
             {
-                if (_currentCustomer == null)
-                {
-                    _currentCustomer = _newCustomer;
-                }
                 ClearAllTextBoxes();
                 return;
             }
@@ -66,16 +60,10 @@ namespace ObjectOrientedPractices.View.Tabs
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (CustomersListBox.SelectedItem != null ||
-                NameTextBox.Text == String.Empty ||
-                AddressTextBox.Text == String.Empty)
-            {
-                return;
-            }
+            _currentCustomer = new Customer("Customer", " ");
             _customers.Add(_currentCustomer);
-            _newCustomer = new Customer();
-            _currentCustomer = null;
-            CustomersListBox.SelectedIndex = -1;
+            CustomersListBox.SelectedItem = _currentCustomer;
+            UpdateCustomersListBox();
         }
 
         private void AddListButton_Click(object sender, EventArgs e)
@@ -83,11 +71,9 @@ namespace ObjectOrientedPractices.View.Tabs
             for (int i = 0; i < 10; i++)
             {
                 _count++;
-                _currentCustomer = new Customer("Customer " + _count.ToString(), _count.ToString());
+                _currentCustomer = new Customer("Customer " + _count.ToString()," ");
                 _customers.Add(_currentCustomer);
             }
-            _newCustomer = new Customer();
-            _currentCustomer = null;
             CustomersListBox.SelectedIndex = -1;
         }
 
@@ -97,15 +83,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 return;
             }
-            _currentCustomer = null;
             _customers.RemoveAt(CustomersListBox.SelectedIndex);
-            CustomersListBox.SelectedIndex = -1;
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            UpdateCustomersListBox();
-            _currentCustomer = null;
             CustomersListBox.SelectedIndex = -1;
         }
 
@@ -115,6 +93,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 NameTextBox.BackColor = Color.White;
                 _currentCustomer.Fullname = NameTextBox.Text.ToString();
+                UpdateCustomersListBox();
             }
             catch
             {
