@@ -99,14 +99,5 @@ namespace ObjectOrientedPractices.Model
             Info = info;
             Cost = cost;
         }
-
-        /// <summary>
-        /// Создает экземпляр класса <see cref="Item"/> без инициализации.
-        /// Класс контролирует уникальность присвоенного id.
-        /// </summary>
-        public Item()
-        {
-            _id = IdGenerator.GetNextId();
-        }
     }
 }

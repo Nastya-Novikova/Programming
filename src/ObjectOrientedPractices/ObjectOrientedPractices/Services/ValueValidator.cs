@@ -36,7 +36,7 @@ namespace ObjectOrientedPractices.Services
         /// <param name="max">Максимум интервала.</param>
         /// <param name="property">Имя свойства или объекта, которое подлежит проверке.</param>
         /// <exception cref="ArgumentException">Возникает, если проверяемое число не принадлежит интервалу.</exception>
-        public static void AssertValueInRange(double value, int min, int max, [CallerMemberName] string property = "")
+        public static void AssertValueInRange(double value, double min, double max, [CallerMemberName] string property = "")
         {
             if (value < min || value > max)
             {
