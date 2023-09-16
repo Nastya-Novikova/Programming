@@ -30,7 +30,7 @@ namespace ObjectOrientedPractices.View.Tabs
         /// <summary>
         /// Счетчик элементов.
         /// </summary>
-        private static int _count;
+        private int _count;
 
         /// <summary>
         /// Создает объект типа <see cref="CustomersTab"/>.

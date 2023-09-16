@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractices.Model;
+﻿using Microsoft.VisualBasic;
+using ObjectOrientedPractices.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,15 +30,34 @@ namespace ObjectOrientedPractices.View.Tabs
         /// <summary>
         /// Счетчик элементов.
         /// </summary>
-        private static int _count;
+        private int  _count;
 
+        /// <summary>
+        /// Элемент перечисления <see cref="Category"/>.
+        /// </summary>
+        private Category _category;
+  
         /// <summary>
         /// Создает объект типа <see cref="ItemsTab"/>.
         /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
+            FillCategoryComboBox();
             FillItemsListBox();
+        }
+
+        /// <summary>
+        /// Заполняет CategoryComboBox значениями <see cref="Category"/>.
+        /// </summary>
+        private void FillCategoryComboBox()
+        {
+            var categoryValues = Enum.GetValues(typeof(Category));
+            _category = (Category)categoryValues.GetValue(0);
+            foreach (var category in categoryValues)
+            {
+                CategoryComboBox.Items.Add(category);
+            }
         }
 
         /// <summary>
@@ -68,6 +88,7 @@ namespace ObjectOrientedPractices.View.Tabs
             CostTextBox.Clear();
             NameTextBox.Clear();
             DescriptionTextBox.Clear();
+            CategoryComboBox.SelectedItem = null;
         }
 
         /// <summary>
@@ -87,6 +108,7 @@ namespace ObjectOrientedPractices.View.Tabs
             NameTextBox.Text = _currentItem.Name.ToString();
             CostTextBox.Text = _currentItem.Cost.ToString();
             DescriptionTextBox.Text = _currentItem.Info.ToString();
+            CategoryComboBox.Text = _currentItem.Category.ToString();
         }
 
         /// <summary>
@@ -94,7 +116,8 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _currentItem = new Item("Item", " ", 0);
+            var categoryValues = Enum.GetValues(typeof(Category));
+            _currentItem = new Item("Item", " ", 0, _category);
             _items.Add(_currentItem);
             ItemsListBox.SelectedItem = _currentItem;
             UpdateItemsListBox();
@@ -108,7 +131,7 @@ namespace ObjectOrientedPractices.View.Tabs
             for (int i = 0; i < 10; i++)
             {
                 _count++;
-                _currentItem = new Item($"Item {_count}", " ", _count);
+                _currentItem = new Item($"Item {_count}", " ", _count, _category);
                 _items.Add(_currentItem);
             }
             ItemsListBox.SelectedIndex = -1;
@@ -200,9 +223,29 @@ namespace ObjectOrientedPractices.View.Tabs
         }
 
         /// <summary>
+        /// Записывает в поле <see cref="Item.Category"/> выбранное значение.
+        /// </summary>
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ItemsListBox.SelectedItem == null)
+            {
+                return;
+            }
+            _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
+        }
+
+        /// <summary>
         /// Контролирует ввод в IdTextBox.
         /// </summary>
         private void IdTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Контролирует ввод в комбобокс.
+        /// </summary>
+        private void CategoryComboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
