@@ -105,9 +105,9 @@ namespace ObjectOrientedPractices.View.Tabs
             }
             _currentItem = _items[ItemsListBox.SelectedIndex];
             IdTextBox.Text = _currentItem.Id.ToString();
-            NameTextBox.Text = _currentItem.Name.ToString();
+            NameTextBox.Text = _currentItem.Name;
             CostTextBox.Text = _currentItem.Cost.ToString();
-            DescriptionTextBox.Text = _currentItem.Info.ToString();
+            DescriptionTextBox.Text = _currentItem.Info;
             CategoryComboBox.Text = _currentItem.Category.ToString();
         }
 
@@ -248,6 +248,14 @@ namespace ObjectOrientedPractices.View.Tabs
         private void CategoryComboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        /// <summary>
+        /// Контролирует обновление листбокса.
+        /// </summary>
+        private void ItemsListBox_Leave(object sender, EventArgs e)
+        {
+            ItemsListBox.Update();
         }
     }
 }

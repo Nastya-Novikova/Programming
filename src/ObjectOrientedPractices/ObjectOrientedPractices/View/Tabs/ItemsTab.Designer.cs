@@ -147,6 +147,7 @@
             this.ItemsListBox.Size = new System.Drawing.Size(351, 399);
             this.ItemsListBox.TabIndex = 0;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
+            this.ItemsListBox.Leave += new System.EventHandler(this.ItemsListBox_Leave);
             // 
             // SelectedItemGroupBox
             // 
