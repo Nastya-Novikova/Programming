@@ -94,7 +94,9 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _currentCustomer = new Customer("Customer", new Address());
+            _currentCustomer = new Customer("Customer", new Address(100000, "Country",
+                                                                    "City", "Street", 
+                                                                    "Building", "Apartment"));
             _customers.Add(_currentCustomer);
             CustomersListBox.SelectedItem = _currentCustomer;
             UpdateCustomersListBox();

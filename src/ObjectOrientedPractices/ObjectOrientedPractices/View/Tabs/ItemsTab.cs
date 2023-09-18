@@ -17,6 +17,11 @@ namespace ObjectOrientedPractices.View.Tabs
     /// </summary>
     public partial class ItemsTab : UserControl
     {
+        public BindingList<Item> Items
+        {
+            get { return _items; }
+            set { _items = value; }
+        }
         /// <summary>
         /// Коллекция объектов типа <see cref="Item"/>.
         /// </summary>

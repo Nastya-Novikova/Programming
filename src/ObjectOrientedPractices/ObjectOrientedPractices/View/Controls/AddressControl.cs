@@ -28,7 +28,7 @@ namespace ObjectOrientedPractices.View.Controls
         /// </summary>
         public Address Address
         {
-            get => _address;
+            get { return _address; }
             set
             {
                 _address = value;
@@ -62,13 +62,16 @@ namespace ObjectOrientedPractices.View.Controls
         /// Метод ожидает передачу значения не равного null, иначе очищает все текстбоксы.
         /// </summary>
         private void FillAllTextBoxes()
-        { 
-            if (Address == null || Address.Index == 0)
+        {
+            if (Address == null)
             {
                 ClearAllTextBoxes();
                 return;
             }
-            IndexTextBox.Text = Address.Index.ToString();
+            if (Address.Index != 0)
+            {
+                IndexTextBox.Text = Address.Index.ToString();
+            }
             CountryTextBox.Text = Address.Country;
             CityTextBox.Text = Address.City;
             StreetTextBox.Text = Address.Street;

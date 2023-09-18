@@ -73,7 +73,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ApartmentLabel.AutoSize = true;
             this.ApartmentLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ApartmentLabel.Location = new System.Drawing.Point(231, 137);
+            this.ApartmentLabel.Location = new System.Drawing.Point(241, 137);
             this.ApartmentLabel.Name = "ApartmentLabel";
             this.ApartmentLabel.Size = new System.Drawing.Size(83, 20);
             this.ApartmentLabel.TabIndex = 11;
@@ -176,18 +176,16 @@
             this.BuildingTextBox.Location = new System.Drawing.Point(86, 134);
             this.BuildingTextBox.Margin = new System.Windows.Forms.Padding(3, 3, 100, 3);
             this.BuildingTextBox.Name = "BuildingTextBox";
-            this.BuildingTextBox.Size = new System.Drawing.Size(125, 27);
+            this.BuildingTextBox.Size = new System.Drawing.Size(135, 27);
             this.BuildingTextBox.TabIndex = 2;
             this.BuildingTextBox.TextChanged += new System.EventHandler(this.BuildingTextBox_TextChanged);
             // 
             // ApartmentTextBox
             // 
-            this.ApartmentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.ApartmentTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ApartmentTextBox.Location = new System.Drawing.Point(314, 134);
+            this.ApartmentTextBox.Location = new System.Drawing.Point(324, 134);
             this.ApartmentTextBox.Name = "ApartmentTextBox";
-            this.ApartmentTextBox.Size = new System.Drawing.Size(125, 27);
+            this.ApartmentTextBox.Size = new System.Drawing.Size(135, 27);
             this.ApartmentTextBox.TabIndex = 1;
             this.ApartmentTextBox.TextChanged += new System.EventHandler(this.ApartmentTextBox_TextChanged);
             // 
