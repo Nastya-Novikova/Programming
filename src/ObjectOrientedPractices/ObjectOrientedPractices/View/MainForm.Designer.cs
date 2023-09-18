@@ -33,7 +33,7 @@
             this.ItemsTabPage = new System.Windows.Forms.TabPage();
             this.ItemsTab = new ObjectOrientedPractices.View.Tabs.ItemsTab();
             this.CustomersTabPage = new System.Windows.Forms.TabPage();
-            this.customersTab1 = new ObjectOrientedPractices.View.Tabs.CustomersTab();
+            this.CustomersTab = new ObjectOrientedPractices.View.Tabs.CustomersTab();
             this.TabControl.SuspendLayout();
             this.ItemsTabPage.SuspendLayout();
             this.CustomersTabPage.SuspendLayout();
@@ -73,7 +73,7 @@
             // 
             // CustomersTabPage
             // 
-            this.CustomersTabPage.Controls.Add(this.customersTab1);
+            this.CustomersTabPage.Controls.Add(this.CustomersTab);
             this.CustomersTabPage.Location = new System.Drawing.Point(4, 29);
             this.CustomersTabPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CustomersTabPage.Name = "CustomersTabPage";
@@ -83,14 +83,14 @@
             this.CustomersTabPage.Text = "Customers";
             this.CustomersTabPage.UseVisualStyleBackColor = true;
             // 
-            // customersTab1
+            // CustomersTab
             // 
-            this.customersTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customersTab1.Location = new System.Drawing.Point(3, 4);
-            this.customersTab1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.customersTab1.Name = "customersTab1";
-            this.customersTab1.Size = new System.Drawing.Size(900, 559);
-            this.customersTab1.TabIndex = 0;
+            this.CustomersTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomersTab.Location = new System.Drawing.Point(3, 4);
+            this.CustomersTab.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.CustomersTab.Name = "CustomersTab";
+            this.CustomersTab.Size = new System.Drawing.Size(900, 559);
+            this.CustomersTab.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -115,6 +115,6 @@
         private TabPage ItemsTabPage;
         private TabPage CustomersTabPage;
         private View.Tabs.ItemsTab ItemsTab;
-        private View.Tabs.CustomersTab customersTab1;
+        private View.Tabs.CustomersTab CustomersTab;
     }
 }

@@ -19,9 +19,18 @@ namespace ObjectOrientedPractices.View.Tabs
     public partial class CustomersTab : UserControl
     {
         /// <summary>
+        /// Возвращает и задает лист покупателей.
+        /// </summary>
+        public BindingList<Customer> Customers
+        {
+            get { return _customers; }
+            set { _customers = value; }
+        }
+
+        /// <summary>
         /// Коллекция объектов типа <see cref="Customer"/>.
         /// </summary>
-        private BindingList<Customer> _customers = new ();
+        private BindingList<Customer> _customers;
 
         /// <summary>
         /// Объект класса <see cref="Customer"/>.
@@ -34,7 +43,7 @@ namespace ObjectOrientedPractices.View.Tabs
         private int _count;
 
         /// <summary>
-        /// Создает объект типа <see cref="CustomersTab"/>.
+        /// Создает объект класса <see cref="CustomersTab"/>.
         /// </summary>
         public CustomersTab()
         {
@@ -48,7 +57,7 @@ namespace ObjectOrientedPractices.View.Tabs
         private void FillCustomersListBox()
         {
             CustomersListBox.DataSource = null;
-            CustomersListBox.DataSource = _customers;
+            CustomersListBox.DataSource = Customers;
             CustomersListBox.DisplayMember = nameof(Customer.Fullname);
         }
 
@@ -83,7 +92,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 ClearAllTextBoxes();
                 return;
             }
-            _currentCustomer = _customers[CustomersListBox.SelectedIndex];
+            _currentCustomer = Customers[CustomersListBox.SelectedIndex];
             IdTextBox.Text = _currentCustomer.Id.ToString();
             NameTextBox.Text = _currentCustomer.Fullname.ToString();
             AddressControl.Address = _currentCustomer.Address;
@@ -97,9 +106,9 @@ namespace ObjectOrientedPractices.View.Tabs
             _currentCustomer = new Customer("Customer", new Address(100000, "Country",
                                                                     "City", "Street", 
                                                                     "Building", "Apartment"));
-            _customers.Add(_currentCustomer);
+            Customers.Add(_currentCustomer);
             CustomersListBox.SelectedItem = _currentCustomer;
-            UpdateCustomersListBox();
+            FillCustomersListBox();
         }
 
         /// <summary>
@@ -110,9 +119,13 @@ namespace ObjectOrientedPractices.View.Tabs
             for (int i = 0; i < 10; i++)
             {
                 _count++;
-                _currentCustomer = new Customer($"Customer {_count}", new Address());
-                _customers.Add(_currentCustomer);
+                _currentCustomer = new Customer($"Customer {_count}", 
+                                                new Address(100000, "Country",
+                                                            "City", "Street",
+                                                            "Building", "Apartment"));
+                Customers.Add(_currentCustomer);
             }
+            FillCustomersListBox();
             CustomersListBox.SelectedIndex = -1;
         }
 
@@ -126,7 +139,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 return;
             }
-            _customers.RemoveAt(CustomersListBox.SelectedIndex);
+            Customers.RemoveAt(CustomersListBox.SelectedIndex);
             CustomersListBox.SelectedIndex = -1;
         }
 

@@ -17,6 +17,9 @@ namespace ObjectOrientedPractices.View.Tabs
     /// </summary>
     public partial class ItemsTab : UserControl
     {
+        /// <summary>
+        /// Возвращает и задает лист товаров.
+        /// </summary>
         public BindingList<Item> Items
         {
             get { return _items; }
@@ -25,7 +28,7 @@ namespace ObjectOrientedPractices.View.Tabs
         /// <summary>
         /// Коллекция объектов типа <see cref="Item"/>.
         /// </summary>
-        private BindingList<Item> _items = new();
+        private BindingList<Item> _items;
 
         /// <summary>
         /// Объект класса <see cref="Item"/>.
@@ -43,7 +46,7 @@ namespace ObjectOrientedPractices.View.Tabs
         private Category _category;
   
         /// <summary>
-        /// Создает объект типа <see cref="ItemsTab"/>.
+        /// Создает объект класса <see cref="ItemsTab"/>.
         /// </summary>
         public ItemsTab()
         {
@@ -71,7 +74,7 @@ namespace ObjectOrientedPractices.View.Tabs
         private void FillItemsListBox()
         {
             ItemsListBox.DataSource = null;
-            ItemsListBox.DataSource = _items;
+            ItemsListBox.DataSource = Items;
             ItemsListBox.DisplayMember = nameof(Item.Name);
         }
 
@@ -108,7 +111,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 ClearAllTextBoxes();
                 return;
             }
-            _currentItem = _items[ItemsListBox.SelectedIndex];
+            _currentItem = Items[ItemsListBox.SelectedIndex];
             IdTextBox.Text = _currentItem.Id.ToString();
             NameTextBox.Text = _currentItem.Name;
             CostTextBox.Text = _currentItem.Cost.ToString();
@@ -123,11 +126,11 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             var categoryValues = Enum.GetValues(typeof(Category));
             _currentItem = new Item("Item", " ", 0, _category);
-            _items.Add(_currentItem);
+            Items.Add(_currentItem);
             ItemsListBox.SelectedItem = _currentItem;
-            UpdateItemsListBox();
+            FillItemsListBox();
         }
-
+   
         /// <summary>
         /// Создает несколько объектов класса <see cref="Item"/> и добавляет их в список. 
         /// </summary>
@@ -137,8 +140,9 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 _count++;
                 _currentItem = new Item($"Item {_count}", " ", _count, _category);
-                _items.Add(_currentItem);
+                Items.Add(_currentItem);
             }
+            FillItemsListBox();
             ItemsListBox.SelectedIndex = -1;
         }
 
@@ -152,7 +156,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 return;
             }
-            _items.RemoveAt(ItemsListBox.SelectedIndex);
+            Items.RemoveAt(ItemsListBox.SelectedIndex);
             ItemsListBox.SelectedIndex = -1;
         }
 
