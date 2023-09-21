@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.AddressGroupBox = new System.Windows.Forms.GroupBox();
             this.ApartmentLabel = new System.Windows.Forms.Label();
             this.BuildingLabel = new System.Windows.Forms.Label();
@@ -41,6 +42,7 @@
             this.BuildingTextBox = new System.Windows.Forms.TextBox();
             this.ApartmentTextBox = new System.Windows.Forms.TextBox();
             this.IndexTextBox = new System.Windows.Forms.TextBox();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.AddressGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -229,5 +231,6 @@
         private Label CityLabel;
         private Label CountryLabel;
         private Label IndexLabel;
+        private ToolTip ToolTip;
     }
 }

@@ -92,6 +92,7 @@ namespace ObjectOrientedPractices.View.Controls
                     return;
                 }
                 IndexTextBox.BackColor = Color.White;
+                ToolTip.SetToolTip(IndexTextBox, null);
                 Address.Index = Int32.Parse(IndexTextBox.Text);
             }
             catch
@@ -99,6 +100,7 @@ namespace ObjectOrientedPractices.View.Controls
                 if (IndexTextBox.Text != String.Empty)
                 {
                     IndexTextBox.BackColor = Color.LightPink;
+                    ToolTip.SetToolTip(IndexTextBox, "Индекс - 6 цифр.");
                 }
             }
         }
@@ -117,6 +119,7 @@ namespace ObjectOrientedPractices.View.Controls
                     return;
                 }
                 CountryTextBox.BackColor = Color.White;
+                ToolTip.SetToolTip(CountryTextBox, null);
                 Address.Country = CountryTextBox.Text;
             }
             catch
@@ -124,6 +127,7 @@ namespace ObjectOrientedPractices.View.Controls
                 if (CountryTextBox.Text != String.Empty)
                 {
                     CountryTextBox.BackColor = Color.LightPink;
+                    ToolTip.SetToolTip(CountryTextBox, "До 50 символов.");
                 }
             }
         }
@@ -141,6 +145,7 @@ namespace ObjectOrientedPractices.View.Controls
                     return;
                 }
                 CityTextBox.BackColor = Color.White;
+                ToolTip.SetToolTip(CityTextBox, null);
                 Address.City = CityTextBox.Text; 
             }
             catch
@@ -148,6 +153,7 @@ namespace ObjectOrientedPractices.View.Controls
                 if (CityTextBox.Text != String.Empty)
                 {
                     CityTextBox.BackColor = Color.LightPink;
+                    ToolTip.SetToolTip(CityTextBox, "До 50 символов.");
                 }
             }
         }
@@ -165,6 +171,7 @@ namespace ObjectOrientedPractices.View.Controls
                     return;
                 }
                 StreetTextBox.BackColor = Color.White;
+                ToolTip.SetToolTip(StreetTextBox, null);
                 Address.Street = StreetTextBox.Text;
             }
             catch
@@ -172,6 +179,7 @@ namespace ObjectOrientedPractices.View.Controls
                 if (StreetTextBox.Text != String.Empty)
                 {
                     StreetTextBox.BackColor = Color.LightPink;
+                    ToolTip.SetToolTip(StreetTextBox, "До 100 символов.");
                 }
             }
         }
@@ -189,6 +197,7 @@ namespace ObjectOrientedPractices.View.Controls
                     return;
                 }
                 BuildingTextBox.BackColor = Color.White;
+                ToolTip.SetToolTip(BuildingTextBox, null);
                 Address.Building = BuildingTextBox.Text;
             }
             catch
@@ -196,6 +205,7 @@ namespace ObjectOrientedPractices.View.Controls
                 if (BuildingTextBox.Text != String.Empty)
                 {
                     BuildingTextBox.BackColor = Color.LightPink;
+                    ToolTip.SetToolTip(BuildingTextBox, "До 10 символов.");
                 }
             }
         }
@@ -213,6 +223,7 @@ namespace ObjectOrientedPractices.View.Controls
                     return;
                 }
                 ApartmentTextBox.BackColor = Color.White;
+                ToolTip.SetToolTip(ApartmentTextBox, null);
                 Address.Apartment = ApartmentTextBox.Text;
             }
             catch
@@ -220,6 +231,7 @@ namespace ObjectOrientedPractices.View.Controls
                 if (ApartmentTextBox.Text != String.Empty)
                 {
                     ApartmentTextBox.BackColor = Color.LightPink;
+                    ToolTip.SetToolTip(ApartmentTextBox, "До 10 символов.");
                 }
             }
         }
