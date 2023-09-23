@@ -12,12 +12,14 @@ namespace ObjectOrientedPractices.Model
     public enum Category
     {
         Food,
+        // Бытовая химия.
         HouseholdChemistry,
+        // Посуда.
         Tableware,
         Electronics,
         BeautyAndHealth,
         PetProducts,
-        ClosingAndShoes,
+        ClothingAndShoes,
         ProductsForChildren
     }
 }
