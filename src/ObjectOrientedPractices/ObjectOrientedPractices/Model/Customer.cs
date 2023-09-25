@@ -28,6 +28,11 @@ namespace ObjectOrientedPractices.Model
         private Address _address;
 
         /// <summary>
+        /// Корзина товаров.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
         /// Возвращает уникальный номер покупателя.
         /// </summary>
         public int Id => _id;
@@ -56,12 +61,15 @@ namespace ObjectOrientedPractices.Model
         {
             get => _address;
             set => _address = value;
-/*            {
-                int min = 1;
-                int max = 500;
-                ValueValidator.AssertStringOnLength(value, min, max);
-                _address = value;
-            }*/
+        }
+
+        /// <summary>
+        /// Возвращает и задает корзину товаров.
+        /// </summary>
+        public Cart Cart
+        {
+            get => _cart;
+            set => _cart = value;
         }
 
         /// <summary>
@@ -75,6 +83,7 @@ namespace ObjectOrientedPractices.Model
             Fullname = fullname;
             Address = new Address(100000, "Country","City", "Street",
                                           "Building", "Apartment");
+            Cart = new Cart();
         }
     }
 }
