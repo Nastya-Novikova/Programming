@@ -25,7 +25,7 @@ namespace ObjectOrientedPractices.Model
         /// <summary>
         /// Адрес доставки.
         /// </summary>
-        private string _address;
+        private Address _address;
 
         /// <summary>
         /// Возвращает уникальный номер покупателя.
@@ -52,29 +52,29 @@ namespace ObjectOrientedPractices.Model
         /// Возвращает и задает адрес доставки.
         /// Должен быть от 1 до 500 символов.
         /// </summary>
-        public string Address
+        public Address Address
         {
             get => _address;
-            set
-            {
+            set => _address = value;
+/*            {
                 int min = 1;
                 int max = 500;
                 ValueValidator.AssertStringOnLength(value, min, max);
                 _address = value;
-            }
+            }*/
         }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Имя. Должно быть от 1 до 200 символов.</param>
-        /// <param name="address">Адрес. Должен быть от 1 до 500 символов.</param>
         /// Класс контролирует уникальность присвоенного id.
-        public Customer(string fullname, string address)
+        public Customer(string fullname)
         {
             _id = IdGenerator.GetNextId();
             Fullname = fullname;
-            Address = address;
+            Address = new Address(100000, "Country","City", "Street",
+                                          "Building", "Apartment");
         }
     }
 }

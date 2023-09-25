@@ -36,6 +36,8 @@
             this.AddListButton = new System.Windows.Forms.Button();
             this.ItemsListBox = new System.Windows.Forms.ListBox();
             this.SelectedItemGroupBox = new System.Windows.Forms.GroupBox();
+            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.CategoryLabel = new System.Windows.Forms.Label();
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.CostLabel = new System.Windows.Forms.Label();
@@ -99,9 +101,9 @@
             // 
             this.AddButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AddButton.Location = new System.Drawing.Point(91, 3);
+            this.AddButton.Location = new System.Drawing.Point(120, 3);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(82, 53);
+            this.AddButton.Size = new System.Drawing.Size(111, 53);
             this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -111,9 +113,9 @@
             // 
             this.RemoveButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RemoveButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.RemoveButton.Location = new System.Drawing.Point(179, 3);
+            this.RemoveButton.Location = new System.Drawing.Point(237, 3);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(82, 53);
+            this.RemoveButton.Size = new System.Drawing.Size(113, 53);
             this.RemoveButton.TabIndex = 3;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
@@ -125,7 +127,7 @@
             this.AddListButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.AddListButton.Location = new System.Drawing.Point(3, 3);
             this.AddListButton.Name = "AddListButton";
-            this.AddListButton.Size = new System.Drawing.Size(82, 53);
+            this.AddListButton.Size = new System.Drawing.Size(111, 53);
             this.AddListButton.TabIndex = 9;
             this.AddListButton.Text = "Add List";
             this.AddListButton.UseVisualStyleBackColor = true;
@@ -145,10 +147,13 @@
             this.ItemsListBox.Size = new System.Drawing.Size(351, 399);
             this.ItemsListBox.TabIndex = 0;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
+            this.ItemsListBox.Leave += new System.EventHandler(this.ItemsListBox_Leave);
             // 
             // SelectedItemGroupBox
             // 
             this.SelectedItemGroupBox.BackColor = System.Drawing.SystemColors.Window;
+            this.SelectedItemGroupBox.Controls.Add(this.CategoryComboBox);
+            this.SelectedItemGroupBox.Controls.Add(this.CategoryLabel);
             this.SelectedItemGroupBox.Controls.Add(this.DescriptionLabel);
             this.SelectedItemGroupBox.Controls.Add(this.NameLabel);
             this.SelectedItemGroupBox.Controls.Add(this.CostLabel);
@@ -167,11 +172,33 @@
             this.SelectedItemGroupBox.TabStop = false;
             this.SelectedItemGroupBox.Text = "Selected Item";
             // 
+            // CategoryComboBox
+            // 
+            this.CategoryComboBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Location = new System.Drawing.Point(85, 117);
+            this.CategoryComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CategoryComboBox.Name = "CategoryComboBox";
+            this.CategoryComboBox.Size = new System.Drawing.Size(180, 28);
+            this.CategoryComboBox.TabIndex = 9;
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
+            this.CategoryComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CategoryComboBox_KeyPress);
+            // 
+            // CategoryLabel
+            // 
+            this.CategoryLabel.AutoSize = true;
+            this.CategoryLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CategoryLabel.Location = new System.Drawing.Point(7, 125);
+            this.CategoryLabel.Name = "CategoryLabel";
+            this.CategoryLabel.Size = new System.Drawing.Size(72, 20);
+            this.CategoryLabel.TabIndex = 8;
+            this.CategoryLabel.Text = "Category:";
+            // 
             // DescriptionLabel
             // 
             this.DescriptionLabel.AutoSize = true;
             this.DescriptionLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DescriptionLabel.Location = new System.Drawing.Point(6, 259);
+            this.DescriptionLabel.Location = new System.Drawing.Point(6, 294);
             this.DescriptionLabel.Name = "DescriptionLabel";
             this.DescriptionLabel.Size = new System.Drawing.Size(88, 20);
             this.DescriptionLabel.TabIndex = 7;
@@ -181,7 +208,7 @@
             // 
             this.NameLabel.AutoSize = true;
             this.NameLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.NameLabel.Location = new System.Drawing.Point(6, 128);
+            this.NameLabel.Location = new System.Drawing.Point(6, 163);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(52, 20);
             this.NameLabel.TabIndex = 6;
@@ -212,7 +239,7 @@
             this.DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DescriptionTextBox.Location = new System.Drawing.Point(6, 283);
+            this.DescriptionTextBox.Location = new System.Drawing.Point(6, 318);
             this.DescriptionTextBox.Multiline = true;
             this.DescriptionTextBox.Name = "DescriptionTextBox";
             this.DescriptionTextBox.Size = new System.Drawing.Size(435, 151);
@@ -224,7 +251,7 @@
             this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.NameTextBox.Location = new System.Drawing.Point(6, 151);
+            this.NameTextBox.Location = new System.Drawing.Point(6, 186);
             this.NameTextBox.Multiline = true;
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(435, 92);
@@ -234,7 +261,7 @@
             // CostTextBox
             // 
             this.CostTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CostTextBox.Location = new System.Drawing.Point(62, 85);
+            this.CostTextBox.Location = new System.Drawing.Point(85, 82);
             this.CostTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CostTextBox.Name = "CostTextBox";
             this.CostTextBox.Size = new System.Drawing.Size(180, 27);
@@ -244,7 +271,7 @@
             // IdTextBox
             // 
             this.IdTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.IdTextBox.Location = new System.Drawing.Point(62, 47);
+            this.IdTextBox.Location = new System.Drawing.Point(85, 47);
             this.IdTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.Size = new System.Drawing.Size(180, 27);
@@ -285,5 +312,7 @@
         private TextBox CostTextBox;
         private TextBox IdTextBox;
         private Button AddListButton;
+        private ComboBox CategoryComboBox;
+        private Label CategoryLabel;
     }
 }

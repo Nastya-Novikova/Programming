@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection.Metadata.Ecma335;
+using ObjectOrientedPractices.View.Controls;
 
 namespace ObjectOrientedPractices.View.Tabs
 {
@@ -18,9 +19,18 @@ namespace ObjectOrientedPractices.View.Tabs
     public partial class CustomersTab : UserControl
     {
         /// <summary>
+        /// Возвращает и задает лист покупателей.
+        /// </summary>
+        public BindingList<Customer> Customers
+        {
+            get { return _customers; }
+            set { _customers = value; }
+        }
+
+        /// <summary>
         /// Коллекция объектов типа <see cref="Customer"/>.
         /// </summary>
-        private BindingList<Customer> _customers = new ();
+        private BindingList<Customer> _customers;
 
         /// <summary>
         /// Объект класса <see cref="Customer"/>.
@@ -33,7 +43,7 @@ namespace ObjectOrientedPractices.View.Tabs
         private int _count;
 
         /// <summary>
-        /// Создает объект типа <see cref="CustomersTab"/>.
+        /// Создает объект класса <see cref="CustomersTab"/>.
         /// </summary>
         public CustomersTab()
         {
@@ -47,7 +57,7 @@ namespace ObjectOrientedPractices.View.Tabs
         private void FillCustomersListBox()
         {
             CustomersListBox.DataSource = null;
-            CustomersListBox.DataSource = _customers;
+            CustomersListBox.DataSource = Customers;
             CustomersListBox.DisplayMember = nameof(Customer.Fullname);
         }
 
@@ -67,7 +77,7 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             IdTextBox.Clear();
             NameTextBox.Clear();
-            AddressTextBox.Clear();
+            AddressControl.Address = null;
         }
 
         /// <summary>
@@ -82,10 +92,10 @@ namespace ObjectOrientedPractices.View.Tabs
                 ClearAllTextBoxes();
                 return;
             }
-            _currentCustomer = _customers[CustomersListBox.SelectedIndex];
+            _currentCustomer = Customers[CustomersListBox.SelectedIndex];
             IdTextBox.Text = _currentCustomer.Id.ToString();
             NameTextBox.Text = _currentCustomer.Fullname.ToString();
-            AddressTextBox.Text = _currentCustomer.Address.ToString();
+            AddressControl.Address = _currentCustomer.Address;
         }
 
         /// <summary>
@@ -93,10 +103,10 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _currentCustomer = new Customer("Customer", " ");
-            _customers.Add(_currentCustomer);
+            _currentCustomer = new Customer("Customer");
+            Customers.Add(_currentCustomer);
             CustomersListBox.SelectedItem = _currentCustomer;
-            UpdateCustomersListBox();
+            FillCustomersListBox();
         }
 
         /// <summary>
@@ -107,9 +117,10 @@ namespace ObjectOrientedPractices.View.Tabs
             for (int i = 0; i < 10; i++)
             {
                 _count++;
-                _currentCustomer = new Customer($"Customer {_count}", " ");
-                _customers.Add(_currentCustomer);
+                _currentCustomer = new Customer($"Customer {_count}"); 
+                Customers.Add(_currentCustomer);
             }
+            FillCustomersListBox();
             CustomersListBox.SelectedIndex = -1;
         }
 
@@ -123,7 +134,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 return;
             }
-            _customers.RemoveAt(CustomersListBox.SelectedIndex);
+            Customers.RemoveAt(CustomersListBox.SelectedIndex);
             CustomersListBox.SelectedIndex = -1;
         }
 
@@ -139,7 +150,11 @@ namespace ObjectOrientedPractices.View.Tabs
             try
             {
                 NameTextBox.BackColor = Color.White;
-                _currentCustomer.Fullname = NameTextBox.Text.ToString();
+                if (_currentCustomer.Fullname == NameTextBox.Text)
+                {
+                    return;
+                }
+                _currentCustomer.Fullname = NameTextBox.Text;
                 UpdateCustomersListBox();
             }
             catch
@@ -147,29 +162,6 @@ namespace ObjectOrientedPractices.View.Tabs
                 if (NameTextBox.Text != String.Empty)
                 {
                     NameTextBox.BackColor = Color.LightPink;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Записывает в поле <see cref="Customer.Address"/> введенное значение.
-        /// </summary>
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (CustomersListBox.SelectedItem == null)
-            {
-                return;
-            }
-            try
-            {
-                AddressTextBox.BackColor = Color.White;
-                _currentCustomer.Address = AddressTextBox.Text.ToString();
-            }
-            catch
-            {
-                if (AddressTextBox.Text != String.Empty)
-                {
-                    AddressTextBox.BackColor = Color.LightPink;
                 }
             }
         }
