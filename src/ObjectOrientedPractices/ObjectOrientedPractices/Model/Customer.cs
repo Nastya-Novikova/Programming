@@ -68,13 +68,13 @@ namespace ObjectOrientedPractices.Model
         /// Создает экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Имя. Должно быть от 1 до 200 символов.</param>
-        /// <param name="address">Адрес.</param>
         /// Класс контролирует уникальность присвоенного id.
-        public Customer(string fullname, Address address)
+        public Customer(string fullname)
         {
             _id = IdGenerator.GetNextId();
             Fullname = fullname;
-            Address = address;
+            Address = new Address(100000, "Country","City", "Street",
+                                          "Building", "Apartment");
         }
     }
 }
