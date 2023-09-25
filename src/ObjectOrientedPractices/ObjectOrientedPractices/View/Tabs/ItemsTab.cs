@@ -124,7 +124,6 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var categoryValues = Enum.GetValues(typeof(Category));
             _currentItem = new Item("Item", " ", 0, _category);
             Items.Add(_currentItem);
             ItemsListBox.SelectedItem = _currentItem;
