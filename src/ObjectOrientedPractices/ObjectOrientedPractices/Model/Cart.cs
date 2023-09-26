@@ -49,9 +49,10 @@ namespace ObjectOrientedPractices.Model
         /// <summary>
         /// Создает экземпляр класса <see cref="Cart"/>.
         /// </summary>
-        public Cart()
+        /// <param name="items">Список товаров.</param>
+        public Cart(BindingList<Item> items)
         {
-
+            Items = items;
         }
     }
 }

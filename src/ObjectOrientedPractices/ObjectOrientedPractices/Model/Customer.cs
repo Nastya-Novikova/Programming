@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,11 @@ namespace ObjectOrientedPractices.Model
         /// Корзина товаров.
         /// </summary>
         private Cart _cart;
+
+        /// <summary>
+        /// Список заказов.
+        /// </summary>
+        private BindingList<Order> _orders;
 
         /// <summary>
         /// Возвращает уникальный номер покупателя.
@@ -73,6 +79,15 @@ namespace ObjectOrientedPractices.Model
         }
 
         /// <summary>
+        /// Возвращает и задает список заказов.
+        /// </summary>
+        public BindingList<Order> Orders
+        {
+            get => _orders;
+            set => _orders = value;
+        }
+
+        /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Имя. Должно быть от 1 до 200 символов.</param>
@@ -83,7 +98,8 @@ namespace ObjectOrientedPractices.Model
             Fullname = fullname;
             Address = new Address(100000, "Country","City", "Street",
                                           "Building", "Apartment");
-            Cart = new Cart();
+            Orders = new BindingList<Order>();
+            Cart = new Cart(new BindingList<Item>());  
         }
     }
 }
