@@ -1,5 +1,6 @@
 using ObjectOrientedPractices.Model;
 
+
 namespace ObjectOrientedPractices
 {
     public partial class MainForm : Form
@@ -17,6 +18,19 @@ namespace ObjectOrientedPractices
             InitializeComponent();
             ItemsTab.Items = _store.Items;
             CustomersTab.Customers = _store.Customers;
+            CartsTab.Items = _store.Items;
+            CartsTab.Customers = _store.Customers;
+        }
+
+        /// <summary>
+        /// Контролирует перемещение между TabControls.
+        /// </summary>
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TabControl.SelectedIndex == 2)
+            {
+                CartsTab.RefreshData();
+            }
         }
     }
 }

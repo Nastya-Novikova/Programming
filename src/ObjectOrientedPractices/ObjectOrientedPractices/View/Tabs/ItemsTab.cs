@@ -18,13 +18,10 @@ namespace ObjectOrientedPractices.View.Tabs
     public partial class ItemsTab : UserControl
     {
         /// <summary>
-        /// Возвращает и задает лист товаров.
+        /// Объект класса <see cref="Random"/>.
         /// </summary>
-        public BindingList<Item> Items
-        {
-            get { return _items; }
-            set { _items = value; }
-        }
+        private Random _random = new Random();
+
         /// <summary>
         /// Коллекция объектов типа <see cref="Item"/>.
         /// </summary>
@@ -38,13 +35,22 @@ namespace ObjectOrientedPractices.View.Tabs
         /// <summary>
         /// Счетчик элементов.
         /// </summary>
-        private int  _count;
+        private int _count;
 
         /// <summary>
         /// Элемент перечисления <see cref="Category"/>.
         /// </summary>
         private Category _category;
-  
+
+        /// <summary>
+        /// Возвращает и задает лист товаров.
+        /// </summary>
+        public BindingList<Item> Items
+        {
+            get { return _items; }
+            set { _items = value; }
+        }
+
         /// <summary>
         /// Создает объект класса <see cref="ItemsTab"/>.
         /// </summary>
@@ -124,8 +130,8 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var categoryValues = Enum.GetValues(typeof(Category));
-            _currentItem = new Item("Item", " ", 0, _category);
+            _count++;
+            _currentItem = new Item($"Item {_count}", " ", Math.Round(_random.NextDouble() * 100, 2), _category);
             Items.Add(_currentItem);
             ItemsListBox.SelectedItem = _currentItem;
             FillItemsListBox();
@@ -139,7 +145,7 @@ namespace ObjectOrientedPractices.View.Tabs
             for (int i = 0; i < 10; i++)
             {
                 _count++;
-                _currentItem = new Item($"Item {_count}", " ", _count, _category);
+                _currentItem = new Item($"Item {_count}", " ", Math.Round(_random.NextDouble() * 100, 2), _category);
                 Items.Add(_currentItem);
             }
             FillItemsListBox();
