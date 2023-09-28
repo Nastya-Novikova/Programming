@@ -184,18 +184,19 @@
             // 
             // ApartmentTextBox
             // 
+            this.ApartmentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ApartmentTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ApartmentTextBox.Location = new System.Drawing.Point(324, 134);
+            this.ApartmentTextBox.Location = new System.Drawing.Point(330, 134);
             this.ApartmentTextBox.Name = "ApartmentTextBox";
-            this.ApartmentTextBox.Size = new System.Drawing.Size(135, 27);
+            this.ApartmentTextBox.Size = new System.Drawing.Size(197, 27);
             this.ApartmentTextBox.TabIndex = 1;
             this.ApartmentTextBox.TextChanged += new System.EventHandler(this.ApartmentTextBox_TextChanged);
             // 
             // IndexTextBox
             // 
-            this.IndexTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.IndexTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.IndexTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.IndexTextBox.Location = new System.Drawing.Point(86, 35);
             this.IndexTextBox.Name = "IndexTextBox";
