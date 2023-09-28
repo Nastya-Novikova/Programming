@@ -223,13 +223,13 @@
             // CostLabel
             // 
             this.CostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CostLabel.AutoSize = true;
             this.CostLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CostLabel.Location = new System.Drawing.Point(549, 271);
+            this.CostLabel.Location = new System.Drawing.Point(3, 271);
             this.CostLabel.Name = "CostLabel";
-            this.CostLabel.Size = new System.Drawing.Size(28, 32);
+            this.CostLabel.Size = new System.Drawing.Size(574, 32);
             this.CostLabel.TabIndex = 5;
             this.CostLabel.Text = "0";
+            this.CostLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // AmountLabel
             // 

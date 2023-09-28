@@ -37,6 +37,8 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private int _count;
 
+        private double _cost;
+
         /// <summary>
         /// Элемент перечисления <see cref="Category"/>.
         /// </summary>
@@ -131,7 +133,8 @@ namespace ObjectOrientedPractices.View.Tabs
         private void AddButton_Click(object sender, EventArgs e)
         {
             _count++;
-            _currentItem = new Item($"Item {_count}", " ", Math.Round(_random.NextDouble() * 100, 2), _category);
+            _cost = Math.Round(_random.NextDouble() * 100 + 1);
+            _currentItem = new Item($"Item {_count}", " ", _cost, _category);
             Items.Add(_currentItem);
             ItemsListBox.SelectedItem = _currentItem;
             FillItemsListBox();
@@ -145,7 +148,8 @@ namespace ObjectOrientedPractices.View.Tabs
             for (int i = 0; i < 10; i++)
             {
                 _count++;
-                _currentItem = new Item($"Item {_count}", " ", Math.Round(_random.NextDouble() * 100, 2), _category);
+                _cost = Math.Round(_random.NextDouble() * 100 + 1);
+                _currentItem = new Item($"Item {_count}", " ", _cost, _category);
                 Items.Add(_currentItem);
             }
             FillItemsListBox();
