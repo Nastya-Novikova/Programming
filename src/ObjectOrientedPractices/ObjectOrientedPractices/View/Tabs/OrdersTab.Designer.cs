@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             ObjectOrientedPractices.Model.Address address2 = new ObjectOrientedPractices.Model.Address();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.SelectedOrderTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.SelectedOrderGroupBox = new System.Windows.Forms.GroupBox();
@@ -42,7 +44,7 @@
             this.ItemsGroupBox = new System.Windows.Forms.GroupBox();
             this.CostLabel = new System.Windows.Forms.Label();
             this.AmountLabel = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.ItemsListBox = new System.Windows.Forms.ListBox();
             this.AddressControl = new ObjectOrientedPractices.View.Controls.AddressControl();
             this.OrdersGroupBox = new System.Windows.Forms.GroupBox();
             this.DataGridView = new System.Windows.Forms.DataGridView();
@@ -168,7 +170,7 @@
             // 
             this.ItemsGroupBox.Controls.Add(this.CostLabel);
             this.ItemsGroupBox.Controls.Add(this.AmountLabel);
-            this.ItemsGroupBox.Controls.Add(this.listBox1);
+            this.ItemsGroupBox.Controls.Add(this.ItemsListBox);
             this.ItemsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ItemsGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ItemsGroupBox.Location = new System.Drawing.Point(3, 324);
@@ -200,22 +202,28 @@
             this.AmountLabel.TabIndex = 6;
             this.AmountLabel.Text = "Amount:";
             // 
-            // listBox1
+            // ItemsListBox
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ItemsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.IntegralHeight = false;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(3, 23);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(469, 155);
-            this.listBox1.TabIndex = 0;
+            this.ItemsListBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ItemsListBox.FormattingEnabled = true;
+            this.ItemsListBox.IntegralHeight = false;
+            this.ItemsListBox.ItemHeight = 20;
+            this.ItemsListBox.Location = new System.Drawing.Point(3, 23);
+            this.ItemsListBox.Name = "ItemsListBox";
+            this.ItemsListBox.Size = new System.Drawing.Size(469, 155);
+            this.ItemsListBox.TabIndex = 0;
             // 
             // AddressControl
             // 
+            address2.Apartment = null;
+            address2.Building = null;
+            address2.City = null;
+            address2.Country = null;
+            address2.Index = 0;
+            address2.Street = null;
             this.AddressControl.Address = address2;
             this.AddressControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddressControl.Location = new System.Drawing.Point(3, 146);
@@ -241,6 +249,14 @@
             this.DataGridView.AllowUserToDeleteRows = false;
             this.DataGridView.AllowUserToResizeColumns = false;
             this.DataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdColumn,
@@ -249,24 +265,33 @@
             this.CustomerColumn,
             this.AddressColumn,
             this.AmountColumn});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridView.DefaultCellStyle = dataGridViewCellStyle5;
             this.DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataGridView.Location = new System.Drawing.Point(3, 23);
             this.DataGridView.MultiSelect = false;
             this.DataGridView.Name = "DataGridView";
             this.DataGridView.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DataGridView.RowHeadersVisible = false;
             this.DataGridView.RowHeadersWidth = 51;
             this.DataGridView.RowTemplate.Height = 29;
             this.DataGridView.Size = new System.Drawing.Size(475, 537);
             this.DataGridView.TabIndex = 0;
+            this.DataGridView.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
             // 
             // IdColumn
             // 
@@ -276,7 +301,7 @@
             this.IdColumn.Name = "IdColumn";
             this.IdColumn.ReadOnly = true;
             this.IdColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.IdColumn.Width = 29;
+            this.IdColumn.Width = 28;
             // 
             // DateColumn
             // 
@@ -286,7 +311,7 @@
             this.DateColumn.Name = "DateColumn";
             this.DateColumn.ReadOnly = true;
             this.DateColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DateColumn.Width = 69;
+            this.DateColumn.Width = 67;
             // 
             // StatusColumn
             // 
@@ -296,7 +321,7 @@
             this.StatusColumn.Name = "StatusColumn";
             this.StatusColumn.ReadOnly = true;
             this.StatusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.StatusColumn.Width = 93;
+            this.StatusColumn.Width = 87;
             // 
             // CustomerColumn
             // 
@@ -306,7 +331,7 @@
             this.CustomerColumn.Name = "CustomerColumn";
             this.CustomerColumn.ReadOnly = true;
             this.CustomerColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CustomerColumn.Width = 136;
+            this.CustomerColumn.Width = 128;
             // 
             // AddressColumn
             // 
@@ -316,7 +341,7 @@
             this.AddressColumn.Name = "AddressColumn";
             this.AddressColumn.ReadOnly = true;
             this.AddressColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.AddressColumn.Width = 72;
+            this.AddressColumn.Width = 68;
             // 
             // AmountColumn
             // 
@@ -326,7 +351,7 @@
             this.AmountColumn.Name = "AmountColumn";
             this.AmountColumn.ReadOnly = true;
             this.AmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.AmountColumn.Width = 73;
+            this.AmountColumn.Width = 68;
             // 
             // OrdersTab
             // 
@@ -359,7 +384,7 @@
         private TextBox DateTextBox;
         private ComboBox StatusComboBox;
         private GroupBox ItemsGroupBox;
-        private ListBox listBox1;
+        private ListBox ItemsListBox;
         private GroupBox OrdersGroupBox;
         private DataGridView DataGridView;
         private DataGridViewTextBoxColumn IdColumn;

@@ -165,9 +165,11 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 return;
             }
-            Order currentOrder = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items, OrderStatus.New);
+            Order currentOrder = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items, 
+                                           OrderStatus.New, CurrentCustomer.Cart.Amount, CurrentCustomer.Id);
             CurrentCustomer.Orders.Add(currentOrder);
-            CurrentCustomer.Cart.Items.Clear();
+            CurrentCustomer.Cart.Items = new BindingList<Item>();
+            CartListBox.DataSource = CurrentCustomer.Cart.Items;
             UpdateCartAmount();
             MessageBox.Show("Заказ создан.");
         }

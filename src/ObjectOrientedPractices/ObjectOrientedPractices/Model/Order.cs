@@ -23,6 +23,10 @@ namespace ObjectOrientedPractices.Model
         /// </summary>
         private readonly DateTime _date;
 
+        private readonly double _amount;
+
+        private readonly int _customerId;
+
         /// <summary>
         /// Адрес доставки.
         /// </summary>
@@ -69,7 +73,7 @@ namespace ObjectOrientedPractices.Model
         /// <summary>
         /// Возвращает и задает статус заказа.
         /// </summary>
-        private OrderStatus Status
+        public OrderStatus Status
         {
             get => _status;
             set => _status = value;
@@ -78,22 +82,9 @@ namespace ObjectOrientedPractices.Model
         /// <summary>
         /// Возвращает общую стоимость товаров в заказе.
         /// </summary>
-        public double Amount
-        {
-            get
-            {
-                double amount = 0.0;
-                if (_items == null || _items.Count == 0)
-                {
-                    return amount;
-                }
-                for (int i = 0; i < _items.Count; i++)
-                {
-                    amount += _items[i].Cost;
-                }
-                return amount;
-            }
-        }
+        public double Amount => _amount;
+
+        public int CustomerId => _customerId;
 
         /// <summary>
         /// Создает экземпляр класса <see cref="Order"/>.
@@ -102,13 +93,15 @@ namespace ObjectOrientedPractices.Model
         /// <param name="items">Список товаров.</param>
         /// <param name="status">Статус заказа.</param>
         /// Класс контролирует уникальность присвоенного id.
-        public Order(Address address, BindingList<Item> items, OrderStatus status)
+        public Order(Address address, BindingList<Item> items, OrderStatus status, double amount, int customerId)
         {
             _id = IdGenerator.GetNextId();
             _date = DateTime.Today;
             Address = address;
             Items = items;
             Status = status;
+            _amount = amount;
+            _customerId = customerId;
         }
     }
 }

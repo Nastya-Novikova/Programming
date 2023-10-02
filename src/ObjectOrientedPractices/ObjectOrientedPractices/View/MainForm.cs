@@ -20,6 +20,7 @@ namespace ObjectOrientedPractices
             CustomersTab.Customers = _store.Customers;
             CartsTab.Items = _store.Items;
             CartsTab.Customers = _store.Customers;
+            OrdersTab.Customers= _store.Customers;
         }
 
         /// <summary>
@@ -30,6 +31,10 @@ namespace ObjectOrientedPractices
             if (TabControl.SelectedIndex == 2)
             {
                 CartsTab.RefreshData();
+            }
+            if (TabControl.SelectedIndex == 3)
+            {
+                OrdersTab.RefreshData();
             }
         }
     }
