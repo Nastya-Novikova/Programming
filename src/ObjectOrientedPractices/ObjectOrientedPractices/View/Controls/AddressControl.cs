@@ -47,7 +47,7 @@ namespace ObjectOrientedPractices.View.Controls
         /// <summary>
         /// Очищает все текстбоксы.
         /// </summary>
-        private void ClearAllTextBoxes()
+        public void ClearAllTextBoxes()
         {
             IndexTextBox.Clear();
             CountryTextBox.Clear();

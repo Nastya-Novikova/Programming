@@ -18,6 +18,9 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private BindingList<Customer> _customers;
 
+        /// <summary>
+        /// Коллекция объектов типа <see cref="Order"/>.
+        /// </summary>
         private BindingList<Order> _orders = new BindingList<Order>();
 
         /// <summary>
@@ -29,13 +32,29 @@ namespace ObjectOrientedPractices.View.Tabs
             set { _customers = value; }
         }
 
+        /// <summary>
+        /// Создает объект типа <see cref="OrdersTab"/>.
+        /// </summary>
         public OrdersTab()
         {
             InitializeComponent();
             FillStatusComboBox();
         }
 
-        public void FillStatusComboBox()
+        /// <summary>
+        /// Обновляет данные в _orders, DataGridView, очищает выбор.
+        /// </summary>
+        public void RefreshData()
+        {
+            UpdateOrders();
+            UpdateDataGridView();
+            Clear();
+        }
+
+        /// <summary>
+        /// Заполняет StatusComboBox.
+        /// </summary>
+        private void FillStatusComboBox()
         {
             var statusValues = Enum.GetValues(typeof(OrderStatus));
             foreach (var status in statusValues)
@@ -43,10 +62,10 @@ namespace ObjectOrientedPractices.View.Tabs
                 StatusComboBox.Items.Add(status);
             }
         }
-        public void RefreshData()
-        {
-            UpdateOrders();
-        }
+
+        /// <summary>
+        /// Обновляет список _orders.
+        /// </summary>
         private void UpdateOrders()
         {
             _orders.Clear(); ;
@@ -57,11 +76,18 @@ namespace ObjectOrientedPractices.View.Tabs
                     _orders.Add(order);
                 }
             }
+        }
+
+        /// <summary>
+        /// Обновляет таблицу DataGridView.
+        /// </summary>
+        private void UpdateDataGridView()
+        {
             DataGridViewRowCollection rows = DataGridView.Rows;
             if (rows.Count != _orders.Count)
             {
                 int HowManyRows = _orders.Count - rows.Count;
-                for (int i = 0; i<HowManyRows; i++)
+                for (int i = 0; i < HowManyRows; i++)
                 {
                     rows.Add();
                 }
@@ -71,7 +97,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 row.Cells[0].Value = _orders[row.Index].Id;
                 row.Cells[1].Value = _orders[row.Index].Date;
                 row.Cells[2].Value = _orders[row.Index].Status;
-                for (int i=0; i<Customers.Count;i++)
+                for (int i = 0; i < Customers.Count; i++)
                 {
                     if (Customers[i].Id == _orders[row.Index].CustomerId)
                     {
@@ -83,6 +109,11 @@ namespace ObjectOrientedPractices.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Формирует адрес в строку.
+        /// </summary>
+        /// <param name="address">Объект класса <see cref="Address"/>.</param>
+        /// <returns>Строка с адресом.</returns>
         private string GetAddress(Address address)
         {
             return $"{address.Index}, " +
@@ -93,13 +124,16 @@ namespace ObjectOrientedPractices.View.Tabs
                    $"{address.Apartment}";
         }
 
+        /// <summary>
+        /// Заполняет текстбоксы в соответствии с выбранной строкой в таблице.
+        /// </summary>
         private void DataGridView_SelectionChanged(object sender, EventArgs e)
         {
             if (DataGridView.CurrentRow.Cells[0].Value == null)
             {
-                DataGridView.ClearSelection();
                 return;
             }
+
             ItemsListBox.Items.Clear();
             ItemsListBox.DisplayMember = nameof(Item.Name);
             var orderId = (int)DataGridView.CurrentRow.Cells[0].Value;
@@ -118,6 +152,56 @@ namespace ObjectOrientedPractices.View.Tabs
                 }
             }
             CostLabel.Text = DataGridView.CurrentRow.Cells[5].Value.ToString();
+        }
+
+        /// <summary>
+        /// Обновляет статус заказа на выбранный в StatusComboBox.
+        /// </summary>
+        private void StatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DataGridView.CurrentRow == null || StatusComboBox.SelectedIndex == -1)
+            {
+                return;
+            }
+            DataGridView.CurrentRow.Cells[2].Value = StatusComboBox.SelectedItem;
+            int orderId = (int)DataGridView.CurrentRow.Cells[0].Value;
+            foreach (Order order in _orders)
+            {
+                if (orderId == order.Id)
+                {
+                    order.Status = (OrderStatus)StatusComboBox.SelectedItem;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Очищает выбор, все поля.
+        /// </summary>
+        private void Clear()
+        {
+            DataGridView.ClearSelection();
+            IdTextBox.Clear();
+            DateTextBox.Clear();
+            StatusComboBox.SelectedIndex = -1;
+            AddressControl.ClearAllTextBoxes();
+            ItemsListBox.Items.Clear();
+            CostLabel.Text = "0";
+        }
+
+        /// <summary>
+        /// Контролирует ввод в IdTextBox.
+        /// </summary>
+        private void IdTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Контролирует ввод в DateTextBox.
+        /// </summary>
+        private void DateTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

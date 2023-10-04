@@ -37,6 +37,9 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private int _count;
 
+        /// <summary>
+        /// Стоимость заказа.
+        /// </summary>
         private double _cost;
 
         /// <summary>

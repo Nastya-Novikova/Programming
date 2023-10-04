@@ -12,6 +12,8 @@ namespace ObjectOrientedPractices
 
         /// <summary>
         /// Создает объект класса <see cref="MainForm"/>.
+        /// Передает данные в <see cref="ItemsTab"/>, <see cref="CustomersTab"/>,
+        /// <see cref="CartsTab"/>, <see cref="OrdersTab"/>.
         /// </summary>
         public MainForm()
         {

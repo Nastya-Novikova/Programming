@@ -103,7 +103,8 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _currentCustomer = new Customer("Customer");
+            _count++;
+            _currentCustomer = new Customer($"Customer {_count}");
             Customers.Add(_currentCustomer);
             CustomersListBox.SelectedItem = _currentCustomer;
             FillCustomersListBox();

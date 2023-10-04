@@ -51,6 +51,9 @@ namespace ObjectOrientedPractices.View.Tabs
             set { _customers = value; }
         }
 
+        /// <summary>
+        /// Создает объект класса <see cref="CartsTab"/>.
+        /// </summary>
         public CartsTab()
         {
             InitializeComponent();

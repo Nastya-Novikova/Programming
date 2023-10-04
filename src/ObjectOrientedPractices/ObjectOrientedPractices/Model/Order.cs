@@ -23,8 +23,14 @@ namespace ObjectOrientedPractices.Model
         /// </summary>
         private readonly DateTime _date;
 
+        /// <summary>
+        /// Общая стоимость заказа.
+        /// </summary>
         private readonly double _amount;
 
+        /// <summary>
+        /// Идентификатор покупателя.
+        /// </summary>
         private readonly int _customerId;
 
         /// <summary>
@@ -84,6 +90,9 @@ namespace ObjectOrientedPractices.Model
         /// </summary>
         public double Amount => _amount;
 
+        /// <summary>
+        /// Возвращает идентификатор покупателя.
+        /// </summary>
         public int CustomerId => _customerId;
 
         /// <summary>
@@ -92,6 +101,8 @@ namespace ObjectOrientedPractices.Model
         /// <param name="address">Адрес доставки.</param>
         /// <param name="items">Список товаров.</param>
         /// <param name="status">Статус заказа.</param>
+        /// <param name="amount">Общая стоимость заказа.</param>
+        /// <param name="customerId">Идентификатор покупателя.</param>
         /// Класс контролирует уникальность присвоенного id.
         public Order(Address address, BindingList<Item> items, OrderStatus status, double amount, int customerId)
         {
