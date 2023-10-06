@@ -19,15 +19,6 @@ namespace ObjectOrientedPractices.View.Tabs
     public partial class CustomersTab : UserControl
     {
         /// <summary>
-        /// Возвращает и задает лист покупателей.
-        /// </summary>
-        public BindingList<Customer> Customers
-        {
-            get { return _customers; }
-            set { _customers = value; }
-        }
-
-        /// <summary>
         /// Коллекция объектов типа <see cref="Customer"/>.
         /// </summary>
         private BindingList<Customer> _customers;
@@ -41,6 +32,15 @@ namespace ObjectOrientedPractices.View.Tabs
         /// Счетчик элементов.
         /// </summary>
         private int _count;
+
+        /// <summary>
+        /// Возвращает и задает лист покупателей.
+        /// </summary>
+        public BindingList<Customer> Customers
+        {
+            get { return _customers; }
+            set { _customers = value; }
+        }
 
         /// <summary>
         /// Создает объект класса <see cref="CustomersTab"/>.
@@ -103,7 +103,8 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _currentCustomer = new Customer("Customer");
+            _count++;
+            _currentCustomer = new Customer($"Customer {_count}");
             Customers.Add(_currentCustomer);
             CustomersListBox.SelectedItem = _currentCustomer;
             FillCustomersListBox();

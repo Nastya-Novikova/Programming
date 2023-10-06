@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,16 @@ namespace ObjectOrientedPractices.Model
         /// Адрес доставки.
         /// </summary>
         private Address _address;
+
+        /// <summary>
+        /// Корзина товаров.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
+        /// Список заказов.
+        /// </summary>
+        private BindingList<Order> _orders;
 
         /// <summary>
         /// Возвращает уникальный номер покупателя.
@@ -56,12 +67,24 @@ namespace ObjectOrientedPractices.Model
         {
             get => _address;
             set => _address = value;
-/*            {
-                int min = 1;
-                int max = 500;
-                ValueValidator.AssertStringOnLength(value, min, max);
-                _address = value;
-            }*/
+        }
+
+        /// <summary>
+        /// Возвращает и задает корзину товаров.
+        /// </summary>
+        public Cart Cart
+        {
+            get => _cart;
+            set => _cart = value;
+        }
+
+        /// <summary>
+        /// Возвращает и задает список заказов.
+        /// </summary>
+        public BindingList<Order> Orders
+        {
+            get => _orders;
+            set => _orders = value;
         }
 
         /// <summary>
@@ -75,6 +98,8 @@ namespace ObjectOrientedPractices.Model
             Fullname = fullname;
             Address = new Address(100000, "Country","City", "Street",
                                           "Building", "Apartment");
+            Orders = new BindingList<Order>();
+            Cart = new Cart(new BindingList<Item>());  
         }
     }
 }

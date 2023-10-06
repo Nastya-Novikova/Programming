@@ -22,6 +22,11 @@ namespace ObjectOrientedPractices.Services
         /// <exception cref="ArgumentException">Возникает, если проверяемое число не принадлежит интервалу.</exception>
         public static void AssertStringOnLength(string value, int minLength, int maxLength, [CallerMemberName] string property = "")
         {
+            if (value == null)
+            {
+                return;
+            }
+
             if (value.Length < minLength || value.Length > maxLength)
             {
                 throw new ArgumentException($"Значение в {property} должно быть до {maxLength}");
@@ -38,6 +43,11 @@ namespace ObjectOrientedPractices.Services
         /// <exception cref="ArgumentException">Возникает, если проверяемое число не принадлежит интервалу.</exception>
         public static void AssertValueInRange(double value, double min, double max, [CallerMemberName] string property = "")
         {
+            if (value == 0)
+            {
+                return;
+            }
+
             if (value < min || value > max)
             {
                 throw new ArgumentException($"Значение в {property} должно быть от {min} до {max}");
