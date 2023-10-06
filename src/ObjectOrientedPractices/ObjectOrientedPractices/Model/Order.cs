@@ -100,7 +100,6 @@ namespace ObjectOrientedPractices.Model
         /// </summary>
         /// <param name="address">Адрес доставки.</param>
         /// <param name="items">Список товаров.</param>
-        /// <param name="status">Статус заказа.</param>
         /// <param name="amount">Общая стоимость заказа.</param>
         /// <param name="customerId">Идентификатор покупателя.</param>
         /// Класс контролирует уникальность присвоенного id.
