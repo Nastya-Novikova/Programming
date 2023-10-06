@@ -43,11 +43,6 @@ namespace ObjectOrientedPractices.View.Tabs
         private double _cost;
 
         /// <summary>
-        /// Элемент перечисления <see cref="Category"/>.
-        /// </summary>
-        private Category _category;
-
-        /// <summary>
         /// Возвращает и задает лист товаров.
         /// </summary>
         public BindingList<Item> Items
@@ -72,7 +67,6 @@ namespace ObjectOrientedPractices.View.Tabs
         private void FillCategoryComboBox()
         {
             var categoryValues = Enum.GetValues(typeof(Category));
-            _category = (Category)categoryValues.GetValue(0);
             foreach (var category in categoryValues)
             {
                 CategoryComboBox.Items.Add(category);
@@ -137,7 +131,7 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             _count++;
             _cost = Math.Round(_random.NextDouble() * 100 + 1);
-            _currentItem = new Item($"Item {_count}", " ", _cost, _category);
+            _currentItem = new Item($"Item {_count}", " ", _cost);
             Items.Add(_currentItem);
             ItemsListBox.SelectedItem = _currentItem;
             FillItemsListBox();
@@ -152,7 +146,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 _count++;
                 _cost = Math.Round(_random.NextDouble() * 100 + 1);
-                _currentItem = new Item($"Item {_count}", " ", _cost, _category);
+                _currentItem = new Item($"Item {_count}", " ", _cost);
                 Items.Add(_currentItem);
             }
             FillItemsListBox();

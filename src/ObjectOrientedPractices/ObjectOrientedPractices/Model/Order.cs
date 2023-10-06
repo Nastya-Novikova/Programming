@@ -104,13 +104,13 @@ namespace ObjectOrientedPractices.Model
         /// <param name="amount">Общая стоимость заказа.</param>
         /// <param name="customerId">Идентификатор покупателя.</param>
         /// Класс контролирует уникальность присвоенного id.
-        public Order(Address address, BindingList<Item> items, OrderStatus status, double amount, int customerId)
+        public Order(Address address, BindingList<Item> items, double amount, int customerId)
         {
             _id = IdGenerator.GetNextId();
             _date = DateTime.Today;
             Address = address;
             Items = items;
-            Status = status;
+            Status = OrderStatus.New;
             _amount = amount;
             _customerId = customerId;
         }
