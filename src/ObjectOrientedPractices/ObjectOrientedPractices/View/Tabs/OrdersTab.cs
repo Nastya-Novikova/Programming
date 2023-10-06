@@ -203,5 +203,10 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             e.Handled = true;
         }
+
+        private void StatusComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

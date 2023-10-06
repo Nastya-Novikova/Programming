@@ -169,7 +169,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 return;
             }
             Order currentOrder = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items, 
-                                           CurrentCustomer.Cart.Amount, CurrentCustomer.Id);
+                                           CurrentCustomer.Id);
             CurrentCustomer.Orders.Add(currentOrder);
             CurrentCustomer.Cart.Items = new BindingList<Item>();
             CartListBox.DataSource = CurrentCustomer.Cart.Items;

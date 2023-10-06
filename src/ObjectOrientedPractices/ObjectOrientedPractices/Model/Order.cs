@@ -88,7 +88,22 @@ namespace ObjectOrientedPractices.Model
         /// <summary>
         /// Возвращает общую стоимость товаров в заказе.
         /// </summary>
-        public double Amount => _amount;
+        public double Amount
+        {
+            get
+            {
+                double amount = 0.0;
+                if (_items == null || _items.Count == 0)
+                {
+                    return amount;
+                }
+                for (int i = 0; i < _items.Count; i++)
+                {
+                    amount += _items[i].Cost;
+                }
+                return amount;
+            }
+        }
 
         /// <summary>
         /// Возвращает идентификатор покупателя.
@@ -100,17 +115,15 @@ namespace ObjectOrientedPractices.Model
         /// </summary>
         /// <param name="address">Адрес доставки.</param>
         /// <param name="items">Список товаров.</param>
-        /// <param name="amount">Общая стоимость заказа.</param>
         /// <param name="customerId">Идентификатор покупателя.</param>
         /// Класс контролирует уникальность присвоенного id.
-        public Order(Address address, BindingList<Item> items, double amount, int customerId)
+        public Order(Address address, BindingList<Item> items, int customerId)
         {
             _id = IdGenerator.GetNextId();
             _date = DateTime.Today;
             Address = address;
             Items = items;
             Status = OrderStatus.New;
-            _amount = amount;
             _customerId = customerId;
         }
     }
