@@ -35,6 +35,10 @@
             this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.SelectedOrderTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.SelectedOrderGroupBox = new System.Windows.Forms.GroupBox();
+            this.OptionsPanel = new System.Windows.Forms.Panel();
+            this.TimeLabel = new System.Windows.Forms.Label();
+            this.TimeComboBox = new System.Windows.Forms.ComboBox();
+            this.InfoLabel = new System.Windows.Forms.Label();
             this.StatusLabel = new System.Windows.Forms.Label();
             this.DateLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
@@ -48,6 +52,7 @@
             this.AddressControl = new ObjectOrientedPractices.View.Controls.AddressControl();
             this.OrdersGroupBox = new System.Windows.Forms.GroupBox();
             this.DataGridView = new System.Windows.Forms.DataGridView();
+            this.PriorityColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +62,7 @@
             this.TableLayoutPanel.SuspendLayout();
             this.SelectedOrderTableLayoutPanel.SuspendLayout();
             this.SelectedOrderGroupBox.SuspendLayout();
+            this.OptionsPanel.SuspendLayout();
             this.ItemsGroupBox.SuspendLayout();
             this.OrdersGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
@@ -74,7 +80,7 @@
             this.TableLayoutPanel.Name = "TableLayoutPanel";
             this.TableLayoutPanel.RowCount = 1;
             this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.TableLayoutPanel.Size = new System.Drawing.Size(974, 569);
+            this.TableLayoutPanel.Size = new System.Drawing.Size(1147, 569);
             this.TableLayoutPanel.TabIndex = 0;
             // 
             // SelectedOrderTableLayoutPanel
@@ -85,17 +91,18 @@
             this.SelectedOrderTableLayoutPanel.Controls.Add(this.ItemsGroupBox, 0, 2);
             this.SelectedOrderTableLayoutPanel.Controls.Add(this.AddressControl, 0, 1);
             this.SelectedOrderTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SelectedOrderTableLayoutPanel.Location = new System.Drawing.Point(490, 3);
+            this.SelectedOrderTableLayoutPanel.Location = new System.Drawing.Point(576, 3);
             this.SelectedOrderTableLayoutPanel.Name = "SelectedOrderTableLayoutPanel";
             this.SelectedOrderTableLayoutPanel.RowCount = 3;
             this.SelectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.39964F));
             this.SelectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.61634F));
             this.SelectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.98401F));
-            this.SelectedOrderTableLayoutPanel.Size = new System.Drawing.Size(481, 563);
+            this.SelectedOrderTableLayoutPanel.Size = new System.Drawing.Size(568, 563);
             this.SelectedOrderTableLayoutPanel.TabIndex = 1;
             // 
             // SelectedOrderGroupBox
             // 
+            this.SelectedOrderGroupBox.Controls.Add(this.OptionsPanel);
             this.SelectedOrderGroupBox.Controls.Add(this.StatusLabel);
             this.SelectedOrderGroupBox.Controls.Add(this.DateLabel);
             this.SelectedOrderGroupBox.Controls.Add(this.IdLabel);
@@ -106,10 +113,49 @@
             this.SelectedOrderGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SelectedOrderGroupBox.Location = new System.Drawing.Point(3, 3);
             this.SelectedOrderGroupBox.Name = "SelectedOrderGroupBox";
-            this.SelectedOrderGroupBox.Size = new System.Drawing.Size(475, 137);
+            this.SelectedOrderGroupBox.Size = new System.Drawing.Size(562, 137);
             this.SelectedOrderGroupBox.TabIndex = 1;
             this.SelectedOrderGroupBox.TabStop = false;
             this.SelectedOrderGroupBox.Text = "Selected Order";
+            // 
+            // OptionsPanel
+            // 
+            this.OptionsPanel.Controls.Add(this.TimeLabel);
+            this.OptionsPanel.Controls.Add(this.TimeComboBox);
+            this.OptionsPanel.Controls.Add(this.InfoLabel);
+            this.OptionsPanel.Location = new System.Drawing.Point(243, 26);
+            this.OptionsPanel.Name = "OptionsPanel";
+            this.OptionsPanel.Size = new System.Drawing.Size(313, 105);
+            this.OptionsPanel.TabIndex = 11;
+            // 
+            // TimeLabel
+            // 
+            this.TimeLabel.AutoSize = true;
+            this.TimeLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TimeLabel.Location = new System.Drawing.Point(26, 36);
+            this.TimeLabel.Name = "TimeLabel";
+            this.TimeLabel.Size = new System.Drawing.Size(103, 20);
+            this.TimeLabel.TabIndex = 13;
+            this.TimeLabel.Text = "Delivery Time:";
+            // 
+            // TimeComboBox
+            // 
+            this.TimeComboBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TimeComboBox.FormattingEnabled = true;
+            this.TimeComboBox.Location = new System.Drawing.Point(135, 33);
+            this.TimeComboBox.Name = "TimeComboBox";
+            this.TimeComboBox.Size = new System.Drawing.Size(151, 28);
+            this.TimeComboBox.TabIndex = 12;
+            this.TimeComboBox.SelectedIndexChanged += new System.EventHandler(this.TimeComboBox_SelectedIndexChanged);
+            // 
+            // InfoLabel
+            // 
+            this.InfoLabel.AutoSize = true;
+            this.InfoLabel.Location = new System.Drawing.Point(26, 3);
+            this.InfoLabel.Name = "InfoLabel";
+            this.InfoLabel.Size = new System.Drawing.Size(124, 20);
+            this.InfoLabel.TabIndex = 11;
+            this.InfoLabel.Text = "Priority Options:";
             // 
             // StatusLabel
             // 
@@ -179,7 +225,7 @@
             this.ItemsGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ItemsGroupBox.Location = new System.Drawing.Point(3, 324);
             this.ItemsGroupBox.Name = "ItemsGroupBox";
-            this.ItemsGroupBox.Size = new System.Drawing.Size(475, 236);
+            this.ItemsGroupBox.Size = new System.Drawing.Size(562, 236);
             this.ItemsGroupBox.TabIndex = 2;
             this.ItemsGroupBox.TabStop = false;
             this.ItemsGroupBox.Text = "Order Items";
@@ -188,7 +234,7 @@
             // 
             this.CostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CostLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CostLabel.Location = new System.Drawing.Point(6, 201);
+            this.CostLabel.Location = new System.Drawing.Point(93, 201);
             this.CostLabel.Name = "CostLabel";
             this.CostLabel.Size = new System.Drawing.Size(466, 32);
             this.CostLabel.TabIndex = 7;
@@ -199,7 +245,7 @@
             // 
             this.AmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AmountLabel.AutoSize = true;
-            this.AmountLabel.Location = new System.Drawing.Point(401, 181);
+            this.AmountLabel.Location = new System.Drawing.Point(488, 181);
             this.AmountLabel.Margin = new System.Windows.Forms.Padding(3, 0, 17, 0);
             this.AmountLabel.Name = "AmountLabel";
             this.AmountLabel.Size = new System.Drawing.Size(71, 20);
@@ -217,7 +263,7 @@
             this.ItemsListBox.ItemHeight = 20;
             this.ItemsListBox.Location = new System.Drawing.Point(3, 23);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(469, 155);
+            this.ItemsListBox.Size = new System.Drawing.Size(556, 155);
             this.ItemsListBox.TabIndex = 0;
             // 
             // AddressControl
@@ -235,7 +281,7 @@
             this.AddressControl.ForeColor = System.Drawing.SystemColors.ControlText;
             this.AddressControl.Location = new System.Drawing.Point(3, 146);
             this.AddressControl.Name = "AddressControl";
-            this.AddressControl.Size = new System.Drawing.Size(475, 172);
+            this.AddressControl.Size = new System.Drawing.Size(562, 172);
             this.AddressControl.TabIndex = 3;
             // 
             // OrdersGroupBox
@@ -245,7 +291,7 @@
             this.OrdersGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.OrdersGroupBox.Location = new System.Drawing.Point(3, 3);
             this.OrdersGroupBox.Name = "OrdersGroupBox";
-            this.OrdersGroupBox.Size = new System.Drawing.Size(481, 563);
+            this.OrdersGroupBox.Size = new System.Drawing.Size(567, 563);
             this.OrdersGroupBox.TabIndex = 1;
             this.OrdersGroupBox.TabStop = false;
             this.OrdersGroupBox.Text = "Orders";
@@ -266,6 +312,7 @@
             this.DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PriorityColumn,
             this.IdColumn,
             this.DateColumn,
             this.StatusColumn,
@@ -296,9 +343,20 @@
             this.DataGridView.RowHeadersVisible = false;
             this.DataGridView.RowHeadersWidth = 51;
             this.DataGridView.RowTemplate.Height = 29;
-            this.DataGridView.Size = new System.Drawing.Size(475, 537);
+            this.DataGridView.Size = new System.Drawing.Size(561, 537);
             this.DataGridView.TabIndex = 0;
             this.DataGridView.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
+            // 
+            // PriorityColumn
+            // 
+            this.PriorityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.PriorityColumn.HeaderText = "";
+            this.PriorityColumn.Image = global::ObjectOrientedPractices.Properties.Resources.White;
+            this.PriorityColumn.MinimumWidth = 6;
+            this.PriorityColumn.Name = "PriorityColumn";
+            this.PriorityColumn.ReadOnly = true;
+            this.PriorityColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.PriorityColumn.Width = 6;
             // 
             // IdColumn
             // 
@@ -328,7 +386,7 @@
             this.StatusColumn.Name = "StatusColumn";
             this.StatusColumn.ReadOnly = true;
             this.StatusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.StatusColumn.Width = 87;
+            this.StatusColumn.Width = 97;
             // 
             // CustomerColumn
             // 
@@ -366,11 +424,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TableLayoutPanel);
             this.Name = "OrdersTab";
-            this.Size = new System.Drawing.Size(974, 569);
+            this.Size = new System.Drawing.Size(1147, 569);
             this.TableLayoutPanel.ResumeLayout(false);
             this.SelectedOrderTableLayoutPanel.ResumeLayout(false);
             this.SelectedOrderGroupBox.ResumeLayout(false);
             this.SelectedOrderGroupBox.PerformLayout();
+            this.OptionsPanel.ResumeLayout(false);
+            this.OptionsPanel.PerformLayout();
             this.ItemsGroupBox.ResumeLayout(false);
             this.ItemsGroupBox.PerformLayout();
             this.OrdersGroupBox.ResumeLayout(false);
@@ -397,6 +457,11 @@
         private Label CostLabel;
         private Label AmountLabel;
         private Controls.AddressControl AddressControl;
+        private Panel OptionsPanel;
+        private Label TimeLabel;
+        private ComboBox TimeComboBox;
+        private Label InfoLabel;
+        private DataGridViewImageColumn PriorityColumn;
         private DataGridViewTextBoxColumn IdColumn;
         private DataGridViewTextBoxColumn DateColumn;
         private DataGridViewTextBoxColumn StatusColumn;

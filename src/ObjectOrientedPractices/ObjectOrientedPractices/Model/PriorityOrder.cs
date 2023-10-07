@@ -32,11 +32,10 @@ namespace ObjectOrientedPractices.Model
         /// <param name="address">Адрес доставки.</param>
         /// <param name="items">Список товаров.</param>
         /// <param name="customerId">Идентификатор покупателя.</param>
-        /// <param name="interval"></param>
-        public PriorityOrder(Address address, BindingList<Item> items, int customerId, string interval)
+        public PriorityOrder(Address address, BindingList<Item> items, int customerId)
                              : base(address, items, customerId)
         {
-            Interval = interval;
+            Interval = "9:00 – 11:00";
         }
     }
 }

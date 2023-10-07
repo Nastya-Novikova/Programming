@@ -39,6 +39,11 @@ namespace ObjectOrientedPractices.Model
         private BindingList<Order> _orders;
 
         /// <summary>
+        /// Приоритетный покупатель.
+        /// </summary>
+        private bool _isPriority;
+
+        /// <summary>
         /// Возвращает уникальный номер покупателя.
         /// </summary>
         public int Id => _id;
@@ -88,6 +93,15 @@ namespace ObjectOrientedPractices.Model
         }
 
         /// <summary>
+        /// Возвращает и задает приоритетность покупателя.
+        /// </summary>
+        public bool IsPriority
+        {
+            get => _isPriority;
+            set => _isPriority = value;
+        }
+
+        /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Имя. Должно быть от 1 до 200 символов.</param>
@@ -99,7 +113,8 @@ namespace ObjectOrientedPractices.Model
             Address = new Address(100000, "Country","City", "Street",
                                           "Building", "Apartment");
             Orders = new BindingList<Order>();
-            Cart = new Cart(new BindingList<Item>());  
+            Cart = new Cart(new BindingList<Item>());
+            IsPriority = false;
         }
     }
 }

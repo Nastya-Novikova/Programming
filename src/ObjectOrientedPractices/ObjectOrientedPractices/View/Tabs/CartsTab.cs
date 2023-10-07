@@ -160,7 +160,7 @@ namespace ObjectOrientedPractices.View.Tabs
         }
 
         /// <summary>
-        /// Создает новый объект класса <see cref="Order"/> и добавляет его в список заказов.
+        /// Создает новый объект класса <see cref="Order"/> или <see cref="PriorityOrder"/> и добавляет его в список заказов.
         /// </summary>
         private void CreateButton_Click(object sender, EventArgs e)
         {
@@ -168,9 +168,18 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 return;
             }
-            Order currentOrder = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items, 
-                                           CurrentCustomer.Id);
-            CurrentCustomer.Orders.Add(currentOrder);
+            if (CurrentCustomer.IsPriority)
+            {
+                PriorityOrder currentOrder = new PriorityOrder(CurrentCustomer.Address, CurrentCustomer.Cart.Items,
+                                                               CurrentCustomer.Id);
+                CurrentCustomer.Orders.Add(currentOrder);
+            }
+            else
+            {
+                Order currentOrder = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items,
+                                          CurrentCustomer.Id);
+                CurrentCustomer.Orders.Add(currentOrder);
+            }
             CurrentCustomer.Cart.Items = new BindingList<Item>();
             CartListBox.DataSource = CurrentCustomer.Cart.Items;
             UpdateCartAmount();

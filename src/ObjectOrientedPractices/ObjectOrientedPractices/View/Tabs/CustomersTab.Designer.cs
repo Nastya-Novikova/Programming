@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ObjectOrientedPractices.Model.Address address1 = new ObjectOrientedPractices.Model.Address();
+            ObjectOrientedPractices.Model.Address address2 = new ObjectOrientedPractices.Model.Address();
             this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.CustomersGroupBox = new System.Windows.Forms.GroupBox();
             this.ButtonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -43,6 +43,7 @@
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.IdTextBox = new System.Windows.Forms.TextBox();
             this.AddressControl = new ObjectOrientedPractices.View.Controls.AddressControl();
+            this.PriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.TableLayoutPanel.SuspendLayout();
             this.CustomersGroupBox.SuspendLayout();
             this.ButtonsTableLayoutPanel.SuspendLayout();
@@ -160,8 +161,8 @@
             this.SelectedCustomerTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SelectedCustomerTableLayoutPanel.Name = "SelectedCustomerTableLayoutPanel";
             this.SelectedCustomerTableLayoutPanel.RowCount = 3;
-            this.SelectedCustomerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.SelectedCustomerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.SelectedCustomerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 139F));
+            this.SelectedCustomerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 183F));
             this.SelectedCustomerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.SelectedCustomerTableLayoutPanel.Size = new System.Drawing.Size(512, 629);
             this.SelectedCustomerTableLayoutPanel.TabIndex = 4;
@@ -170,6 +171,7 @@
             // 
             this.SelectedCustomerGroupBox.Controls.Add(this.NameLabel);
             this.SelectedCustomerGroupBox.Controls.Add(this.IdLabel);
+            this.SelectedCustomerGroupBox.Controls.Add(this.PriorityCheckBox);
             this.SelectedCustomerGroupBox.Controls.Add(this.NameTextBox);
             this.SelectedCustomerGroupBox.Controls.Add(this.IdTextBox);
             this.SelectedCustomerGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -177,7 +179,7 @@
             this.SelectedCustomerGroupBox.Location = new System.Drawing.Point(3, 0);
             this.SelectedCustomerGroupBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.SelectedCustomerGroupBox.Name = "SelectedCustomerGroupBox";
-            this.SelectedCustomerGroupBox.Size = new System.Drawing.Size(506, 107);
+            this.SelectedCustomerGroupBox.Size = new System.Drawing.Size(506, 136);
             this.SelectedCustomerGroupBox.TabIndex = 0;
             this.SelectedCustomerGroupBox.TabStop = false;
             this.SelectedCustomerGroupBox.Text = "Selected Customer";
@@ -229,12 +231,29 @@
             // 
             // AddressControl
             // 
-            this.AddressControl.Address = address1;
+            address2.Apartment = null;
+            address2.Building = null;
+            address2.City = null;
+            address2.Country = null;
+            address2.Index = 0;
+            address2.Street = null;
+            this.AddressControl.Address = address2;
             this.AddressControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddressControl.Location = new System.Drawing.Point(3, 113);
+            this.AddressControl.Location = new System.Drawing.Point(3, 142);
             this.AddressControl.Name = "AddressControl";
-            this.AddressControl.Size = new System.Drawing.Size(506, 174);
+            this.AddressControl.Size = new System.Drawing.Size(506, 177);
             this.AddressControl.TabIndex = 5;
+            // 
+            // PriorityCheckBox
+            // 
+            this.PriorityCheckBox.AutoSize = true;
+            this.PriorityCheckBox.Location = new System.Drawing.Point(87, 106);
+            this.PriorityCheckBox.Name = "PriorityCheckBox";
+            this.PriorityCheckBox.Size = new System.Drawing.Size(99, 24);
+            this.PriorityCheckBox.TabIndex = 6;
+            this.PriorityCheckBox.Text = "Is Priority";
+            this.PriorityCheckBox.UseVisualStyleBackColor = true;
+            this.PriorityCheckBox.CheckedChanged += new System.EventHandler(this.PriorityCheckBox_CheckedChanged);
             // 
             // CustomersTab
             // 
@@ -270,5 +289,6 @@
         private Button RemoveButton;
         private Button AddListButton;
         private Controls.AddressControl AddressControl;
+        private CheckBox PriorityCheckBox;
     }
 }

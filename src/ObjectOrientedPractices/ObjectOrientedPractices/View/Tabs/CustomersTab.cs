@@ -96,6 +96,7 @@ namespace ObjectOrientedPractices.View.Tabs
             IdTextBox.Text = _currentCustomer.Id.ToString();
             NameTextBox.Text = _currentCustomer.Fullname.ToString();
             AddressControl.Address = _currentCustomer.Address;
+            PriorityCheckBox.Checked = _currentCustomer.IsPriority;
         }
 
         /// <summary>
@@ -173,6 +174,22 @@ namespace ObjectOrientedPractices.View.Tabs
         private void IdTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        /// <summary>
+        /// Присваивает полю _currentCustomer значение true, если нажат чекбокс,
+        /// иначе false.
+        /// </summary>
+        private void PriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (PriorityCheckBox.Checked)
+            {
+                _currentCustomer.IsPriority = true;
+            }
+            else
+            {
+                _currentCustomer.IsPriority = false;
+            }
         }
     }
 }

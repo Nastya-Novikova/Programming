@@ -24,11 +24,6 @@ namespace ObjectOrientedPractices.Model
         private readonly DateTime _date;
 
         /// <summary>
-        /// Общая стоимость заказа.
-        /// </summary>
-        private readonly double _amount;
-
-        /// <summary>
         /// Идентификатор покупателя.
         /// </summary>
         private readonly int _customerId;

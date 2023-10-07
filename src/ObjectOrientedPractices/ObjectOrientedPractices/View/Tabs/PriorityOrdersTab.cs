@@ -26,9 +26,7 @@ namespace ObjectOrientedPractices.View.Tabs
         /// Объект класса <see cref="PriorityOrder"/>.
         /// </summary>
         private PriorityOrder _order = new PriorityOrder(new Address(100000, "Country", "City", "Street", "Building", "Apartment"),
-                                                        new BindingList<Item>(),
-                                                        1,
-                                                        "9:00 – 11:00");
+                                                        new BindingList<Item>(), 1);
         /// <summary>
         /// Счетчик товаров.
         /// </summary>
@@ -146,9 +144,7 @@ namespace ObjectOrientedPractices.View.Tabs
             ItemsListBox.Items.Clear();
             CostLabel.Text = "0";
             _order = new PriorityOrder(new Address(100000, "Country", "City", "Street", "Building", "Apartment"),
-                                                        new BindingList<Item>(),
-                                                        1,
-                                                        "9:00 – 11:00");
+                                                        new BindingList<Item>(), 1);
             FillTab();
         }
 

@@ -24,6 +24,49 @@ namespace ObjectOrientedPractices.View.Tabs
         private BindingList<Order> _orders = new BindingList<Order>();
 
         /// <summary>
+        /// Выбранный в таблице заказ.
+        /// </summary>
+        private Order _selectedOrder;
+
+        /// <summary>
+        /// Выбранный в таблице приоритетный заказ.
+        /// </summary>
+        private PriorityOrder _selectedPriorityOrder;
+
+        /// <summary>
+        /// Возвращает и задает выбранный приоритетный заказ.
+        /// </summary>
+        public PriorityOrder? SelectedPriorityOrder
+        {
+            get { return _selectedPriorityOrder; }
+            set { _selectedPriorityOrder = value; }
+        }
+
+        /// <summary>
+        /// Возвращает и задает выбранный заказ.
+        /// Если заказ является приоритетным присваивает его в SelectedPriorityOrder.
+        /// </summary>
+        public Order SelectedOrder
+        {
+            get { return _selectedOrder; }
+            set
+            {
+                if (value is PriorityOrder)
+                {
+                    SelectedPriorityOrder = (PriorityOrder)value;
+                    OptionsPanel.Visible = true;
+                    TimeComboBox.SelectedItem = SelectedPriorityOrder.Interval;
+                }
+                else
+                {
+                    SelectedPriorityOrder = null;
+                    OptionsPanel.Visible = false;
+                }
+                _selectedOrder = value;
+            }
+        }
+
+        /// <summary>
         /// Возвращает и задает лист покупателей.
         /// </summary>
         public BindingList<Customer> Customers
@@ -39,6 +82,7 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             InitializeComponent();
             FillStatusComboBox();
+            FillTimeComboBox();
         }
 
         /// <summary>
@@ -61,6 +105,20 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 StatusComboBox.Items.Add(status);
             }
+        }
+
+        /// <summary>
+        /// Заполняет TimeComboBox.
+        /// </summary>
+        private void FillTimeComboBox()
+        {
+            string[] intervals = new string[] {"9:00 – 11:00",
+                                                "11:00 – 13:00",
+                                                "13:00 – 15:00",
+                                                "15:00 – 17:00",
+                                                "17:00 – 19:00",
+                                                "19:00 – 21:00"};
+            TimeComboBox.Items.AddRange(intervals);
         }
 
         /// <summary>
@@ -94,18 +152,26 @@ namespace ObjectOrientedPractices.View.Tabs
             }
             foreach (DataGridViewRow row in DataGridView.Rows)
             {
-                row.Cells[0].Value = _orders[row.Index].Id;
-                row.Cells[1].Value = _orders[row.Index].Date;
-                row.Cells[2].Value = _orders[row.Index].Status;
+                if (_orders[row.Index] is PriorityOrder)
+                {
+                    row.Cells[0].Value = Properties.Resources.Star;
+                }
+                else
+                {
+                    row.Cells[0].Value = Properties.Resources.White;
+                }
+                row.Cells[1].Value = _orders[row.Index].Id;
+                row.Cells[2].Value = _orders[row.Index].Date;
+                row.Cells[3].Value = _orders[row.Index].Status;
                 for (int i = 0; i < Customers.Count; i++)
                 {
                     if (Customers[i].Id == _orders[row.Index].CustomerId)
                     {
-                        row.Cells[3].Value = Customers[i].Fullname;
+                        row.Cells[4].Value = Customers[i].Fullname;
                     }
                 }
-                row.Cells[4].Value = GetAddress(_orders[row.Index].Address);
-                row.Cells[5].Value = _orders[row.Index].Amount;
+                row.Cells[5].Value = GetAddress(_orders[row.Index].Address);
+                row.Cells[6].Value = _orders[row.Index].Amount;
             }
         }
 
@@ -129,29 +195,30 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private void DataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            if (DataGridView.CurrentRow.Cells[0].Value == null)
+            if (DataGridView.CurrentRow.Cells[1].Value == null)
             {
                 return;
             }
 
             ItemsListBox.Items.Clear();
             ItemsListBox.DisplayMember = nameof(Item.Name);
-            var orderId = (int)DataGridView.CurrentRow.Cells[0].Value;
-            IdTextBox.Text = orderId.ToString();
-            DateTextBox.Text = DataGridView.CurrentRow.Cells[1].Value.ToString();
-            StatusComboBox.SelectedItem = (OrderStatus)DataGridView.CurrentRow.Cells[2].Value;
+            var orderId = (int)DataGridView.CurrentRow.Cells[1].Value;
             foreach (Order order in _orders)
             {
                 if (orderId == order.Id)
                 {
-                    AddressControl.Address = order.Address;
-                    foreach (Item item in order.Items)
-                    {
-                        ItemsListBox.Items.Add(item);
-                    }
+                    SelectedOrder = order;
                 }
             }
-            CostLabel.Text = DataGridView.CurrentRow.Cells[5].Value.ToString();
+            IdTextBox.Text = SelectedOrder.Id.ToString();
+            DateTextBox.Text = SelectedOrder.Date;
+            StatusComboBox.SelectedItem = SelectedOrder.Status;
+            AddressControl.Address = SelectedOrder.Address;
+            foreach (Item item in SelectedOrder.Items)
+            {
+                ItemsListBox.Items.Add(item);
+            }
+            CostLabel.Text = SelectedOrder.Amount.ToString();
         }
 
         /// <summary>
@@ -163,15 +230,20 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 return;
             }
-            DataGridView.CurrentRow.Cells[2].Value = StatusComboBox.SelectedItem;
-            int orderId = (int)DataGridView.CurrentRow.Cells[0].Value;
-            foreach (Order order in _orders)
+            DataGridView.CurrentRow.Cells[3].Value = StatusComboBox.SelectedItem;
+            SelectedOrder.Status = (OrderStatus)StatusComboBox.SelectedItem;
+        }
+
+        /// <summary>
+        /// Обновляет время доставки на выбранное в TimeComboBox.
+        /// </summary>
+        private void TimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DataGridView.CurrentRow == null || TimeComboBox.SelectedIndex == -1)
             {
-                if (orderId == order.Id)
-                {
-                    order.Status = (OrderStatus)StatusComboBox.SelectedItem;
-                }
+                return;
             }
+            SelectedPriorityOrder.Interval = TimeComboBox.SelectedItem.ToString();
         }
 
         /// <summary>
@@ -186,6 +258,7 @@ namespace ObjectOrientedPractices.View.Tabs
             AddressControl.ClearAllTextBoxes();
             ItemsListBox.Items.Clear();
             CostLabel.Text = "0";
+            OptionsPanel.Visible = false;
         }
 
         /// <summary>
@@ -204,6 +277,9 @@ namespace ObjectOrientedPractices.View.Tabs
             e.Handled = true;
         }
 
+        /// <summary>
+        /// Контролирует ввод в StatusComboBox.
+        /// </summary>
         private void StatusComboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
