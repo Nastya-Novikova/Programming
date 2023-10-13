@@ -1,4 +1,6 @@
 ﻿using ObjectOrientedPractices.Model;
+using ObjectOrientedPractices.Model.Enums;
+using ObjectOrientedPractices.Model.Orders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractices.Model.Orders;
 using ObjectOrientedPractices.Services;
 
 namespace ObjectOrientedPractices.Model

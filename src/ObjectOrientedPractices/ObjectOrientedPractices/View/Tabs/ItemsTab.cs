@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using ObjectOrientedPractices.Model;
+using ObjectOrientedPractices.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

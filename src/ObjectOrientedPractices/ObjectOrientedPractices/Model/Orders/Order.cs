@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractices.Services;
+﻿using ObjectOrientedPractices.Model.Enums;
+using ObjectOrientedPractices.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractices.Model
+namespace ObjectOrientedPractices.Model.Orders
 {
     /// <summary>
     /// Заказ.
