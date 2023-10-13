@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection.Metadata.Ecma335;
 using ObjectOrientedPractices.View.Controls;
+using ObjectOrientedPractices.View.Forms;
+using ObjectOrientedPractices.Model.Discounts;
 
 namespace ObjectOrientedPractices.View.Tabs
 {
@@ -48,7 +50,7 @@ namespace ObjectOrientedPractices.View.Tabs
         public CustomersTab()
         {
             InitializeComponent();
-            FillCustomersListBox();
+            FillCustomersListBox(); 
         }
 
         /// <summary>
@@ -71,13 +73,31 @@ namespace ObjectOrientedPractices.View.Tabs
         }
 
         /// <summary>
+        /// Заполняет DiscountsListBox.
+        /// </summary>
+        private void FillDiscountsListBox()
+        {
+            if (CustomersListBox.SelectedItem == null)
+            {
+                return;
+            }
+
+            DiscountsListBox.Items.Clear();
+            for (int i=0; i<_currentCustomer.Discounts.Count; i++)
+            {
+                DiscountsListBox.Items.Add(_currentCustomer.Discounts[i].Info);
+            }
+        }
+
+        /// <summary>
         /// Очищает все поля.
         /// </summary>
-        private void ClearAllTextBoxes()
+        private void ClearAll()
         {
             IdTextBox.Clear();
             NameTextBox.Clear();
             AddressControl.Address = null;
+            DiscountsListBox.Items.Clear();
         }
 
         /// <summary>
@@ -89,7 +109,7 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             if (CustomersListBox.SelectedItem == null)
             {
-                ClearAllTextBoxes();
+                ClearAll();
                 return;
             }
             _currentCustomer = Customers[CustomersListBox.SelectedIndex];
@@ -97,6 +117,7 @@ namespace ObjectOrientedPractices.View.Tabs
             NameTextBox.Text = _currentCustomer.Fullname.ToString();
             AddressControl.Address = _currentCustomer.Address;
             PriorityCheckBox.Checked = _currentCustomer.IsPriority;
+            FillDiscountsListBox();
         }
 
         /// <summary>
@@ -138,6 +159,43 @@ namespace ObjectOrientedPractices.View.Tabs
             }
             Customers.RemoveAt(CustomersListBox.SelectedIndex);
             CustomersListBox.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        /// Добавляет процентные скидки в DiscountsListBox.
+        /// </summary>
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (CustomersListBox.SelectedItem == null)
+            {
+                return;
+            }
+            AddDiscountForm addDiscountForm = new AddDiscountForm();
+            var dialogResult =  addDiscountForm.ShowDialog();
+
+            if (dialogResult == DialogResult.Cancel)
+            {
+                return;
+            }
+            _currentCustomer.Discounts.Add(new PercentDiscount(addDiscountForm.Category));
+            FillDiscountsListBox();
+        }
+
+        /// <summary>
+        /// Удаляет процентную скидку из DiscountsListBox.
+        /// Удаление накопительной скидки невозможно.
+        /// </summary>
+        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (CustomersListBox.SelectedItem == null ||
+                DiscountsListBox.SelectedItem == null ||
+                DiscountsListBox.SelectedIndex == 0)
+            {
+                return;
+            }
+
+            _currentCustomer.Discounts.RemoveAt(DiscountsListBox.SelectedIndex);
+            DiscountsListBox.Items.Remove(DiscountsListBox.SelectedItem);
         }
 
         /// <summary>
