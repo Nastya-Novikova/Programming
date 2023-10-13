@@ -53,5 +53,24 @@ namespace ObjectOrientedPractices.Services
                 throw new ArgumentException($"Значение в {property} должно быть от {min} до {max}");
             }
         }
+
+        /// <summary>
+        /// Проверяет целое число на положительность.
+        /// </summary>
+        /// <param name="value">Проверяемое число.</param>
+        /// <param name="property">Имя свойства или объекта, которое подлежит проверке.</param>
+        /// <exception cref="ArgumentException">Возникает, если проверяемое число отрицательное.</exception>
+        public static void AssertOnPositiveValue(int value, [CallerMemberName] string property = "")
+        {
+            if (value == 0)
+            {
+                return;
+            }
+
+            if (value < 0)
+            {
+                throw new ArgumentException($"Значение в {property} должно быть положительным");
+            }
+        }
     }
 }
