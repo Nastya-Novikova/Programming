@@ -102,6 +102,22 @@ namespace ObjectOrientedPractices.Model.Orders
         }
 
         /// <summary>
+        /// Возвращает и задает размер примененной скидки.
+        /// </summary>
+        public double DiscountAmount { get; set; }
+
+        /// <summary>
+        /// Возвращает конечную стоимость заказа.
+        /// </summary>
+        public double Total
+        {
+            get
+            {
+                return (Amount - DiscountAmount);
+            }
+        }
+
+        /// <summary>
         /// Возвращает идентификатор покупателя.
         /// </summary>
         public int CustomerId => _customerId;

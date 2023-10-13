@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractices.Model.Discounts;
 using ObjectOrientedPractices.Model.Orders;
 using ObjectOrientedPractices.Services;
 
@@ -102,6 +103,8 @@ namespace ObjectOrientedPractices.Model
             set => _isPriority = value;
         }
 
+        public List<IDiscount> Discounts;
+
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>.
         /// </summary>
@@ -116,6 +119,7 @@ namespace ObjectOrientedPractices.Model
             Orders = new BindingList<Order>();
             Cart = new Cart(new BindingList<Item>());
             IsPriority = false;
+            Discounts = new List<IDiscount> {new PointsDiscount()};
         }
     }
 }
