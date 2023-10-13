@@ -11,7 +11,7 @@ namespace ObjectOrientedPractices.Model.Discounts
     /// <summary>
     /// Накопительная карта.
     /// </summary>
-    public class PointsDiscount
+    public class PointsDiscount : IDiscount
     {
         /// <summary>
         /// Баллы.

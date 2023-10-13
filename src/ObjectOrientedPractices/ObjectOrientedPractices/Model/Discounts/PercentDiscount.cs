@@ -12,7 +12,7 @@ namespace ObjectOrientedPractices.Model.Discounts
     /// <summary>
     /// Процентная карта.
     /// </summary>
-    public class PercentDiscount
+    public class PercentDiscount : IDiscount
     {
         /// <summary>
         /// Категория товара.
