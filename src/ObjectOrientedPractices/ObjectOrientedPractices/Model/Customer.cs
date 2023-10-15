@@ -103,7 +103,7 @@ namespace ObjectOrientedPractices.Model
             set => _isPriority = value;
         }
 
-        public List<IDiscount> Discounts;
+        public List<IDiscount> Discounts { get; set; }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>.
