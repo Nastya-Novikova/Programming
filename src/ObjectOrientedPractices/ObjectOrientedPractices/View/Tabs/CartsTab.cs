@@ -91,6 +91,7 @@ namespace ObjectOrientedPractices.View.Tabs
             CartListBox.DisplayMember = nameof(Item.Name);
         }
 
+
         /// <summary>
         /// Заполняет CustomersComboBox.
         /// </summary>
@@ -102,8 +103,55 @@ namespace ObjectOrientedPractices.View.Tabs
         }
 
         /// <summary>
-        /// Изменяет поле СurrentCustomer и обновляет корзину и ее общую стоимость 
-        /// при выборе элемента в CustomersComboBox.
+        /// Заполняет DiscountsCheckedListBox.
+        /// </summary>
+        private void FillDiscountsCheckedListBox()
+        {
+            DiscountsCheckedListBox.Items.Clear();
+            for (int i=0; i<CurrentCustomer.Discounts.Count; i++)
+            {
+                DiscountsCheckedListBox.Items.Add(CurrentCustomer.Discounts[i].Info);
+                DiscountsCheckedListBox.SetItemChecked(i, true);
+            }
+        }
+
+        /// <summary>
+        /// Выводит на форму размер скидки и итоговую цену.
+        /// </summary>
+        private void FillDiscountAndTotalLabels()
+        {
+            double totalDiscount = 0;
+            for (int i=0; i<CurrentCustomer.Discounts.Count; i++)
+            {
+                if (DiscountsCheckedListBox.GetItemChecked(i))
+                {
+                    totalDiscount += CurrentCustomer.Discounts[i].Calculate(CurrentCustomer.Cart.Items);
+                }
+            }
+            DiscountLabel.Text = totalDiscount.ToString();
+            TotalLabel.Text = (CurrentCustomer.Cart.Amount - totalDiscount).ToString();
+        }
+
+        /// <summary>
+        /// Возвращает размер общей скидки.
+        /// </summary>
+        /// <returns>Размер скидки.</returns>
+        private double GetTotalDiscount()
+        {
+            double totalDiscount = 0;
+            for (int i = 0; i < CurrentCustomer.Discounts.Count; i++)
+            {
+                if (DiscountsCheckedListBox.GetItemChecked(i))
+                {
+                    totalDiscount += CurrentCustomer.Discounts[i].Calculate(CurrentCustomer.Cart.Items);
+                }
+            }
+            return totalDiscount;
+        }
+
+        /// <summary>
+        /// Изменяет поле СurrentCustomer, обновляет корзину и ее общую стоимость, 
+        /// выводит доступные скидки при выборе элемента в CustomersComboBox.
         /// </summary>
         private void CustomersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -115,11 +163,22 @@ namespace ObjectOrientedPractices.View.Tabs
             UpdateCartListBox();
             UpdateCartAmount();
             CartListBox.SelectedIndex = -1;
+            FillDiscountsCheckedListBox();
+            FillDiscountAndTotalLabels();
+        }
+
+        /// <summary>
+        /// Выводит общую скидку и итоговую цену при изменении выбора в DiscountsCheckedListBox.
+        /// </summary>
+        private void DiscountsCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FillDiscountAndTotalLabels();
         }
 
         /// <summary>
         /// Добавляет в корзину товар из списка Items.
         /// Обновляет общую стоимость корзины.
+        /// Обновляет размер скидки и итоговую стоимость заказа.
         /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
@@ -131,6 +190,7 @@ namespace ObjectOrientedPractices.View.Tabs
             CurrentCustomer.Cart.Items.Add(_currentItem);
             UpdateCartAmount();
             CartListBox.SelectedIndex = -1;
+            FillDiscountAndTotalLabels();
         }
 
         /// <summary>
@@ -145,6 +205,7 @@ namespace ObjectOrientedPractices.View.Tabs
             CurrentCustomer.Cart.Items.RemoveAt(CartListBox.SelectedIndex);
             UpdateCartAmount();
             CartListBox.SelectedIndex = -1;
+            FillDiscountAndTotalLabels();
         }
 
         /// <summary>
@@ -158,10 +219,12 @@ namespace ObjectOrientedPractices.View.Tabs
             }
             CurrentCustomer.Cart.Items.Clear();
             UpdateCartAmount();
+            FillDiscountAndTotalLabels();
         }
 
         /// <summary>
         /// Создает новый объект класса <see cref="Order"/> или <see cref="PriorityOrder"/> и добавляет его в список заказов.
+        /// Обновляет баллы и процент скидки по категории.
         /// </summary>
         private void CreateButton_Click(object sender, EventArgs e)
         {
@@ -173,14 +236,18 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 PriorityOrder currentOrder = new PriorityOrder(CurrentCustomer.Address, CurrentCustomer.Cart.Items,
                                                                CurrentCustomer.Id);
+                currentOrder.DiscountAmount = GetTotalDiscount();
                 CurrentCustomer.Orders.Add(currentOrder);
             }
             else
             {
                 Order currentOrder = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items,
                                           CurrentCustomer.Id);
+                currentOrder.DiscountAmount = GetTotalDiscount();
                 CurrentCustomer.Orders.Add(currentOrder);
             }
+            ApplyDiscounts();
+            UpdateDiscountsInfo();
             CurrentCustomer.Cart.Items = new BindingList<Item>();
             CartListBox.DataSource = CurrentCustomer.Cart.Items;
             UpdateCartAmount();
@@ -193,6 +260,34 @@ namespace ObjectOrientedPractices.View.Tabs
         private void UpdateCartAmount()
         {
             CostLabel.Text = CurrentCustomer.Cart.Amount.ToString();
+        }
+
+        /// <summary>
+        /// Применяет выбранные скидки к заказу.
+        /// </summary>
+        private void ApplyDiscounts()
+        {
+            for (int i = 0; i < CurrentCustomer.Discounts.Count; i++)
+            {
+                if (DiscountsCheckedListBox.GetItemChecked(i))
+                {
+                    CurrentCustomer.Discounts[i].Apply(CurrentCustomer.Cart.Items);
+                }
+            }
+            DiscountLabel.Text = "0";
+            TotalLabel.Text = "0";
+        }
+
+        /// <summary>
+        /// Обновляет баллы и процент скидки по категории.
+        /// </summary>
+        private void UpdateDiscountsInfo()
+        {
+            for (int i = 0; i<CurrentCustomer.Discounts.Count; i++)
+            {
+                CurrentCustomer.Discounts[i].Update(CurrentCustomer.Cart.Items);
+            }
+            FillDiscountsCheckedListBox();
         }
 
         /// <summary>

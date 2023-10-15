@@ -62,7 +62,7 @@ namespace ObjectOrientedPractices.Model.Discounts
 
             if (Points > 0.3*amount)
             {
-                return 0.3 * amount;
+                return Math.Floor(0.3 * amount);
             }
             else
             {

@@ -33,6 +33,12 @@
             this.AddButton = new System.Windows.Forms.Button();
             this.ItemsListBox = new System.Windows.Forms.ListBox();
             this.CartTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.DiscountsGroupBox = new System.Windows.Forms.GroupBox();
+            this.TotalLabel = new System.Windows.Forms.Label();
+            this.TotalCostLabel = new System.Windows.Forms.Label();
+            this.DiscountLabel = new System.Windows.Forms.Label();
+            this.DiscountAmountLabel = new System.Windows.Forms.Label();
+            this.DiscountsCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.ButtonTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.CreateButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
@@ -47,6 +53,7 @@
             this.TableLayoutPanel.SuspendLayout();
             this.ItemsGroupBox.SuspendLayout();
             this.CartTableLayoutPanel.SuspendLayout();
+            this.DiscountsGroupBox.SuspendLayout();
             this.ButtonTableLayoutPanel.SuspendLayout();
             this.CartGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -115,6 +122,7 @@
             // 
             this.CartTableLayoutPanel.ColumnCount = 1;
             this.CartTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.CartTableLayoutPanel.Controls.Add(this.DiscountsGroupBox, 0, 2);
             this.CartTableLayoutPanel.Controls.Add(this.ButtonTableLayoutPanel, 0, 1);
             this.CartTableLayoutPanel.Controls.Add(this.CartGroupBox, 0, 0);
             this.CartTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -127,6 +135,80 @@
             this.CartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.20577F));
             this.CartTableLayoutPanel.Size = new System.Drawing.Size(585, 629);
             this.CartTableLayoutPanel.TabIndex = 0;
+            // 
+            // DiscountsGroupBox
+            // 
+            this.DiscountsGroupBox.Controls.Add(this.TotalLabel);
+            this.DiscountsGroupBox.Controls.Add(this.TotalCostLabel);
+            this.DiscountsGroupBox.Controls.Add(this.DiscountLabel);
+            this.DiscountsGroupBox.Controls.Add(this.DiscountAmountLabel);
+            this.DiscountsGroupBox.Controls.Add(this.DiscountsCheckedListBox);
+            this.DiscountsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DiscountsGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DiscountsGroupBox.Location = new System.Drawing.Point(3, 397);
+            this.DiscountsGroupBox.Name = "DiscountsGroupBox";
+            this.DiscountsGroupBox.Size = new System.Drawing.Size(579, 229);
+            this.DiscountsGroupBox.TabIndex = 1;
+            this.DiscountsGroupBox.TabStop = false;
+            this.DiscountsGroupBox.Text = "Discounts:";
+            // 
+            // TotalLabel
+            // 
+            this.TotalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TotalLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TotalLabel.Location = new System.Drawing.Point(298, 186);
+            this.TotalLabel.Name = "TotalLabel";
+            this.TotalLabel.Size = new System.Drawing.Size(275, 34);
+            this.TotalLabel.TabIndex = 4;
+            this.TotalLabel.Text = "0";
+            this.TotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TotalCostLabel
+            // 
+            this.TotalCostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TotalCostLabel.AutoSize = true;
+            this.TotalCostLabel.Location = new System.Drawing.Point(515, 166);
+            this.TotalCostLabel.Name = "TotalCostLabel";
+            this.TotalCostLabel.Size = new System.Drawing.Size(58, 20);
+            this.TotalCostLabel.TabIndex = 3;
+            this.TotalCostLabel.Text = "TOTAL:";
+            // 
+            // DiscountLabel
+            // 
+            this.DiscountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DiscountLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DiscountLabel.Location = new System.Drawing.Point(298, 43);
+            this.DiscountLabel.Name = "DiscountLabel";
+            this.DiscountLabel.Size = new System.Drawing.Size(275, 29);
+            this.DiscountLabel.TabIndex = 2;
+            this.DiscountLabel.Text = "0";
+            this.DiscountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // DiscountAmountLabel
+            // 
+            this.DiscountAmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DiscountAmountLabel.AutoSize = true;
+            this.DiscountAmountLabel.Location = new System.Drawing.Point(436, 23);
+            this.DiscountAmountLabel.Name = "DiscountAmountLabel";
+            this.DiscountAmountLabel.Size = new System.Drawing.Size(137, 20);
+            this.DiscountAmountLabel.TabIndex = 1;
+            this.DiscountAmountLabel.Text = "Discount Amount:";
+            // 
+            // DiscountsCheckedListBox
+            // 
+            this.DiscountsCheckedListBox.BackColor = System.Drawing.SystemColors.Window;
+            this.DiscountsCheckedListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DiscountsCheckedListBox.CheckOnClick = true;
+            this.DiscountsCheckedListBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DiscountsCheckedListBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.DiscountsCheckedListBox.FormattingEnabled = true;
+            this.DiscountsCheckedListBox.IntegralHeight = false;
+            this.DiscountsCheckedListBox.Location = new System.Drawing.Point(3, 23);
+            this.DiscountsCheckedListBox.Name = "DiscountsCheckedListBox";
+            this.DiscountsCheckedListBox.Size = new System.Drawing.Size(289, 203);
+            this.DiscountsCheckedListBox.TabIndex = 0;
+            this.DiscountsCheckedListBox.SelectedIndexChanged += new System.EventHandler(this.DiscountsCheckedListBox_SelectedIndexChanged);
             // 
             // ButtonTableLayoutPanel
             // 
@@ -286,6 +368,8 @@
             this.TableLayoutPanel.ResumeLayout(false);
             this.ItemsGroupBox.ResumeLayout(false);
             this.CartTableLayoutPanel.ResumeLayout(false);
+            this.DiscountsGroupBox.ResumeLayout(false);
+            this.DiscountsGroupBox.PerformLayout();
             this.ButtonTableLayoutPanel.ResumeLayout(false);
             this.CartGroupBox.ResumeLayout(false);
             this.CartGroupBox.PerformLayout();
@@ -311,5 +395,11 @@
         private ComboBox CustomersComboBox;
         private Label CustomerLabel;
         private ListBox CartListBox;
+        private GroupBox DiscountsGroupBox;
+        private Label TotalLabel;
+        private Label TotalCostLabel;
+        private Label DiscountLabel;
+        private Label DiscountAmountLabel;
+        private CheckedListBox DiscountsCheckedListBox;
     }
 }

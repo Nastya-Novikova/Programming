@@ -59,6 +59,9 @@
             this.CustomerColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalLabel = new System.Windows.Forms.Label();
+            this.TotalCostLabel = new System.Windows.Forms.Label();
             this.TableLayoutPanel.SuspendLayout();
             this.SelectedOrderTableLayoutPanel.SuspendLayout();
             this.SelectedOrderGroupBox.SuspendLayout();
@@ -218,6 +221,8 @@
             // 
             // ItemsGroupBox
             // 
+            this.ItemsGroupBox.Controls.Add(this.TotalLabel);
+            this.ItemsGroupBox.Controls.Add(this.TotalCostLabel);
             this.ItemsGroupBox.Controls.Add(this.CostLabel);
             this.ItemsGroupBox.Controls.Add(this.AmountLabel);
             this.ItemsGroupBox.Controls.Add(this.ItemsListBox);
@@ -234,9 +239,9 @@
             // 
             this.CostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CostLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CostLabel.Location = new System.Drawing.Point(93, 201);
+            this.CostLabel.Location = new System.Drawing.Point(378, 201);
             this.CostLabel.Name = "CostLabel";
-            this.CostLabel.Size = new System.Drawing.Size(466, 32);
+            this.CostLabel.Size = new System.Drawing.Size(181, 32);
             this.CostLabel.TabIndex = 7;
             this.CostLabel.Text = "0";
             this.CostLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -318,7 +323,8 @@
             this.StatusColumn,
             this.CustomerColumn,
             this.AddressColumn,
-            this.AmountColumn});
+            this.AmountColumn,
+            this.TotalColumn});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -418,6 +424,38 @@
             this.AmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.AmountColumn.Width = 68;
             // 
+            // TotalColumn
+            // 
+            this.TotalColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.TotalColumn.HeaderText = "Total";
+            this.TotalColumn.MinimumWidth = 6;
+            this.TotalColumn.Name = "TotalColumn";
+            this.TotalColumn.ReadOnly = true;
+            this.TotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TotalColumn.Width = 48;
+            // 
+            // TotalLabel
+            // 
+            this.TotalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TotalLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TotalLabel.Location = new System.Drawing.Point(177, 202);
+            this.TotalLabel.Name = "TotalLabel";
+            this.TotalLabel.Size = new System.Drawing.Size(181, 31);
+            this.TotalLabel.TabIndex = 9;
+            this.TotalLabel.Text = "0";
+            this.TotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TotalCostLabel
+            // 
+            this.TotalCostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TotalCostLabel.AutoSize = true;
+            this.TotalCostLabel.Location = new System.Drawing.Point(300, 181);
+            this.TotalCostLabel.Margin = new System.Windows.Forms.Padding(3, 0, 17, 0);
+            this.TotalCostLabel.Name = "TotalCostLabel";
+            this.TotalCostLabel.Size = new System.Drawing.Size(58, 20);
+            this.TotalCostLabel.TabIndex = 8;
+            this.TotalCostLabel.Text = "TOTAL:";
+            // 
             // OrdersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -468,5 +506,8 @@
         private DataGridViewTextBoxColumn CustomerColumn;
         private DataGridViewTextBoxColumn AddressColumn;
         private DataGridViewTextBoxColumn AmountColumn;
+        private DataGridViewTextBoxColumn TotalColumn;
+        private Label TotalLabel;
+        private Label TotalCostLabel;
     }
 }

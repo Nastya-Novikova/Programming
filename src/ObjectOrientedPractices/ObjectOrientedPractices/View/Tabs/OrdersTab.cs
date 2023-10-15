@@ -174,6 +174,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 }
                 row.Cells[5].Value = GetAddress(_orders[row.Index].Address);
                 row.Cells[6].Value = _orders[row.Index].Amount;
+                row.Cells[7].Value = _orders[row.Index].Total;
             }
         }
 
@@ -221,6 +222,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 ItemsListBox.Items.Add(item);
             }
             CostLabel.Text = SelectedOrder.Amount.ToString();
+            TotalLabel.Text = SelectedOrder.Total.ToString();
         }
 
         /// <summary>
@@ -260,6 +262,7 @@ namespace ObjectOrientedPractices.View.Tabs
             AddressControl.ClearAllTextBoxes();
             ItemsListBox.Items.Clear();
             CostLabel.Text = "0";
+            TotalLabel.Text = "0";
             OptionsPanel.Visible = false;
         }
 
