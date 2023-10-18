@@ -11,7 +11,7 @@ namespace ObjectOrientedPractices.Model
     /// <summary>
     ///Товар.
     /// </summary>
-    public class Item
+    public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         /// <summary>
         /// Уникальный номер товара.
@@ -105,6 +105,107 @@ namespace ObjectOrientedPractices.Model
             Info = info;
             Cost = cost;
             Category = Category.Food;
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns>Копия объекта.</returns>
+        public object Clone()
+        {
+            return new Item(Name, Info, Cost);
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим.</param>
+        /// <returns>True, если объекты равны, иначе False.</returns>
+        bool IEquatable<Item>.Equals(Item other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (Name == other.Name &&
+                Cost == other.Cost)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим.</param>
+        /// <returns>True, если объекты равны, иначе False.</returns>
+        public override bool Equals(object other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (other is not Item)
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            var item = (Item)other;
+            if (Name == item.Name && 
+                Cost == item.Cost)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим.</param>
+        /// <returns>
+        /// 1, если текущий объект больше; 
+        /// 0, если объекты равны; 
+        /// -1, если текущий объект меньше.</returns>
+        /// <exception cref="ArgumentException">Объект равен null.</exception>
+        public int CompareTo(Item other)
+        {
+            if (other == null)
+            {
+                throw new ArgumentException("Incorrect item");
+            }
+
+            if (Cost > other.Cost)
+            {
+                return 1;
+            }
+            else if (Cost < other.Cost)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

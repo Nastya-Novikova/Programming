@@ -3,16 +3,18 @@ using ObjectOrientedPractices.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ObjectOrientedPractices.Model.Orders
 {
     /// <summary>
     /// Заказ.
     /// </summary>
-    public class Order
+    public class Order : IEquatable<Order>
     {
         /// <summary>
         /// Уникальный номер заказа.
@@ -137,6 +139,95 @@ namespace ObjectOrientedPractices.Model.Orders
             Items = items;
             Status = OrderStatus.New;
             _customerId = customerId;
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим.</param>
+        /// <returns>True, если объекты равны, иначе False.</returns>
+        bool IEquatable<Order>.Equals(Order other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            var order = (Order)other;
+            var flag = true;
+            for (int i = 0; i < Items.Count; i++)
+            {
+                flag = Items[i].Equals(order.Items[i]);
+                if (flag == false)
+                {
+                    break;
+                }
+            }
+
+            if (Date == order.Date &&
+                CustomerId == order.CustomerId &&
+                Address.Equals(order.Address) &&
+                flag &&
+                Status == order.Status)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим.</param>
+        /// <returns>True, если объекты равны, иначе False.</returns>
+        public override bool Equals(object other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (other is not Order)
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            var order = (Order)other;
+            var flag = true;
+            for (int i = 0; i < Items.Count; i++)
+            {
+                flag = Items[i].Equals(order.Items[i]);
+                if (flag == false)
+                {
+                    break;
+                }
+            }
+
+            if (Date == order.Date &&
+                CustomerId == order.CustomerId &&
+                Address.Equals(order.Address) &&
+                flag &&
+                Status == order.Status)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

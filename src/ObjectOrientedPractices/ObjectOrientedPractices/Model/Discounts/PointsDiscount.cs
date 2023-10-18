@@ -11,7 +11,7 @@ namespace ObjectOrientedPractices.Model.Discounts
     /// <summary>
     /// Накопительная карта.
     /// </summary>
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         /// <summary>
         /// Баллы.
@@ -96,5 +96,34 @@ namespace ObjectOrientedPractices.Model.Discounts
             Points += (int)Math.Ceiling(0.1*amount);
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим.</param>
+        /// <returns>
+        /// 1, если текущий объект больше; 
+        /// 0, если объекты равны; 
+        /// -1, если текущий объект меньше.</returns>
+        /// <exception cref="ArgumentException">Объект равен null.</exception>
+        public int CompareTo(PointsDiscount other)
+        {
+            if (other == null)
+            {
+                throw new ArgumentException("Incorrect discount");
+            }
+
+            if (Points > other.Points)
+            {
+                return 1;
+            }
+            else if (Points < other.Points)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }

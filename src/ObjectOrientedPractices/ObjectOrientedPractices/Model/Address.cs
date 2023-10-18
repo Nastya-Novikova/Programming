@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ObjectOrientedPractices.Model
 {
     /// <summary>
     /// Адрес.
     /// </summary>
-    public class Address
+    public class Address : ICloneable, IEquatable<Address>
     {
         /// <summary>
         /// Почтовый индекс.
@@ -164,6 +165,86 @@ namespace ObjectOrientedPractices.Model
         public Address()
         {
 
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns>Копия объекта.</returns>
+        public object Clone()
+        {
+            return new Address(Index, Country, City, Street, Building, Apartment);
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим.</param>
+        /// <returns>True, если объекты равны, иначе False.</returns>
+        bool IEquatable<Address>.Equals(Address other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            var address = (Address)other;
+            if (Index == address.Index &&
+                Country == address.Country &&
+                City == address.City &&
+                Street == address.Street &&
+                Building == address.Building &&
+                Apartment == address.Apartment)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим.</param>
+        /// <returns>True, если объекты равны, иначе False.</returns>
+        public override bool Equals(object other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (other is not Address)
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            var address = (Address)other;
+            if (Index == address.Index &&
+                Country == address.Country &&
+                City == address.City &&
+                Street == address.Street &&
+                Building == address.Building &&
+                Apartment == address.Apartment)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

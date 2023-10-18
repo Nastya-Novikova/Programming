@@ -12,7 +12,7 @@ namespace ObjectOrientedPractices.Model.Discounts
     /// <summary>
     /// Процентная карта.
     /// </summary>
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         /// <summary>
         /// Категория товара.
@@ -123,6 +123,36 @@ namespace ObjectOrientedPractices.Model.Discounts
                 {
                     Discount = 0.1;
                 }
+            }
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим.</param>
+        /// <returns>
+        /// 1, если текущий объект больше; 
+        /// 0, если объекты равны; 
+        /// -1, если текущий объект меньше.</returns>
+        /// <exception cref="ArgumentException">Объект равен null.</exception>
+        public int CompareTo(PercentDiscount other)
+        {
+            if (other == null)
+            {
+                throw new ArgumentException("Incorrect discount");
+            }
+
+            if (Discount > other.Discount)
+            {
+                return 1;
+            }
+            else if (Discount < other.Discount)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
             }
         }
     }
