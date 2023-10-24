@@ -30,6 +30,8 @@
         {
             this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ItemsGroupBox = new System.Windows.Forms.GroupBox();
+            this.OrderByComboBox = new System.Windows.Forms.ComboBox();
+            this.OrderByLabel = new System.Windows.Forms.Label();
             this.FindTextBox = new System.Windows.Forms.TextBox();
             this.FindLabel = new System.Windows.Forms.Label();
             this.ButtonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -71,6 +73,8 @@
             // 
             // ItemsGroupBox
             // 
+            this.ItemsGroupBox.Controls.Add(this.OrderByComboBox);
+            this.ItemsGroupBox.Controls.Add(this.OrderByLabel);
             this.ItemsGroupBox.Controls.Add(this.FindTextBox);
             this.ItemsGroupBox.Controls.Add(this.FindLabel);
             this.ItemsGroupBox.Controls.Add(this.ButtonsTableLayoutPanel);
@@ -83,6 +87,29 @@
             this.ItemsGroupBox.TabIndex = 0;
             this.ItemsGroupBox.TabStop = false;
             this.ItemsGroupBox.Text = "Items";
+            // 
+            // OrderByComboBox
+            // 
+            this.OrderByComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OrderByComboBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.OrderByComboBox.FormattingEnabled = true;
+            this.OrderByComboBox.Location = new System.Drawing.Point(82, 395);
+            this.OrderByComboBox.Name = "OrderByComboBox";
+            this.OrderByComboBox.Size = new System.Drawing.Size(271, 28);
+            this.OrderByComboBox.TabIndex = 5;
+            this.OrderByComboBox.SelectedIndexChanged += new System.EventHandler(this.OrderByComboBox_SelectedIndexChanged);
+            // 
+            // OrderByLabel
+            // 
+            this.OrderByLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.OrderByLabel.AutoSize = true;
+            this.OrderByLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.OrderByLabel.Location = new System.Drawing.Point(6, 398);
+            this.OrderByLabel.Name = "OrderByLabel";
+            this.OrderByLabel.Size = new System.Drawing.Size(70, 20);
+            this.OrderByLabel.TabIndex = 4;
+            this.OrderByLabel.Text = "Order by:";
             // 
             // FindTextBox
             // 
@@ -168,8 +195,9 @@
             this.ItemsListBox.IntegralHeight = false;
             this.ItemsListBox.ItemHeight = 20;
             this.ItemsListBox.Location = new System.Drawing.Point(3, 51);
+            this.ItemsListBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 40);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(351, 372);
+            this.ItemsListBox.Size = new System.Drawing.Size(351, 335);
             this.ItemsListBox.TabIndex = 0;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             this.ItemsListBox.Leave += new System.EventHandler(this.ItemsListBox_Leave);
@@ -342,5 +370,7 @@
         private Label CategoryLabel;
         private TextBox FindTextBox;
         private Label FindLabel;
+        private ComboBox OrderByComboBox;
+        private Label OrderByLabel;
     }
 }

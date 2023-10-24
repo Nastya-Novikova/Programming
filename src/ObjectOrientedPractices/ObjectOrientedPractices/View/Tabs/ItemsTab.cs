@@ -49,6 +49,9 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private string _line;
 
+        /// <summary>
+        /// Отображаемые элементы.
+        /// </summary>
         private BindingList<Item> _displayedItems;
 
         /// <summary>
@@ -67,6 +70,7 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             InitializeComponent();
             FillCategoryComboBox();
+            FillOrderByComboBox();
             FillItemsListBox(Items);
         }
 
@@ -80,6 +84,18 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 CategoryComboBox.Items.Add(category);
             }
+        }
+
+        /// <summary>
+        /// Заполняет OrderByComboBox.
+        /// </summary>
+        private void FillOrderByComboBox()
+        {
+            string[] values = new string[] { "Name (Ascending)",
+                                             "Cost (Ascending)",
+                                             "Cost (Descending)"};
+            OrderByComboBox.Items.AddRange(values);
+            OrderByComboBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -113,9 +129,60 @@ namespace ObjectOrientedPractices.View.Tabs
             CategoryComboBox.SelectedItem = null;
         }
 
-        private bool SortByName(Item item)
+        /// <summary>
+        /// Выбирает товары, в названии которых содержится введенная подстрока.
+        /// </summary>
+        /// <param name="item">Товар.</param>
+        /// <returns>true, если подстрока содержится, иначе false.</returns>
+        private bool FilterByName(Item item)
         {
             return item.Name.Contains(_line);
+        }
+
+        /// <summary>
+        /// Сортирует товары в алфавитном порядке.
+        /// </summary>
+        /// <param name="firstItem">Первый товар.</param>
+        /// <param name="secondItem">Второй товар.</param>
+        /// <returns>true, если название первого товара должно
+        /// стоять после названия второго, иначе false.</returns>
+        private bool SortByName(Item firstItem, Item secondItem)
+        {
+            if (String.Compare(firstItem.Name, secondItem.Name) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Сортирует товары по возрастанию цены.
+        /// </summary>
+        /// <param name="firstItem">Первый товар.</param>
+        /// <param name="secondItem">Второй товар.</param>
+        /// <returns>true, если цена первого больше цены второго, иначе false.</returns>
+        private bool SortByAscendingCost(Item firstItem, Item secondItem)
+        {
+            if (firstItem.CompareTo(secondItem) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Сортирует товары по убыванию цены.
+        /// </summary>
+        /// <param name="firstItem">Первый товар.</param>
+        /// <param name="secondItem">Второй товар.</param>
+        /// <returns>true, если цена первого меньше цены второго, иначе false.</returns>
+        private bool SortByDescendingCost(Item firstItem, Item secondItem)
+        {
+            if (firstItem.CompareTo(secondItem) < 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -147,6 +214,7 @@ namespace ObjectOrientedPractices.View.Tabs
 
         /// <summary>
         /// Создает новый объект класса <see cref="Item"/> и добавляет его в список.
+        /// Сортирует товары.
         /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
@@ -159,11 +227,13 @@ namespace ObjectOrientedPractices.View.Tabs
             _currentItem = new Item($"Item {_count}", " ", _cost);
             Items.Add(_currentItem);
             ItemsListBox.SelectedItem = _currentItem;
+            SortItemsListBox();
             FillItemsListBox(Items);
         }
    
         /// <summary>
         /// Создает несколько объектов класса <see cref="Item"/> и добавляет их в список. 
+        /// Сортирует товары.
         /// </summary>
         private void AddListButton_Click(object sender, EventArgs e)
         {
@@ -178,8 +248,8 @@ namespace ObjectOrientedPractices.View.Tabs
                 _currentItem = new Item($"Item {_count}", " ", _cost);
                 Items.Add(_currentItem);
             }
+            SortItemsListBox();
             FillItemsListBox(Items);
-            ItemsListBox.SelectedIndex = -1;
         }
 
         /// <summary>
@@ -215,6 +285,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 CostTextBox.BackColor = Color.White;
                 _currentItem.Cost = Double.Parse(CostTextBox.Text);
+                SortItemsListBox();
             }
             catch
             {
@@ -239,6 +310,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 NameTextBox.BackColor = Color.White;
                 _currentItem.Name = NameTextBox.Text.ToString();
                 UpdateItemsListBox();
+                SortItemsListBox();
             }
             catch
             {
@@ -272,16 +344,19 @@ namespace ObjectOrientedPractices.View.Tabs
             }
         }
 
-
+        /// <summary>
+        /// Выводит товары по введенной подстроке.
+        /// </summary>
         private void FindTextBox_TextChanged(object sender, EventArgs e)
         {
             if (FindTextBox.Text == String.Empty)
             {
+                SortItemsListBox();
                 FillItemsListBox(Items);
                 return;
             }
             _line = FindTextBox.Text;
-            _displayedItems = DataTools.Sort(Items, SortByName);
+            _displayedItems = DataTools.Filter(Items, FilterByName);
             FillItemsListBox(_displayedItems);
         }
 
@@ -295,6 +370,51 @@ namespace ObjectOrientedPractices.View.Tabs
                 return;
             }
             _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
+        }
+
+        /// <summary>
+        /// Сортирует товары по выбранному способу.
+        /// </summary>
+        private void OrderByComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ItemsListBox.Items.Count == 0)
+            {
+                return;
+            }
+            SortItemsListBox();
+        }
+
+        /// <summary>
+        /// Сортирует товары по выбранному способу.
+        /// </summary>
+        private void SortItemsListBox()
+        {
+            var selectedItem = ItemsListBox.SelectedItem;
+            BindingList<Item> items = new BindingList<Item>();
+            if (FindTextBox.Text != String.Empty)
+            {
+                items = _displayedItems;
+            }
+            else
+            {
+                items = Items;
+            }
+
+            if (OrderByComboBox.SelectedIndex == 0)
+            {
+                DataTools.Sort(items, SortByName);
+                ItemsListBox.SelectedItem = selectedItem;
+            }
+            else if (OrderByComboBox.SelectedIndex == 1)
+            {
+                DataTools.Sort(items, SortByAscendingCost);
+                ItemsListBox.SelectedItem = selectedItem;
+            }
+            else
+            {
+                DataTools.Sort(items, SortByDescendingCost);
+                ItemsListBox.SelectedItem = selectedItem;
+            }
         }
 
         /// <summary>
