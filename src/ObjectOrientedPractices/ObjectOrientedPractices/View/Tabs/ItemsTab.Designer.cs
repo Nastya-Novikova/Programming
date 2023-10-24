@@ -30,6 +30,8 @@
         {
             this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ItemsGroupBox = new System.Windows.Forms.GroupBox();
+            this.FindTextBox = new System.Windows.Forms.TextBox();
+            this.FindLabel = new System.Windows.Forms.Label();
             this.ButtonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.AddButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
@@ -69,6 +71,8 @@
             // 
             // ItemsGroupBox
             // 
+            this.ItemsGroupBox.Controls.Add(this.FindTextBox);
+            this.ItemsGroupBox.Controls.Add(this.FindLabel);
             this.ItemsGroupBox.Controls.Add(this.ButtonsTableLayoutPanel);
             this.ItemsGroupBox.Controls.Add(this.ItemsListBox);
             this.ItemsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -79,6 +83,27 @@
             this.ItemsGroupBox.TabIndex = 0;
             this.ItemsGroupBox.TabStop = false;
             this.ItemsGroupBox.Text = "Items";
+            // 
+            // FindTextBox
+            // 
+            this.FindTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FindTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FindTextBox.Location = new System.Drawing.Point(49, 20);
+            this.FindTextBox.Name = "FindTextBox";
+            this.FindTextBox.Size = new System.Drawing.Size(304, 27);
+            this.FindTextBox.TabIndex = 3;
+            this.FindTextBox.TextChanged += new System.EventHandler(this.FindTextBox_TextChanged);
+            // 
+            // FindLabel
+            // 
+            this.FindLabel.AutoSize = true;
+            this.FindLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FindLabel.Location = new System.Drawing.Point(3, 23);
+            this.FindLabel.Name = "FindLabel";
+            this.FindLabel.Size = new System.Drawing.Size(40, 20);
+            this.FindLabel.TabIndex = 2;
+            this.FindLabel.Text = "Find:";
             // 
             // ButtonsTableLayoutPanel
             // 
@@ -142,9 +167,9 @@
             this.ItemsListBox.FormattingEnabled = true;
             this.ItemsListBox.IntegralHeight = false;
             this.ItemsListBox.ItemHeight = 20;
-            this.ItemsListBox.Location = new System.Drawing.Point(3, 24);
+            this.ItemsListBox.Location = new System.Drawing.Point(3, 51);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(351, 399);
+            this.ItemsListBox.Size = new System.Drawing.Size(351, 372);
             this.ItemsListBox.TabIndex = 0;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             this.ItemsListBox.Leave += new System.EventHandler(this.ItemsListBox_Leave);
@@ -287,6 +312,7 @@
             this.Size = new System.Drawing.Size(818, 497);
             this.TableLayoutPanel.ResumeLayout(false);
             this.ItemsGroupBox.ResumeLayout(false);
+            this.ItemsGroupBox.PerformLayout();
             this.ButtonsTableLayoutPanel.ResumeLayout(false);
             this.SelectedItemGroupBox.ResumeLayout(false);
             this.SelectedItemGroupBox.PerformLayout();
@@ -314,5 +340,7 @@
         private Button AddListButton;
         private ComboBox CategoryComboBox;
         private Label CategoryLabel;
+        private TextBox FindTextBox;
+        private Label FindLabel;
     }
 }

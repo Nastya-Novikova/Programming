@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using ObjectOrientedPractices.Model;
 using ObjectOrientedPractices.Model.Enums;
+using ObjectOrientedPractices.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,6 +45,13 @@ namespace ObjectOrientedPractices.View.Tabs
         private double _cost;
 
         /// <summary>
+        /// Текст в поисковой строке.
+        /// </summary>
+        private string _line;
+
+        private BindingList<Item> _displayedItems;
+
+        /// <summary>
         /// Возвращает и задает лист товаров.
         /// </summary>
         public BindingList<Item> Items
@@ -59,7 +67,7 @@ namespace ObjectOrientedPractices.View.Tabs
         {
             InitializeComponent();
             FillCategoryComboBox();
-            FillItemsListBox();
+            FillItemsListBox(Items);
         }
 
         /// <summary>
@@ -77,10 +85,10 @@ namespace ObjectOrientedPractices.View.Tabs
         /// <summary>
         /// Заполняет ItemsListBox значениями из списка _items.
         /// </summary>
-        private void FillItemsListBox()
+        private void FillItemsListBox(BindingList<Item> items)
         {
             ItemsListBox.DataSource = null;
-            ItemsListBox.DataSource = Items;
+            ItemsListBox.DataSource = items;
             ItemsListBox.DisplayMember = nameof(Item.Name);
         }
 
@@ -105,6 +113,11 @@ namespace ObjectOrientedPractices.View.Tabs
             CategoryComboBox.SelectedItem = null;
         }
 
+        private bool SortByName(Item item)
+        {
+            return item.Name.Contains(_line);
+        }
+
         /// <summary>
         /// Заполняет поля и изменяет поле _currentItem
         /// при выборе элемента в ItemsListBox.
@@ -117,7 +130,14 @@ namespace ObjectOrientedPractices.View.Tabs
                 ClearAllTextBoxes();
                 return;
             }
-            _currentItem = Items[ItemsListBox.SelectedIndex];
+            if (FindTextBox.Text != String.Empty)
+            {
+                _currentItem = _displayedItems[ItemsListBox.SelectedIndex];
+            }
+            else
+            {
+                _currentItem = Items[ItemsListBox.SelectedIndex];
+            }
             IdTextBox.Text = _currentItem.Id.ToString();
             NameTextBox.Text = _currentItem.Name;
             CostTextBox.Text = _currentItem.Cost.ToString();
@@ -130,12 +150,16 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
+            if (FindTextBox.Text != String.Empty)
+            {
+                return;
+            }
             _count++;
             _cost = Math.Round(_random.NextDouble() * 100 + 1);
             _currentItem = new Item($"Item {_count}", " ", _cost);
             Items.Add(_currentItem);
             ItemsListBox.SelectedItem = _currentItem;
-            FillItemsListBox();
+            FillItemsListBox(Items);
         }
    
         /// <summary>
@@ -143,6 +167,10 @@ namespace ObjectOrientedPractices.View.Tabs
         /// </summary>
         private void AddListButton_Click(object sender, EventArgs e)
         {
+            if (FindTextBox.Text != String.Empty)
+            {
+                return;
+            }
             for (int i = 0; i < 10; i++)
             {
                 _count++;
@@ -150,7 +178,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 _currentItem = new Item($"Item {_count}", " ", _cost);
                 Items.Add(_currentItem);
             }
-            FillItemsListBox();
+            FillItemsListBox(Items);
             ItemsListBox.SelectedIndex = -1;
         }
 
@@ -164,7 +192,12 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 return;
             }
-            Items.RemoveAt(ItemsListBox.SelectedIndex);
+            var selectedItem = ItemsListBox.SelectedItem;
+            if (FindTextBox.Text != String.Empty)
+            {
+                _displayedItems.Remove((Item)selectedItem);
+            }
+            Items.Remove((Item)selectedItem);
             ItemsListBox.SelectedIndex = -1;
         }
 
@@ -237,6 +270,19 @@ namespace ObjectOrientedPractices.View.Tabs
                     DescriptionTextBox.BackColor = Color.LightPink;
                 }
             }
+        }
+
+
+        private void FindTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (FindTextBox.Text == String.Empty)
+            {
+                FillItemsListBox(Items);
+                return;
+            }
+            _line = FindTextBox.Text;
+            _displayedItems = DataTools.Sort(Items, SortByName);
+            FillItemsListBox(_displayedItems);
         }
 
         /// <summary>
