@@ -222,9 +222,10 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 return;
             }
-            _count++;
+            int number = _random.Next(24);
+            string name = Convert.ToString((FoodItemNames)number);
             _cost = Math.Round(_random.NextDouble() * 100 + 1);
-            _currentItem = new Item($"Item {_count}", " ", _cost);
+            _currentItem = new Item(name, " ", _cost);
             Items.Add(_currentItem);
             ItemsListBox.SelectedItem = _currentItem;
             SortItemsListBox();
@@ -243,11 +244,13 @@ namespace ObjectOrientedPractices.View.Tabs
             }
             for (int i = 0; i < 10; i++)
             {
-                _count++;
+                int number = _random.Next(24);
+                string name = Convert.ToString((FoodItemNames)number);
                 _cost = Math.Round(_random.NextDouble() * 100 + 1);
-                _currentItem = new Item($"Item {_count}", " ", _cost);
+                _currentItem = new Item(name, " ", _cost);
                 Items.Add(_currentItem);
             }
+            ItemsListBox.DataSource = null;
             SortItemsListBox();
             FillItemsListBox(Items);
         }
@@ -285,7 +288,6 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 CostTextBox.BackColor = Color.White;
                 _currentItem.Cost = Double.Parse(CostTextBox.Text);
-                SortItemsListBox();
             }
             catch
             {
@@ -310,7 +312,6 @@ namespace ObjectOrientedPractices.View.Tabs
                 NameTextBox.BackColor = Color.White;
                 _currentItem.Name = NameTextBox.Text.ToString();
                 UpdateItemsListBox();
-                SortItemsListBox();
             }
             catch
             {

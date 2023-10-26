@@ -61,15 +61,15 @@ namespace ObjectOrientedPractices.Services
         /// <param name="compare">Внешний делегат.</param>
         public static void Sort(BindingList<Item> items, Func<Item, Item, bool> compare)
         {
-            for (int i = 0; i < items.Count - 1; i++)
+            for (int i = 1; i < items.Count; i++)
             {
-                for (int j = i + 1; j < items.Count; j++)
+                for (int j = 0; j < items.Count - 1; j++)
                 {
-                    if (compare(items[i], items[j]))
+                    if (compare(items[j], items[j+1]))
                     {
-                        var temp = items[i];
-                        items[i] = items[j];
-                        items[j] = temp;
+                        var temp = items[j];
+                        items[j] = items[j+1];
+                        items[j+1] = temp;
                     }
                 }
             }
