@@ -30,14 +30,14 @@ namespace ObjectOrientedPractices
 
         private void ItemsTab_ItemsChanged(object sender, EventArgs args)
         {
-            CartsTab.RefreshData();
-            OrdersTab.RefreshData();
+            //CartsTab.RefreshData();
+            //OrdersTab.RefreshData();
         }
 
         private void CustomersTab_CustomersChanged(object sender, EventArgs args)
         {
-            CartsTab.RefreshData();
-            OrdersTab.RefreshData();
+            //CartsTab.RefreshData();
+            //OrdersTab.RefreshData();
         }
 
         /// <summary>
