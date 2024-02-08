@@ -13,6 +13,8 @@ namespace ObjectOrientedPractices.Model
     /// </summary>
     public class Address : ICloneable, IEquatable<Address>
     {
+        public event EventHandler<EventArgs> AddressChanged;
+
         /// <summary>
         /// Почтовый индекс.
         /// </summary>
@@ -56,6 +58,7 @@ namespace ObjectOrientedPractices.Model
                 int max = 999999;
                 ValueValidator.AssertValueInRange(value, min, max);
                 _index = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -72,6 +75,7 @@ namespace ObjectOrientedPractices.Model
                 int max = 50;
                 ValueValidator.AssertStringOnLength(value, min, max);
                 _country = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -88,6 +92,7 @@ namespace ObjectOrientedPractices.Model
                 int max = 50;
                 ValueValidator.AssertStringOnLength(value, min, max);
                 _city = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -104,6 +109,7 @@ namespace ObjectOrientedPractices.Model
                 int max = 100;
                 ValueValidator.AssertStringOnLength(value, min, max);
                 _street = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -120,6 +126,7 @@ namespace ObjectOrientedPractices.Model
                 int max = 10;
                 ValueValidator.AssertStringOnLength(value, min, max);
                 _building = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -136,6 +143,7 @@ namespace ObjectOrientedPractices.Model
                 int max = 10;
                 ValueValidator.AssertStringOnLength(value, min, max);
                 _apartment = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

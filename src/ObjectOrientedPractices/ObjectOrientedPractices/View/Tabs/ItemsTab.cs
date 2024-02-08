@@ -19,6 +19,8 @@ namespace ObjectOrientedPractices.View.Tabs
     /// </summary>
     public partial class ItemsTab : UserControl
     {
+        public event EventHandler<EventArgs> ItemsChanged;
+
         /// <summary>
         /// Объект класса <see cref="Random"/>.
         /// </summary>
@@ -33,11 +35,6 @@ namespace ObjectOrientedPractices.View.Tabs
         /// Объект класса <see cref="Item"/>.
         /// </summary>
         private Item _currentItem;
-
-        /// <summary>
-        /// Счетчик элементов.
-        /// </summary>
-        private int _count;
 
         /// <summary>
         /// Стоимость заказа.
@@ -225,9 +222,15 @@ namespace ObjectOrientedPractices.View.Tabs
             int number = _random.Next(24);
             string name = Convert.ToString((FoodItemNames)number);
             _cost = Math.Round(_random.NextDouble() * 100 + 1);
+            if (_currentItem != null)
+            {
+                _currentItem.NameChanged -= Item_NameChanged;
+            }
             _currentItem = new Item(name, " ", _cost);
+            _currentItem.NameChanged += Item_NameChanged;
             Items.Add(_currentItem);
             ItemsListBox.SelectedItem = _currentItem;
+            ItemsChanged?.Invoke(sender, EventArgs.Empty);
             SortItemsListBox();
             FillItemsListBox(Items);
         }
@@ -249,6 +252,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 _cost = Math.Round(_random.NextDouble() * 100 + 1);
                 _currentItem = new Item(name, " ", _cost);
                 Items.Add(_currentItem);
+                ItemsChanged?.Invoke(sender, EventArgs.Empty);
             }
             ItemsListBox.DataSource = null;
             SortItemsListBox();
@@ -272,6 +276,7 @@ namespace ObjectOrientedPractices.View.Tabs
             }
             Items.Remove((Item)selectedItem);
             ItemsListBox.SelectedIndex = -1;
+            ItemsChanged?.Invoke(sender, EventArgs.Empty);
         }
 
         /// <summary>
@@ -288,6 +293,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 CostTextBox.BackColor = Color.White;
                 _currentItem.Cost = Double.Parse(CostTextBox.Text);
+                ItemsChanged?.Invoke(sender, EventArgs.Empty);
             }
             catch
             {
@@ -311,6 +317,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 NameTextBox.BackColor = Color.White;
                 _currentItem.Name = NameTextBox.Text.ToString();
+                ItemsChanged?.Invoke(sender, EventArgs.Empty);
                 UpdateItemsListBox();
             }
             catch
@@ -335,6 +342,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 DescriptionTextBox.BackColor = Color.White;
                 _currentItem.Info = DescriptionTextBox.Text.ToString();
+                ItemsChanged?.Invoke(sender, EventArgs.Empty);
             }
             catch
             {
@@ -371,6 +379,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 return;
             }
             _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
+            ItemsChanged?.Invoke(sender, EventArgs.Empty);
         }
 
         /// <summary>
@@ -440,6 +449,16 @@ namespace ObjectOrientedPractices.View.Tabs
         private void ItemsListBox_Leave(object sender, EventArgs e)
         {
             ItemsListBox.Update();
+        }
+
+        private void Item_NameChanged(object sender, EventArgs args)
+        {
+            //MessageBox.Show("Name changed");
+        }
+
+        private void Subscribe()
+        {
+
         }
     }
 }
