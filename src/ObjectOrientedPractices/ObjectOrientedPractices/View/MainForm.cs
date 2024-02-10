@@ -23,6 +23,21 @@ namespace ObjectOrientedPractices
             CartsTab.Items = _store.Items;
             CartsTab.Customers = _store.Customers;
             OrdersTab.Customers= _store.Customers;
+            ItemsTab.ItemsChanged += ItemsTab_ItemsChanged;
+            CustomersTab.CustomersChanged += CustomersTab_CustomersChanged;
+
+        }
+
+        private void ItemsTab_ItemsChanged(object sender, EventArgs args)
+        {
+            //CartsTab.RefreshData();
+            //OrdersTab.RefreshData();
+        }
+
+        private void CustomersTab_CustomersChanged(object sender, EventArgs args)
+        {
+            //CartsTab.RefreshData();
+            //OrdersTab.RefreshData();
         }
 
         /// <summary>

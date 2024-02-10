@@ -14,6 +14,21 @@ namespace ObjectOrientedPractices.Model
     public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         /// <summary>
+        /// Событие, возникающее при изменении имени товара.
+        /// </summary>
+        public event EventHandler<EventArgs> NameChanged;
+
+        /// <summary>
+        /// Событие, возникающее при изменении цены товара.
+        /// </summary>
+        public event EventHandler<EventArgs> CostChanged;
+
+        /// <summary>
+        /// Событие, возникающее при изменении информации о товаре.
+        /// </summary>
+        public event EventHandler<EventArgs> InfoChanged;
+
+        /// <summary>
         /// Уникальный номер товара.
         /// </summary>
         private readonly int _id;
@@ -51,6 +66,7 @@ namespace ObjectOrientedPractices.Model
                 int max = 200;
                 ValueValidator.AssertStringOnLength(value, min, max);
                 _name = value;
+                NameChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -67,6 +83,7 @@ namespace ObjectOrientedPractices.Model
                 int max = 1000;
                 ValueValidator.AssertStringOnLength(value, min, max);
                 _info = value;
+                InfoChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -83,6 +100,7 @@ namespace ObjectOrientedPractices.Model
                 int max = 100000;
                 ValueValidator.AssertValueInRange(value, min, max);
                 _cost = value;
+                CostChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

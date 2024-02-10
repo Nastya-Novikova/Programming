@@ -20,6 +20,8 @@ namespace ObjectOrientedPractices.View.Tabs
     /// </summary>
     public partial class CustomersTab : UserControl
     {
+        public event EventHandler<EventArgs> CustomersChanged;
+
         /// <summary>
         /// Коллекция объектов типа <see cref="Customer"/>.
         /// </summary>
@@ -128,6 +130,7 @@ namespace ObjectOrientedPractices.View.Tabs
             _count++;
             _currentCustomer = new Customer($"Customer {_count}");
             Customers.Add(_currentCustomer);
+            CustomersChanged?.Invoke(sender, EventArgs.Empty);
             CustomersListBox.SelectedItem = _currentCustomer;
             FillCustomersListBox();
         }
@@ -142,6 +145,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 _count++;
                 _currentCustomer = new Customer($"Customer {_count}"); 
                 Customers.Add(_currentCustomer);
+                CustomersChanged?.Invoke(sender, EventArgs.Empty);
             }
             FillCustomersListBox();
             CustomersListBox.SelectedIndex = -1;
@@ -158,6 +162,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 return;
             }
             Customers.RemoveAt(CustomersListBox.SelectedIndex);
+            CustomersChanged?.Invoke(sender, EventArgs.Empty);
             CustomersListBox.SelectedIndex = -1;
         }
 
@@ -178,6 +183,7 @@ namespace ObjectOrientedPractices.View.Tabs
                 return;
             }
             _currentCustomer.Discounts.Add(new PercentDiscount(addDiscountForm.Category));
+            CustomersChanged?.Invoke(sender, EventArgs.Empty);
             FillDiscountsListBox();
         }
 
@@ -196,6 +202,7 @@ namespace ObjectOrientedPractices.View.Tabs
 
             _currentCustomer.Discounts.RemoveAt(DiscountsListBox.SelectedIndex);
             DiscountsListBox.Items.Remove(DiscountsListBox.SelectedItem);
+            CustomersChanged?.Invoke(sender, EventArgs.Empty);
         }
 
         /// <summary>
@@ -215,6 +222,7 @@ namespace ObjectOrientedPractices.View.Tabs
                     return;
                 }
                 _currentCustomer.Fullname = NameTextBox.Text;
+                CustomersChanged?.Invoke(sender, EventArgs.Empty);
                 UpdateCustomersListBox();
             }
             catch
@@ -248,6 +256,7 @@ namespace ObjectOrientedPractices.View.Tabs
             {
                 _currentCustomer.IsPriority = false;
             }
+            CustomersChanged?.Invoke(sender, EventArgs.Empty);
         }
     }
 }

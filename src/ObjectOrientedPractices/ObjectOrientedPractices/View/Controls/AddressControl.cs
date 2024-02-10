@@ -31,7 +31,15 @@ namespace ObjectOrientedPractices.View.Controls
             get { return _address; }
             set
             {
+                if (_address != null)
+                {
+                    _address.AddressChanged -= Address_AddressChanged;
+                }
                 _address = value;
+                if (value != null)
+                {
+                    _address.AddressChanged += Address_AddressChanged;
+                }
                 FillAllTextBoxes();
             }
         }
@@ -234,6 +242,11 @@ namespace ObjectOrientedPractices.View.Controls
                     ToolTip.SetToolTip(ApartmentTextBox, "До 10 символов.");
                 }
             }
+        }
+
+        private void Address_AddressChanged(object sender, EventArgs args)
+        {
+            //MessageBox.Show("Адрес изменен");
         }
     }
 }
