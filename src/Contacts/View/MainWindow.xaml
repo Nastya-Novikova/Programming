@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <GroupBox Header="Edit Contact" Grid.Column="0" Margin="3">
             <StackPanel>
-                <TextBlock Margin="3">Name:</TextBlock>
+                <TextBlock Margin="3" >Name:</TextBlock>
                 <TextBox Margin="3"></TextBox>
                 <TextBlock Margin="3">Phone Number:</TextBlock>
                 <TextBox Margin="3"></TextBox>
