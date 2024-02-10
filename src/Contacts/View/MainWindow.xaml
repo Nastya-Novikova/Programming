@@ -1,0 +1,44 @@
+﻿<Window x:Class="View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        Title="Contacts" Height="500" Width="800">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="373*"></RowDefinition>
+            <RowDefinition Height="31*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Edit Contact" Grid.Column="0" Margin="3">
+            <StackPanel>
+                <TextBlock Margin="3">Name:</TextBlock>
+                <TextBox Margin="3"></TextBox>
+                <TextBlock Margin="3">Phone Number:</TextBlock>
+                <TextBox Margin="3"></TextBox>
+                <TextBlock Margin="3">Email:</TextBlock>
+                <TextBox Margin="3"></TextBox>
+            </StackPanel>
+        </GroupBox>
+        
+        <GroupBox Header="Read Contact" Grid.Column="1" Margin="3">
+            <StackPanel>
+                <TextBlock Margin="3">Name:</TextBlock>
+                <TextBlock Margin="3" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="3">Phone Number:</TextBlock>
+                <TextBlock Margin="3" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="3">Email:</TextBlock>
+                <TextBlock Margin="3" FontWeight="Bold"></TextBlock>
+            </StackPanel>
+        </GroupBox>
+        <WrapPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" MaxHeight="31">
+            <Button Content="Save" Margin="3" Width="75" Height="25"/>
+            <Button Content="Load" Margin="3" Width="75" Height="25"/>
+        </WrapPanel>
+    </Grid>
+</Window>
