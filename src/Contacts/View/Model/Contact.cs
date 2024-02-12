@@ -3,38 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace View.Model
 {
+    /// <summary>
+    /// Контакт.
+    /// </summary>
     public class Contact
-    {
-        private string _name;
-        private string _email;
-        private string _phone;
+    { 
+        /// <summary>
+        /// Возвращает и задает имя контакта.
+        /// </summary>
+        public string Name { get; set; }
 
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        /// <summary>
+        /// Возвращает и задает почту контакта.
+        /// </summary>
+        public string Email { get; set; }
 
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; }
-        }
+        /// <summary>
+        /// Возвращает и задает телефон контакта.
+        /// </summary>
+        public string Phone { get; set; }
 
-        public string Phone
-        {
-            get { return _phone; }
-            set { _phone = value; }
-        }
-
+        /// <summary>
+        /// Создает объект контакта с инициализацией полей.
+        /// </summary>
+        /// <param name="name">Имя контакта.</param>
+        /// <param name="email">Почта контакта.</param>
+        /// <param name="phone">Телефон контакта.</param>
         public Contact (string name, string email, string phone)
         {
             Name = name;
             Email = email;
             Phone = phone;
         }
+
+        /// <summary>
+        /// Создает объект контакта без инициализации полей.
+        /// </summary>
+        public Contact()
+        {
+
+        }
+
     }
 }
