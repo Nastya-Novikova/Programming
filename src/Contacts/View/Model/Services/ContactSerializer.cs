@@ -24,7 +24,8 @@ namespace View.Model.Services
         /// <param name="contact">Контакт.</param>
         public static void SaveToFile(Contact contact)
         {
-            string directoryName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Contacts");
+            string directoryName = 
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Contacts");
             DirectoryInfo directoryInfo = new DirectoryInfo(directoryName);
             if (!directoryInfo.Exists)
             {
@@ -41,7 +42,8 @@ namespace View.Model.Services
         /// <returns>Возвращает объект, полученный из файла.</returns>
         public static Contact LoadFromFile()
         {
-            string directoryName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Contacts");
+            string directoryName = 
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Contacts");
             DirectoryInfo directoryInfo = new DirectoryInfo(directoryName);
             if (!directoryInfo.Exists)
             {
@@ -56,8 +58,8 @@ namespace View.Model.Services
                 while (reader.Read())
                 {
                     JsonSerializer serializer = new JsonSerializer();
-                    Contact tempContact = serializer.Deserialize<Contact>(reader);
-                    return tempContact;
+                    Contact loadedContact = serializer.Deserialize<Contact>(reader);
+                    return loadedContact;
                 }
                 reader.Close();
                 return new Contact();
