@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="Contacts" Height="500" Width="800"
-        DataContext = "{StaticResource MainVM}">
-
+        DataContext = "{StaticResource MainVM}" Icon="/contacts_96x96.ico">
+        <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -26,7 +28,16 @@
         </Grid>
 
         <Grid Grid.Row="1" Background="#f8f8f8">
-            <ListBox Margin="8 3 8 3"></ListBox>
+            <ListBox ItemsSource="{Binding Contacts}" 
+                     SelectedItem="{Binding CurrentContact}" Margin="8 3 8 3">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
 
         <GridSplitter Grid.Column="1" Grid.RowSpan="3" ShowsPreview="False" Width="3"
@@ -34,26 +45,32 @@
 
         <Grid Grid.Row="2" Background="#f8f8f8">
             <UniformGrid Rows="1" Columns="3">
-                <Button Content="Add" Margin="8 3 3 8" Height="25" Width="Auto"></Button>
-                <Button Content="Edit" Margin="3 3 3 8" Height="25" Width="Auto"></Button>
-                <Button Content="Remove" Margin="3 3 8 8" Height="25" Width="Auto"></Button>
+                <Button Command="{Binding AddCommand}"
+                        Content="Add" Margin="8 3 3 8" Height="25" Width="Auto"></Button>
+                <Button Command="{Binding EditCommand}"
+                        Content="Edit" Margin="3 3 3 8" Height="25" Width="Auto"></Button>
+                <Button Command="{Binding RemoveCommand}"
+                        Content="Remove" Margin="3 3 8 8" Height="25" Width="Auto"></Button>
             </UniformGrid>
         </Grid>
 
         <Grid Grid.Column="2" Grid.RowSpan="2">
             <DockPanel LastChildFill="True">
-                <Image Width="100" Height="100" VerticalAlignment="Top" Source="\avatar_100x100.jpeg" Margin="8,30,3,0"/>
+                <Image Width="100" Height="100" VerticalAlignment="Top" Source="Resources\avatar_100x100.jpeg" Margin="8,30,3,0"/>
                 <StackPanel>
                     <TextBlock Margin="3 8 8 3" >Name:</TextBlock>
-                    <TextBox x:Name="NameTextBox" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="3 3 8 3"></TextBox>
+                    <TextBox x:Name="NameTextBox" Text="{Binding CurrentContact.Name, UpdateSourceTrigger=PropertyChanged}"
+                             IsReadOnly="{Binding IsReadOnly}" Margin="3 3 8 3"></TextBox>
                     <TextBlock Margin="3 3 8 3">Phone Number:</TextBlock>
-                    <TextBox x:Name="PhoneTextBox" Text="{Binding Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="3 3 8 3"></TextBox>
+                    <TextBox x:Name="PhoneTextBox" Text="{Binding CurrentContact.Phone, UpdateSourceTrigger=PropertyChanged}"
+                             IsReadOnly="{Binding IsReadOnly}" Margin="3 3 8 3"></TextBox>
                     <TextBlock Margin="3 3 8 3">Email:</TextBlock>
-                    <TextBox x:Name="EmailTextBox" Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="3 3 8 3"></TextBox>
-                    <Button Content="Apply" Margin="3 50 3 3" Height="25" Width="75" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="EmailTextBox" Text="{Binding CurrentContact.Email, UpdateSourceTrigger=PropertyChanged}"
+                             IsReadOnly="{Binding IsReadOnly}" Margin="3 3 8 3"></TextBox>
+                    <Button Command="{Binding ApplyCommand}" 
+                            Content="Apply" Margin="3 50 3 3" Height="25" Width="75" HorizontalAlignment="Left"
+                            Visibility="{Binding Visibility, 
+                            Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
             </DockPanel>
         </Grid>
