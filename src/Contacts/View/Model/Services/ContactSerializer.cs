@@ -41,10 +41,10 @@ namespace View.Model.Services
             }
         }
 
-            /// <summary>
-            /// Десериализует объект из файла.
-            /// </summary>
-            /// <returns>Возвращает объект, полученный из файла.</returns>
+        /// <summary>
+        /// Десериализует объект из файла.
+        /// </summary>
+        /// <returns>Возвращает объект, полученный из файла.</returns>
         public static ObservableCollection <Contact> LoadFromFile()
         {
             string directoryName = 
