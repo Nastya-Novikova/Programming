@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using View.Model;
+using View.Model.Services;
 
 namespace View.ViewModel
 {
@@ -17,102 +20,213 @@ namespace View.ViewModel
     public class MainVM : INotifyPropertyChanged
     {
         /// <summary>
-        /// Имя выбранного контакта.
+        /// Выбранный контакт.
         /// </summary>
-        private string _name;
+        private Contact _currentContact;
 
         /// <summary>
-        /// Почта выбранного контакта.
+        /// Команда, применяющая изменения.
         /// </summary>
-        private string _email;
+        private RelayCommand _applyCommand;
 
         /// <summary>
-        /// Телефон выбранного контакта.
+        /// Команда, добавляющая новый контакт.
         /// </summary>
-        private string _phone;
+        private RelayCommand _addCommand;
 
         /// <summary>
-        /// Команда, выполняющая сохранение объекта.
+        /// Команда для редактирования контакта.
         /// </summary>
-        public SaveCommand Save { get; }
+        private RelayCommand _editCommand;
 
         /// <summary>
-        /// Команда, выполняющая загрузку объекта.
+        /// Команда, удаляющая контакт.
         /// </summary>
-        public LoadCommand Load { get; }
+        private RelayCommand _removeCommand;
 
         /// <summary>
-        /// Возвращает и задает имя контакта.
+        /// Определяет доступ для чтения и редактирования.
         /// </summary>
-        public string Name
+        private bool _isReadOnly;
+
+        /// <summary>
+        /// Видимость кнопки.
+        /// </summary>
+        private bool _visibility;
+
+        /// <summary>
+        /// Возвращает и задает состояние объекта при редактировании.
+        /// </summary>
+        public bool IsEditing { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает копию редактируемого объекта.
+        /// </summary>
+        public Contact EditedContact { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает коллекцию контактов.
+        /// </summary>
+        public ObservableCollection<Contact> Contacts { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает возможность редактировать объект.
+        /// </summary>
+        public bool IsReadOnly
         {
-            get { return _name; }
+            get { return _isReadOnly; }
+            private set
+            {
+                _isReadOnly = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задает видимость кнопки.
+        /// </summary>
+        public bool Visibility
+        {
+            get { return _visibility; }
+            private set
+            {
+                _visibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задает выбранный контакт.
+        /// При изменении текущего контакта в режиме добавления/редактирования
+        /// возвращает старые значения полей.
+        /// </summary>
+        public Contact CurrentContact 
+        { 
+            get { return _currentContact; }
             set 
             { 
-               _name = value;
-                CurrentContact.Name = _name;
+                if (IsEditing == true)
+                {
+                    IsEditing = false;
+                    CurrentContact.Name = EditedContact.Name;
+                    CurrentContact.Email = EditedContact.Email;
+                    CurrentContact.Phone = EditedContact.Phone;
+                }
+                IsReadOnly = true;
+                Visibility = false;
+                _currentContact = value;
                 OnPropertyChanged();
             }
+
         }
 
         /// <summary>
-        /// Возвращает и задает почту контакта.
+        /// Подтверждает редактирование или добавление контакта.
+        /// Сохраняет данные в файл.
         /// </summary>
-        public string Email
+        public RelayCommand ApplyCommand
         {
-            get { return _email; }
-            set 
-            {
-                _email = value;
-                CurrentContact.Email = _email;
-                OnPropertyChanged();
+            get { 
+                return _applyCommand ??
+                    (_applyCommand = new RelayCommand(obj =>
+                    {
+                        IsReadOnly = true;
+                        if (IsEditing == true)
+                        {
+                            IsEditing = false;
+                        }
+                        else
+                        {
+                            Contacts.Add(CurrentContact);
+                        }
+                        Visibility = false;
+                        ContactSerializer.SaveToFile(Contacts);
+                    }));
             }
         }
 
         /// <summary>
-        /// Возвращает и задает телефон контакта.
+        /// Добавление контакта.
         /// </summary>
-        public string Phone
+        public RelayCommand AddCommand
         {
-            get 
-            { 
-                return _phone; 
-            }
-            set 
+            get
             {
-                _phone = value;
-                CurrentContact.Phone = _phone;
-                OnPropertyChanged();
+                return _addCommand ??
+                    (_addCommand = new RelayCommand(obj =>
+                    {
+                        Contact contact = new Contact();
+                        CurrentContact = contact;
+                        IsReadOnly = false;
+                        Visibility = true;
+                    },
+                    (obj) => (IsReadOnly != false)));
             }
         }
 
         /// <summary>
-        /// ВОзвращает и задает выбранный контакт.
+        /// Редактирование контакта.
         /// </summary>
-        public Contact CurrentContact { get; set; }
+        public RelayCommand EditCommand
+        {
+            get
+            {
+                return _editCommand ??
+                    (_editCommand = new RelayCommand(obj =>
+                    {
+                        IsReadOnly = false;
+                        IsEditing = true;
+                        Visibility = true;
+                        EditedContact = new Contact(CurrentContact.Name, CurrentContact.Email, CurrentContact.Phone);
+                    },
+                    (obj) => (Contacts.Count > 0 && CurrentContact != null &&
+                              Contacts.IndexOf(CurrentContact) != -1 && 
+                              IsReadOnly != false)));
+            }
+        }
 
         /// <summary>
-        /// Создает экземпляр объекта MainVM, SaveCommand, LoadCommand.
+        /// Удаление контакта.
+        /// Сохраняет данные в файл.
+        /// </summary>
+        public RelayCommand RemoveCommand
+        {
+            get
+            {
+                return _removeCommand ??
+                    (_removeCommand = new RelayCommand(obj =>
+                    {
+                        int index = Contacts.IndexOf(CurrentContact);
+                        Contacts.Remove(CurrentContact);
+                        if (index == Contacts.Count && Contacts.Count != 0)
+                        {
+                            CurrentContact = Contacts[index-1];
+                        }
+                        else if (Contacts.Count != 0)
+                        {
+                            CurrentContact = Contacts[index];
+                        }
+                        ContactSerializer.SaveToFile(Contacts);
+                    },
+                    (obj) => (Contacts.Count > 0 && CurrentContact != null && 
+                              Contacts.IndexOf(CurrentContact) != -1 &&
+                              IsReadOnly != false)));
+            }
+        }
+
+        /// <summary>
+        /// Создает экземпляр объекта MainVM.
+        /// Загружает информацию из файла.
         /// </summary>
         public MainVM()
         {
             CurrentContact = new Contact();
-            Save = new SaveCommand();
-            Load = new LoadCommand(LoadContact);
-        }
-
-        /// <summary>
-        /// Обновляет поля при загрузке контакта из файла.
-        /// </summary>
-        /// <param name="contact">Контакт, полученный из файла.</param>
-        private void LoadContact(Contact contact)
-        {
-            if (contact != null)
-            {
-                Name = contact.Name;
-                Email = contact.Email;
-                Phone = contact.Phone;
-            }
+            EditedContact = new Contact();
+            Contacts = new ObservableCollection<Contact>();
+            Contacts = ContactSerializer.LoadFromFile();
+            IsReadOnly = true;
+            IsEditing = false;
+            Visibility = false;
         }
 
         /// <summary>
@@ -121,7 +235,7 @@ namespace View.ViewModel
         public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
-        /// Обновляет привязанные объекты
+        /// Обновляет привязанные объекты.
         /// </summary>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

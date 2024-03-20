@@ -6,47 +6,73 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="Contacts" Height="500" Width="800"
-        DataContext = "{StaticResource MainVM}">
-        
-    <Grid Margin="15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="11*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
+        DataContext = "{StaticResource MainVM}" Icon="/contacts_96x96.ico">
+        <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </Window.Resources>
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Edit Contact" Grid.Column="0" Margin="3">
-            <StackPanel>
-                <TextBlock Margin="3" >Name:</TextBlock>
-                <TextBox x:Name="NameTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="3"></TextBox>
-                <TextBlock Margin="3">Phone Number:</TextBlock>
-                <TextBox x:Name="PhoneTextBox" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="3"></TextBox>
-                <TextBlock Margin="3">Email:</TextBlock>
-                <TextBox x:Name="EmailTextBox" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="3"></TextBox>
-            </StackPanel>
-        </GroupBox>
-        
-        <GroupBox Header="Read Contact" Grid.Column="1" Margin="3">
-            <StackPanel>
-                <TextBlock Margin="3">Name:</TextBlock>
-                <TextBlock Text="{Binding ElementName=NameTextBox,Path=Text,UpdateSourceTrigger=PropertyChanged}" 
-                           Margin="3" FontWeight="Bold"></TextBlock>
-                <TextBlock Margin="3">Phone Number:</TextBlock>
-                <TextBlock Text="{Binding ElementName=PhoneTextBox,Path=Text,UpdateSourceTrigger=PropertyChanged}"
-                           Margin="3" FontWeight="Bold"></TextBlock>
-                <TextBlock Margin="3">Email:</TextBlock>
-                <TextBlock Text="{Binding ElementName=EmailTextBox,Path=Text,UpdateSourceTrigger=PropertyChanged}"
-                           Margin="3" FontWeight="Bold"></TextBlock>
-            </StackPanel>
-        </GroupBox>
-        <WrapPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" MaxHeight="31" Grid.ColumnSpan="2">
-            <Button Content="Save"  Command="{Binding Save}" CommandParameter="{Binding CurrentContact}" Margin="3" Width="75" Height="25"/>
-            <Button Content="Load"  Command="{Binding Load}" Margin="3" Width="75" Height="25"/>
-        </WrapPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#f8f8f8">
+            <TextBlock Margin="8 8 3 3">Find:</TextBlock>
+            <TextBox Width="Auto" Height="18" Margin="36 8 8 3"></TextBox>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="#f8f8f8">
+            <ListBox ItemsSource="{Binding Contacts}" 
+                     SelectedItem="{Binding CurrentContact}" Margin="8 3 8 3">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" ShowsPreview="False" Width="3"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="White"/>
+
+        <Grid Grid.Row="2" Background="#f8f8f8">
+            <UniformGrid Rows="1" Columns="3">
+                <Button Command="{Binding AddCommand}"
+                        Content="Add" Margin="8 3 3 8" Height="25" Width="Auto"></Button>
+                <Button Command="{Binding EditCommand}"
+                        Content="Edit" Margin="3 3 3 8" Height="25" Width="Auto"></Button>
+                <Button Command="{Binding RemoveCommand}"
+                        Content="Remove" Margin="3 3 8 8" Height="25" Width="Auto"></Button>
+            </UniformGrid>
+        </Grid>
+
+        <Grid Grid.Column="2" Grid.RowSpan="2">
+            <DockPanel LastChildFill="True">
+                <Image Width="100" Height="100" VerticalAlignment="Top" Source="Resources\avatar_100x100.jpeg" Margin="8,30,3,0"/>
+                <StackPanel>
+                    <TextBlock Margin="3 8 8 3" >Name:</TextBlock>
+                    <TextBox x:Name="NameTextBox" Text="{Binding CurrentContact.Name, UpdateSourceTrigger=PropertyChanged}"
+                             IsReadOnly="{Binding IsReadOnly}" Margin="3 3 8 3"></TextBox>
+                    <TextBlock Margin="3 3 8 3">Phone Number:</TextBlock>
+                    <TextBox x:Name="PhoneTextBox" Text="{Binding CurrentContact.Phone, UpdateSourceTrigger=PropertyChanged}"
+                             IsReadOnly="{Binding IsReadOnly}" Margin="3 3 8 3"></TextBox>
+                    <TextBlock Margin="3 3 8 3">Email:</TextBlock>
+                    <TextBox x:Name="EmailTextBox" Text="{Binding CurrentContact.Email, UpdateSourceTrigger=PropertyChanged}"
+                             IsReadOnly="{Binding IsReadOnly}" Margin="3 3 8 3"></TextBox>
+                    <Button Command="{Binding ApplyCommand}" 
+                            Content="Apply" Margin="3 50 3 3" Height="25" Width="75" HorizontalAlignment="Left"
+                            Visibility="{Binding Visibility, 
+                            Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
     </Grid>
 </Window>

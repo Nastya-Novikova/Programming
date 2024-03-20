@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,9 @@ namespace View.Model.Services
         /// Сериализует объект.
         /// </summary>
         /// <param name="contact">Контакт.</param>
-        public static void SaveToFile(Contact contact)
+        public static void SaveToFile(ObservableCollection<Contact> contacts)
         {
-            string directoryName = 
+            string directoryName =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Contacts");
             DirectoryInfo directoryInfo = new DirectoryInfo(directoryName);
             if (!directoryInfo.Exists)
@@ -33,14 +34,18 @@ namespace View.Model.Services
             }
             FileName = Path.Combine(directoryName, "contacts.json");
             File.WriteAllText(FileName, string.Empty);
-            File.AppendAllText(FileName, JsonConvert.SerializeObject(contact));
+            for (int i = 0; i < contacts.Count; i++)
+            {
+                File.AppendAllText(FileName, JsonConvert.SerializeObject(contacts[i]));
+
+            }
         }
 
         /// <summary>
         /// Десериализует объект из файла.
         /// </summary>
         /// <returns>Возвращает объект, полученный из файла.</returns>
-        public static Contact LoadFromFile()
+        public static ObservableCollection <Contact> LoadFromFile()
         {
             string directoryName = 
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Contacts");
@@ -53,21 +58,22 @@ namespace View.Model.Services
             FileInfo fileInfo = new FileInfo(FileName);
             if (fileInfo.Exists)
             {
+                ObservableCollection<Contact> contacts = new ObservableCollection<Contact>();
                 JsonTextReader reader = new JsonTextReader(new StreamReader(FileName));
                 reader.SupportMultipleContent = true;
                 while (reader.Read())
                 {
                     JsonSerializer serializer = new JsonSerializer();
                     Contact loadedContact = serializer.Deserialize<Contact>(reader);
-                    return loadedContact;
+                    contacts.Add(loadedContact);
                 }
                 reader.Close();
-                return new Contact();
+                return contacts;
             }
             else
             {
                 File.WriteAllText(FileName, string.Empty);
-                return new Contact();
+                return new ObservableCollection<Contact>();
             }
         }
 
