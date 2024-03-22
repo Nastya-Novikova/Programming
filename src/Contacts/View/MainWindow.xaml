@@ -3,13 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:View"
+        xmlns:local="clr-namespace:View" 
+        xmlns:uc="clr-namespace:View.Controls"
         mc:Ignorable="d"
         Title="Contacts" Height="500" Width="800"
         DataContext = "{StaticResource MainVM}" Icon="/contacts_96x96.ico">
-        <Window.Resources>
+    <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        </Window.Resources>
+        <DataTemplate x:Key="contactTemplate">
+            <DockPanel>
+                <Image Width="35" Height="35" VerticalAlignment="Top" Source="Resources\avatar_100x100.jpeg"/>
+                <StackPanel>
+                    <TextBlock Text="{Binding Name}" FontWeight="DemiBold"/>
+                    <TextBlock Text="{Binding Phone}" FontSize="10"/>
+                </StackPanel>
+            </DockPanel>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -29,15 +40,8 @@
 
         <Grid Grid.Row="1" Background="#f8f8f8">
             <ListBox ItemsSource="{Binding Contacts}" 
-                     SelectedItem="{Binding CurrentContact}" Margin="8 3 8 3">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Path=Name}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                     SelectedItem="{Binding CurrentContact}" Margin="8 3 8 3"
+                     ItemTemplate="{StaticResource contactTemplate}"/>
         </Grid>
 
         <GridSplitter Grid.Column="1" Grid.RowSpan="3" ShowsPreview="False" Width="3"
@@ -55,24 +59,9 @@
         </Grid>
 
         <Grid Grid.Column="2" Grid.RowSpan="2">
-            <DockPanel LastChildFill="True">
-                <Image Width="100" Height="100" VerticalAlignment="Top" Source="Resources\avatar_100x100.jpeg" Margin="8,30,3,0"/>
-                <StackPanel>
-                    <TextBlock Margin="3 8 8 3" >Name:</TextBlock>
-                    <TextBox x:Name="NameTextBox" Text="{Binding CurrentContact.Name, UpdateSourceTrigger=PropertyChanged}"
-                             IsReadOnly="{Binding IsReadOnly}" Margin="3 3 8 3"></TextBox>
-                    <TextBlock Margin="3 3 8 3">Phone Number:</TextBlock>
-                    <TextBox x:Name="PhoneTextBox" Text="{Binding CurrentContact.Phone, UpdateSourceTrigger=PropertyChanged}"
-                             IsReadOnly="{Binding IsReadOnly}" Margin="3 3 8 3"></TextBox>
-                    <TextBlock Margin="3 3 8 3">Email:</TextBlock>
-                    <TextBox x:Name="EmailTextBox" Text="{Binding CurrentContact.Email, UpdateSourceTrigger=PropertyChanged}"
-                             IsReadOnly="{Binding IsReadOnly}" Margin="3 3 8 3"></TextBox>
-                    <Button Command="{Binding ApplyCommand}" 
-                            Content="Apply" Margin="3 50 3 3" Height="25" Width="75" HorizontalAlignment="Left"
-                            Visibility="{Binding Visibility, 
-                            Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                </StackPanel>
-            </DockPanel>
+            <uc:ContactControl/>
+            
         </Grid>
     </Grid>
 </Window>
+

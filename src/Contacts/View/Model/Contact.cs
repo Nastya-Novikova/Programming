@@ -13,7 +13,7 @@ namespace View.Model
     /// <summary>
     /// Контакт.
     /// </summary>
-    public class Contact: INotifyPropertyChanged
+    public class Contact: INotifyPropertyChanged, IDataErrorInfo
     {
         /// <summary>
         /// Имя выбранного контакта.
@@ -69,6 +69,52 @@ namespace View.Model
             {
                 _phone = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public string Error => "";
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+                switch (columnName)
+                {
+                    case "Name":
+                        if (Name == null)
+                        {
+                            break;
+                        }
+                        else if (Name.Length == 0 || Name.Length > 100)
+                        {
+                            error = "Имя должно быть от 1 до 100 символов.";
+                        }
+                        break;
+
+                    case "Phone":
+                        if (Phone == null)
+                        {
+                            break;
+                        }
+                        if (Phone.Length == 0 || Phone.Length > 100)
+                        {
+                            error = "Номер телефона должен быть не длиннее 100 символов и может содержать только цифры или символы +-() .";
+                        }
+                        break;
+
+                    case "Email":
+                        if (Email == null)
+                        {
+                            break;
+                        }
+                        if (Email.Length == 0 || Email.Length > 100)
+                        {
+                            error = "Email должен быть не длиннее 100 символов и должен содержать символ @ .";
+                        }
+                        break;
+                }
+                return error;
             }
         }
 
