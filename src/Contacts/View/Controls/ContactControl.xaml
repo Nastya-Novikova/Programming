@@ -25,10 +25,12 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <DockPanel LastChildFill="True" Grid.ColumnSpan="2">
-            <Image Width="100" Height="100" VerticalAlignment="Top" Source="..\Resources\avatar_100x100.jpeg" Margin="8,30,3,0"/>
+            <Image Width="100" Height="100" VerticalAlignment="Top" 
+                   Source="..\Resources\avatar_100x100.jpeg" Margin="8,30,3,0"/>
             <StackPanel>
                 <TextBlock Margin="3 8 8 3" >Name:</TextBlock>
-                <TextBox x:Name="NameTextBox" Text="{Binding CurrentContact.Name, UpdateSourceTrigger=PropertyChanged, 
+                <TextBox x:Name="NameTextBox" Text="{Binding CurrentContact.Name, 
+                         UpdateSourceTrigger=PropertyChanged, 
                          ValidatesOnDataErrors=True}"
                          IsReadOnly="{Binding IsReadOnly}" 
                          Style="{StaticResource ErrorTextBoxStyle}"
@@ -37,16 +39,21 @@
                          Margin="3 3 8 3"></TextBox>
                 
                 <TextBlock Margin="3 3 8 3">Phone Number:</TextBlock>
-                <TextBox x:Name="PhoneTextBox" Text="{Binding CurrentContact.Phone, UpdateSourceTrigger=PropertyChanged, 
+                <TextBox x:Name="PhoneTextBox" Text="{Binding CurrentContact.Phone, 
+                         UpdateSourceTrigger=PropertyChanged, 
                          ValidatesOnDataErrors=True}"
                          IsReadOnly="{Binding IsReadOnly}"
                          Style="{StaticResource ErrorTextBoxStyle}"
                          Validation.ErrorTemplate="{x:Null}"
                          ToolTip="{Binding (Validation.Errors)[0].ErrorContent, ElementName=PhoneTextBox}"
+                         PreviewTextInput="PhoneTextBox_PreviewTextInput"
+                         PreviewKeyDown="PhoneTextBox_PreviewKeyDown"
+                         DataObject.Pasting="PhoneTextBox_OnPaste"
                          Margin="3 3 8 3"></TextBox>
                 
                 <TextBlock Margin="3 3 8 3">Email:</TextBlock>
-                <TextBox x:Name="EmailTextBox" Text="{Binding CurrentContact.Email, UpdateSourceTrigger=PropertyChanged, 
+                <TextBox x:Name="EmailTextBox" Text="{Binding CurrentContact.Email, 
+                         UpdateSourceTrigger=PropertyChanged, 
                          ValidatesOnDataErrors=True}"
                          IsReadOnly="{Binding IsReadOnly}"
                          Style="{StaticResource ErrorTextBoxStyle}"

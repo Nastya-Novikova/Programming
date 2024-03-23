@@ -12,7 +12,8 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <DataTemplate x:Key="contactTemplate">
             <DockPanel>
-                <Image Width="35" Height="35" VerticalAlignment="Top" Source="Resources\avatar_100x100.jpeg"/>
+                <Image Width="35" Height="35" VerticalAlignment="Top" 
+                       Source="Resources\avatar_100x100.jpeg"/>
                 <StackPanel>
                     <TextBlock Text="{Binding Name}" FontWeight="DemiBold"/>
                     <TextBlock Text="{Binding Phone}" FontSize="10"/>

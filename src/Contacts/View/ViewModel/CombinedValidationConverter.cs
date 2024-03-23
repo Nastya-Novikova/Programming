@@ -8,6 +8,9 @@ using System.Windows.Data;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Конвертер значений.
+    /// </summary>
     public class CombinedValidationConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)

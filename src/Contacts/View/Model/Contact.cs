@@ -72,8 +72,15 @@ namespace View.Model
             }
         }
 
-        public string Error => "";
+        /// <summary>
+        /// Возвращает ошибку.
+        /// </summary>
+        public string Error => ""; 
 
+        /// <summary>
+        /// Возвращает строку, содержащую ошибку.
+        /// </summary>
+        /// <returns>Строка, содержащая информацию об ошибке.</returns>
         public string this[string columnName]
         {
             get
@@ -108,7 +115,7 @@ namespace View.Model
                         {
                             break;
                         }
-                        if (Email.Length == 0 || Email.Length > 100)
+                        if (Email.Length == 0 || Email.Length > 100 || !Email.Contains("@"))
                         {
                             error = "Email должен быть не длиннее 100 символов и должен содержать символ @ .";
                         }
