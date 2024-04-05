@@ -81,14 +81,14 @@ namespace View.Model
         /// Возвращает строку, содержащую ошибку.
         /// </summary>
         /// <returns>Строка, содержащая информацию об ошибке.</returns>
-        public string this[string columnName]
+        public string this[string propertyName]
         {
             get
             {
                 string error = string.Empty;
-                switch (columnName)
+                switch (propertyName)
                 {
-                    case "Name":
+                    case nameof(Name):
                         if (Name == null)
                         {
                             break;
@@ -99,7 +99,7 @@ namespace View.Model
                         }
                         break;
 
-                    case "Phone":
+                    case nameof(Phone):
                         if (Phone == null)
                         {
                             break;
@@ -110,7 +110,7 @@ namespace View.Model
                         }
                         break;
 
-                    case "Email":
+                    case nameof(Email):
                         if (Email == null)
                         {
                             break;

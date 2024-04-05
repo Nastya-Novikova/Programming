@@ -141,8 +141,9 @@ namespace View.ViewModel
                         }
                         Visibility = false;
                         ContactSerializer.SaveToFile(Contacts);
-                    },
-                    (obj) => (CurrentContact.Name != null &&
+                    }, 
+                    (obj) => (CurrentContact != null &&
+                              CurrentContact.Name != null &&
                               CurrentContact.Phone != null &&
                               CurrentContact.Email != null)));
             }
