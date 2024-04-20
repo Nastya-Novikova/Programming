@@ -61,7 +61,7 @@
                          ToolTip="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EmailTextBox}"
                          Margin="3 3 8 3"></TextBox>
 
-                <Button Command="{Binding ApplyCommand}" 
+                <Button Command="{Binding ApplyCommand}" CommandParameter="{Binding CurrentContact}"
                             Content="Apply" Margin="3, 50" Height="25" Width="75" HorizontalAlignment="Left"
                             Visibility="{Binding Visibility, 
                             Converter={StaticResource BooleanToVisibilityConverter}}">

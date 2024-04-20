@@ -1,12 +1,17 @@
-﻿using System;
+﻿using Accessibility;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Common;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using View.Model;
 using View.Model.Services;
@@ -17,7 +22,7 @@ namespace View.ViewModel
     /// ViewModel для главного окна.
     /// Реализует интерфейс INotifyPropertyChanged.
     /// </summary>
-    public class MainVM : INotifyPropertyChanged
+    public partial class MainVM : ObservableObject
     {
         /// <summary>
         /// Выбранный контакт.
@@ -65,9 +70,22 @@ namespace View.ViewModel
         public Contact EditedContact { get; set; }
 
         /// <summary>
+        /// Коллекция контактов
+        /// </summary>
+        private ObservableCollection<Contact> _contacts;
+
+        /// <summary>
         /// Возвращает и задает коллекцию контактов.
         /// </summary>
-        public ObservableCollection<Contact> Contacts { get; set; }
+        public ObservableCollection<Contact> Contacts
+        {
+            get => _contacts;
+            set
+            {
+                _contacts = value;
+                NotifyCanExecuteChangedCommands();
+            }
+        }
 
         /// <summary>
         /// Возвращает и задает возможность редактировать объект.
@@ -116,6 +134,7 @@ namespace View.ViewModel
                 Visibility = false;
                 _currentContact = value;
                 OnPropertyChanged();
+                NotifyCanExecuteChangedCommands();
             }
 
         }
@@ -124,99 +143,73 @@ namespace View.ViewModel
         /// Подтверждает редактирование или добавление контакта.
         /// Сохраняет данные в файл.
         /// </summary>
-        public RelayCommand ApplyCommand
-        {
-            get { 
-                return _applyCommand ??
-                    (_applyCommand = new RelayCommand(obj =>
-                    {
-                        IsReadOnly = true;
-                        if (IsEditing == true)
-                        {
-                            IsEditing = false;
-                        }
-                        else
-                        {
-                            Contacts.Add(CurrentContact);
-                        }
-                        Visibility = false;
-                        ContactSerializer.SaveToFile(Contacts);
-                    }, 
-                    (obj) => (CurrentContact != null &&
-                              CurrentContact.Name != null &&
-                              CurrentContact.Phone != null &&
-                              CurrentContact.Email != null)));
-            }
-        }
+        public RelayCommand ApplyCommand => _applyCommand ??=
+            new RelayCommand(() =>
+            {
+                IsReadOnly = true;
+                if (IsEditing == true)
+                {
+                    IsEditing = false;
+                }
+                else
+                {
+                    Contacts.Add(CurrentContact);
+                }
+                Visibility = false;
+                ContactSerializer.SaveToFile(Contacts);
+                NotifyCanExecuteChangedCommands();
+            },
+            () => CurrentContact != null); 
 
         /// <summary>
         /// Добавление контакта.
         /// </summary>
-        public RelayCommand AddCommand
-        {
-            get
+        public RelayCommand AddCommand => _addCommand ??=
+            new RelayCommand(() =>
             {
-                return _addCommand ??
-                    (_addCommand = new RelayCommand(obj =>
-                    {
-                        Contact contact = new Contact();
-                        CurrentContact = contact;
-                        IsReadOnly = false;
-                        Visibility = true;
-                    },
-                    (obj) => (IsReadOnly != false)));
-            }
-        }
+                Contact contact = new Contact();
+                CurrentContact = contact;
+                IsReadOnly = false;
+                Visibility = true;
+            });
 
         /// <summary>
         /// Редактирование контакта.
         /// </summary>
-        public RelayCommand EditCommand
-        {
-            get
+        public RelayCommand EditCommand => _editCommand ??=
+            new RelayCommand(() =>
             {
-                return _editCommand ??
-                    (_editCommand = new RelayCommand(obj =>
-                    {
-                        IsReadOnly = false;
-                        IsEditing = true;
-                        Visibility = true;
-                        EditedContact = new Contact(CurrentContact.Name, CurrentContact.Email, CurrentContact.Phone);
-                    },
-                    (obj) => (Contacts.Count > 0 && CurrentContact != null &&
-                              Contacts.IndexOf(CurrentContact) != -1 && 
-                              IsReadOnly != false)));
-            }
-        }
+                IsReadOnly = false;
+                IsEditing = true;
+                Visibility = true;
+                EditedContact = new Contact(CurrentContact.Name, CurrentContact.Email, CurrentContact.Phone);
+            },
+            () => Contacts.Count > 0
+            && CurrentContact != null &&
+            Contacts.IndexOf(CurrentContact) != -1);
 
         /// <summary>
         /// Удаление контакта.
         /// Сохраняет данные в файл.
         /// </summary>
-        public RelayCommand RemoveCommand
-        {
-            get
+        public RelayCommand RemoveCommand => _removeCommand ??=
+            new RelayCommand(() =>
             {
-                return _removeCommand ??
-                    (_removeCommand = new RelayCommand(obj =>
-                    {
-                        int index = Contacts.IndexOf(CurrentContact);
-                        Contacts.Remove(CurrentContact);
-                        if (index == Contacts.Count && Contacts.Count != 0)
-                        {
-                            CurrentContact = Contacts[index-1];
-                        }
-                        else if (Contacts.Count != 0)
-                        {
-                            CurrentContact = Contacts[index];
-                        }
-                        ContactSerializer.SaveToFile(Contacts);
-                    },
-                    (obj) => (Contacts.Count > 0 && CurrentContact != null && 
-                              Contacts.IndexOf(CurrentContact) != -1 &&
-                              IsReadOnly != false)));
-            }
-        }
+                int index = Contacts.IndexOf(CurrentContact);
+                Contacts.Remove(CurrentContact);
+                if (index == Contacts.Count && Contacts.Count != 0)
+                {
+                    CurrentContact = Contacts[index - 1];
+                }
+                else if (Contacts.Count != 0)
+                {
+                    CurrentContact = Contacts[index];
+                }
+                ContactSerializer.SaveToFile(Contacts);
+            },
+            () => (Contacts.Count > 0 &&
+                   CurrentContact != null &&
+                   Contacts.IndexOf(CurrentContact) != -1));
 
         /// <summary>
         /// Создает экземпляр объекта MainVM.
@@ -233,18 +226,12 @@ namespace View.ViewModel
             Visibility = false;
         }
 
-        /// <summary>
-        /// Зажигается при изменении значения свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        /// <summary>
-        /// Обновляет привязанные объекты.
-        /// </summary>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        public void NotifyCanExecuteChangedCommands()
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            AddCommand.NotifyCanExecuteChanged();
+            EditCommand.NotifyCanExecuteChanged();
+            RemoveCommand.NotifyCanExecuteChanged();
+            ApplyCommand.NotifyCanExecuteChanged();
         }
     }
 }

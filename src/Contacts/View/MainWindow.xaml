@@ -50,11 +50,13 @@
 
         <Grid Grid.Row="2" Background="#f8f8f8">
             <UniformGrid Rows="1" Columns="3">
-                <Button Command="{Binding AddCommand}"
+                <Button Command="{Binding AddCommand}" IsEnabled="{Binding IsReadOnly}"
                         Content="Add" Margin="8 3 3 8" Height="25" Width="Auto"></Button>
-                <Button Command="{Binding EditCommand}"
+                <Button Command="{Binding EditCommand}" IsEnabled="{Binding IsReadOnly}"
+                        CommandParameter="{Binding CurrentContact}"
                         Content="Edit" Margin="3 3 3 8" Height="25" Width="Auto"></Button>
-                <Button Command="{Binding RemoveCommand}"
+                <Button Command="{Binding RemoveCommand}" CommandParameter="{Binding CurrentContact}"
+                        IsEnabled="{Binding IsReadOnly}"
                         Content="Remove" Margin="3 3 8 8" Height="25" Width="Auto"></Button>
             </UniformGrid>
         </Grid>
