@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace View.Model.Services
+namespace Model.Services
 {
     /// <summary>
     /// Предоставляет методы для сериализации и десериализации.

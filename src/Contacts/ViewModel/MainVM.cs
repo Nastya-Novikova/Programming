@@ -13,10 +13,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using View.Model;
-using View.Model.Services;
+using Model;
+using Model.Services;
 
-namespace View.ViewModel
+namespace ViewModel
 {
     /// <summary>
     /// ViewModel для главного окна.
@@ -226,6 +226,9 @@ namespace View.ViewModel
             Visibility = false;
         }
 
+        /// <summary>
+        /// Оповещает команды об изменении условий выполнения.
+        /// </summary>
         public void NotifyCanExecuteChangedCommands()
         {
             AddCommand.NotifyCanExecuteChanged();
