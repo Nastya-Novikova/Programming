@@ -167,8 +167,7 @@ namespace ViewModel
         public RelayCommand AddCommand => _addCommand ??=
             new RelayCommand(() =>
             {
-                Contact contact = new Contact();
-                CurrentContact = contact;
+                CurrentContact = new Contact();
                 IsReadOnly = false;
                 Visibility = true;
             });
@@ -217,7 +216,6 @@ namespace ViewModel
         /// </summary>
         public MainVM()
         {
-            CurrentContact = new Contact();
             EditedContact = new Contact();
             Contacts = new ObservableCollection<Contact>();
             Contacts = ContactSerializer.LoadFromFile();

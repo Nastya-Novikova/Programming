@@ -89,33 +89,22 @@ namespace Model
                 switch (propertyName)
                 {
                     case nameof(Name):
-                        if (Name == null)
-                        {
-                            break;
-                        }
-                        else if (Name.Length == 0 || Name.Length > 100)
+                        if (String.IsNullOrEmpty(Name) || Name.Length > 100)
                         {
                             error = "Имя должно быть от 1 до 100 символов.";
                         }
                         break;
 
                     case nameof(Phone):
-                        if (Phone == null)
-                        {
-                            break;
-                        }
-                        if (Phone.Length == 0 || Phone.Length > 100)
+
+                        if (String.IsNullOrEmpty(Phone) || Phone.Length > 100)
                         {
                             error = "Номер телефона должен быть не длиннее 100 символов и может содержать только цифры или символы +-() .";
                         }
                         break;
 
                     case nameof(Email):
-                        if (Email == null)
-                        {
-                            break;
-                        }
-                        if (Email.Length == 0 || Email.Length > 100 || !Email.Contains("@"))
+                        if (String.IsNullOrEmpty(Email) || Email.Length > 100 || !Email.Contains("@"))
                         {
                             error = "Email должен быть не длиннее 100 символов и должен содержать символ @ .";
                         }
@@ -133,9 +122,9 @@ namespace Model
         /// <param name="phone">Телефон контакта.</param>
         public Contact (string name, string email, string phone)
         {
-            Name = name;
-            Email = email;
-            Phone = phone;
+            _name = name;
+            _email = email;
+            _phone = phone;
         }
 
         /// <summary>

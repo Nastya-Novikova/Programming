@@ -13,7 +13,7 @@
         <Style x:Key="ErrorTextBoxStyle" TargetType="TextBox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="Background" Value="#FFA4A4"/>
+                    <Setter Property="Background" Value="#F8CACA"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
