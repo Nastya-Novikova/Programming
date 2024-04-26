@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace View.ViewModel
+namespace View.Services
 {
     /// <summary>
     /// Конвертер массива значений.
